@@ -3,25 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Icona from "@/components/ui/Icona";
-import { studio } from "@/data/demo/clienti-attivita";
-
-const BASE = "/demo/clienti-attivita";
-
-const voci = [
-  { href: BASE, label: "Oggi", icona: "House", esatta: true },
-  { href: `${BASE}/clienti`, label: "Clienti", icona: "Users" },
-  { href: `${BASE}/attivita`, label: "Attività", icona: "CheckCircle2" },
-  { href: `${BASE}/scadenze`, label: "Scadenze", icona: "Clock" },
-  { href: `${BASE}/documenti`, label: "Documenti", icona: "FolderOpen" },
-  { href: `${BASE}/preventivi`, label: "Preventivi", icona: "FileStack" },
-  { href: `${BASE}/report`, label: "Report", icona: "LayoutGrid" },
-];
 
 /**
  * L'involucro del gestionale demo: banner di avviso, barra laterale scura,
  * area di lavoro. Su mobile la barra diventa una fila di schede scorrevoli.
+ * Vale per qualsiasi base: riceve da fuori chi è l'azienda e le sue sezioni.
+ *
+ * @param {{studio: object, voci: {href:string,label:string,icona:string,esatta?:boolean}[], nomeBase: string}} props
  */
-export default function DemoShell({ children }) {
+export default function DemoShell({ studio, voci, nomeBase, children }) {
   const percorso = usePathname();
   const attiva = (v) => (v.esatta ? percorso === v.href : percorso.startsWith(v.href));
 
@@ -33,7 +23,7 @@ export default function DemoShell({ children }) {
           Demo
         </span>
         <p className="order-3 min-w-0 basis-full text-piccolo font-medium leading-snug text-ink-900 sm:order-none sm:basis-auto sm:flex-1">
-          Stai usando la base &ldquo;Clienti e attività&rdquo; con dati inventati. Tocca tutto:
+          Stai usando la base &ldquo;{nomeBase}&rdquo; con dati inventati. Tocca tutto:
           al ricaricamento si azzera.
         </p>
         <div className="flex shrink-0 gap-2">
@@ -128,7 +118,7 @@ export default function DemoShell({ children }) {
             ))}
           </nav>
 
-          <main className="mx-auto max-w-[1060px] px-4 py-6 sm:px-6 lg:py-8">{children}</main>
+          <main className="mx-auto max-w-[1060px] px-4 pb-32 pt-6 sm:px-6 lg:pb-28 lg:pt-8">{children}</main>
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { statoIniziale } from "@/data/demo/clienti-attivita";
+import { createContext, useCallback, useContext, useMemo, useState, useSyncExternalStore } from "react";
 
 /**
  * Stato della demo, tutto in memoria: si può toccare qualsiasi cosa,
@@ -11,14 +10,18 @@ const Contesto = createContext(null);
 
 let progressivo = 100;
 
-export function FornitoreStatoDemo({ children }) {
+export function FornitoreStatoDemo({ statoIniziale, children }) {
   const [dati, setDati] = useState(statoIniziale);
 
   // Le date dei dati finti sono relative a "oggi": quello del server e quello
   // del browser possono differire, e React segnalerebbe la discordanza.
-  // La demo quindi compare solo nel browser, dopo il montaggio.
-  const [montato, setMontato] = useState(false);
-  useEffect(() => setMontato(true), []);
+  // La demo quindi compare solo nel browser: qui chiediamo a React se siamo
+  // sul client, senza passare da un effetto che scatena un secondo render.
+  const montato = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   /** Aggiorna un elemento: aggiorna("attivita", "a1", { stato: "completata" }) */
   const aggiorna = useCallback((collezione, id, patch) => {

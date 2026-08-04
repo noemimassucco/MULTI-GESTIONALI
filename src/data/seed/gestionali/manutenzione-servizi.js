@@ -95,7 +95,7 @@ export const gestionaliManutenzioneServizi = [
     ],
     funzionalita: ["interventi", "appuntamenti", "magazzino", "fatturazione", "scadenze", "documenti"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 1,
     metaTitle: "Gestionale manutentori: interventi e rapportini",
     metaDescription:
@@ -168,7 +168,7 @@ export const gestionaliManutenzioneServizi = [
     ],
     funzionalita: ["interventi", "magazzino", "preventivi", "scadenze", "documenti"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 2,
     metaTitle: "Gestionale elettricisti: impianti e certificazioni",
     metaDescription:
@@ -252,7 +252,7 @@ export const gestionaliManutenzioneServizi = [
     ],
     funzionalita: ["interventi", "scadenze", "magazzino", "appuntamenti", "documenti"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 3,
     metaTitle: "Gestionale idraulici e termoidraulici: caldaie",
     metaDescription:
@@ -325,7 +325,7 @@ export const gestionaliManutenzioneServizi = [
     ],
     funzionalita: ["interventi", "documenti", "scadenze"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 4,
     metaTitle: "Gestionale assistenza tecnica: ticket e interventi",
     metaDescription:

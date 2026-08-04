@@ -99,7 +99,7 @@ export const gestionaliTrasportiBellezzaSport = [
     ],
     funzionalita: ["interventi", "preventivi", "magazzino", "documenti", "scadenze"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 1,
     metaTitle: "Gestionale officine: interventi e storico veicolo",
     metaDescription:

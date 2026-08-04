@@ -65,7 +65,7 @@ export const basi = [
     ],
     entita: ["Cliente", "Sede", "Impianto", "Richiesta", "Intervento", "Tecnico", "Materiale", "Rapportino"],
     demoPath: "/demo/interventi",
-    demoPronta: false,
+    demoPronta: true,
     ordine: 2,
   },
   {

@@ -5,6 +5,7 @@ import { gestionaliManutenzioneServizi } from "@/data/seed/gestionali/manutenzio
 import { gestionaliStudiCommercio } from "@/data/seed/gestionali/studi-commercio";
 import { gestionaliTrasportiBellezzaSport } from "@/data/seed/gestionali/trasporti-bellezza-sport";
 import { gestionaliTurismoEventiAssociazioni } from "@/data/seed/gestionali/turismo-eventi-associazioni";
+import sovrapposizioni from "@/data/contenuti.json";
 
 /**
  * Accesso al catalogo.
@@ -57,14 +58,30 @@ import { gestionaliTurismoEventiAssociazioni } from "@/data/seed/gestionali/turi
  * @property {string} metaDescription
  */
 
+/**
+ * Applica le modifiche fatte dall'area amministrativa.
+ * I testi di partenza restano nei file di seed; contenuti.json contiene solo
+ * quello che è stato cambiato, e vince.
+ */
+const conModifiche = (elenco, collezione) => {
+  const sopra = sovrapposizioni?.[collezione] || {};
+  return elenco.map((el) => (sopra[el.slug] ? { ...el, ...sopra[el.slug] } : el));
+};
+
 /** Tutti i gestionali, bozze incluse. Da usare solo lato amministrazione. */
-const tuttiIGestionali = [
-  ...gestionaliImmobiliEdilizia,
-  ...gestionaliManutenzioneServizi,
-  ...gestionaliStudiCommercio,
-  ...gestionaliTrasportiBellezzaSport,
-  ...gestionaliTurismoEventiAssociazioni,
-];
+const tuttiIGestionali = conModifiche(
+  [
+    ...gestionaliImmobiliEdilizia,
+    ...gestionaliManutenzioneServizi,
+    ...gestionaliStudiCommercio,
+    ...gestionaliTrasportiBellezzaSport,
+    ...gestionaliTurismoEventiAssociazioni,
+  ],
+  "gestionali",
+);
+
+const categorieVive = conModifiche(categorie, "categorie");
+const basiVive = conModifiche(basi, "basi");
 
 const perOrdine = (a, b) => a.ordine - b.ordine;
 
@@ -74,12 +91,12 @@ const perOrdine = (a, b) => a.ordine - b.ordine;
 
 /** @returns {Categoria[]} categorie pubblicate, in ordine */
 export function getCategorie() {
-  return categorie.filter((c) => c.pubblicata).sort(perOrdine);
+  return categorieVive.filter((c) => c.pubblicata).sort(perOrdine);
 }
 
 /** @returns {Categoria|undefined} */
 export function getCategoria(slug) {
-  return categorie.find((c) => c.slug === slug && c.pubblicata);
+  return categorieVive.find((c) => c.slug === slug && c.pubblicata);
 }
 
 /* ------------------------------------------------------------------ */
@@ -88,12 +105,12 @@ export function getCategoria(slug) {
 
 /** @returns {Base[]} */
 export function getBasi() {
-  return [...basi].sort(perOrdine);
+  return [...basiVive].sort(perOrdine);
 }
 
 /** @returns {Base|undefined} */
 export function getBase(slug) {
-  return basi.find((b) => b.slug === slug);
+  return basiVive.find((b) => b.slug === slug);
 }
 
 /* ------------------------------------------------------------------ */
@@ -166,7 +183,7 @@ export function getStatistiche() {
   return {
     gestionali: gestionali.length,
     categorie: getCategorieConGestionali().length,
-    basi: basi.length,
+    basi: basiVive.length,
     inArrivo: tuttiIGestionali.length - gestionali.length,
   };
 }

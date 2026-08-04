@@ -8,6 +8,8 @@ import {
   StatoDemoPill,
   DataScadenza,
 } from "@/components/demo/ElementiDemo";
+import Assistente from "@/components/demo/Assistente";
+import { regoleClientiAttivita } from "@/lib/regole-assistente";
 import Icona from "@/components/ui/Icona";
 import { studio } from "@/data/demo/clienti-attivita";
 
@@ -196,6 +198,8 @@ export default function Dashboard() {
           </section>
         </div>
       </div>
+
+      <Assistente regole={regoleClientiAttivita} />
     </>
   );
 }
