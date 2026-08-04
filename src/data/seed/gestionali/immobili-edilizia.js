@@ -432,7 +432,7 @@ export const gestionaliImmobiliEdilizia = [
     ],
     funzionalita: ["commesse", "documenti", "scadenze", "fatturazione", "personale"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 1,
     metaTitle: "Gestionale impresa edile con SAL e ritenuta garanzia",
     metaDescription:
@@ -642,7 +642,7 @@ export const gestionaliImmobiliEdilizia = [
     ],
     funzionalita: ["commesse", "preventivi", "documenti", "magazzino"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 4,
     metaTitle: "Gestionale per serramentisti e falegnami",
     metaDescription: "Gestionale su misura per serramentisti: sopralluoghi, misure, preventivi, ordini, lavorazioni e installazioni.",

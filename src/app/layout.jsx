@@ -1,6 +1,7 @@
 import "@fontsource-variable/inter";
 import "@fontsource-variable/archivo";
 import "./globals.css";
+import Avvisi from "@/components/ui/Avvisi";
 import { sito } from "@/lib/sito";
 
 export const metadata = {
@@ -29,7 +30,10 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="it">
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        {children}
+        <Avvisi />
+      </body>
     </html>
   );
 }

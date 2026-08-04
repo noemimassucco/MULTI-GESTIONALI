@@ -2,13 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Icona from "@/components/ui/Icona";
 import { useDemo } from "@/components/demo/StatoDemo";
-import {
-  documentiArchivio,
-  SOGLIA_CERTEZZA,
-  TOTALE_ARCHIVIO,
-} from "@/data/demo/archivio-esempio";
+import { SOGLIA_CERTEZZA } from "@/data/demo/archivio-esempio";
 
 /* ------------------------------------------------------------------ */
 /*  IL CARICAMENTO ASSISTITO                                           */
@@ -45,32 +42,45 @@ function Percentuale({ valore }) {
   );
 }
 
-export default function CaricamentoAssistito({ apri, onChiudi }) {
+/**
+ * @param {object} props
+ * @param {boolean} props.apri
+ * @param {() => void} props.onChiudi
+ * @param {object[]} props.archivio  i file finti da leggere
+ * @param {(dati: object, documento: object) => string|null} [props.collegamento]
+ *        frase che descrive a cosa il sistema propone di agganciare il file
+ *        (l'impianto per gli interventi, il cantiere per le commesse)
+ */
+export default function CaricamentoAssistito({
+  apri,
+  onChiudi,
+  archivio,
+  collegamento,
+}) {
   const { dati, aggiungi } = useDemo();
   const [fase, setFase] = useState(FASI.fermo);
   const [letti, setLetti] = useState([]);
   const [decisioni, setDecisioni] = useState({});
   const timer = useRef(null);
 
-  const nomeCliente = (id) => dati.clienti?.find((c) => c.id === id)?.nome || null;
-  const etichettaImpianto = (id) => {
-    const i = dati.impianti?.find((x) => x.id === id);
-    return i ? `${i.marca} ${i.modello} · ${i.ubicazione}` : null;
-  };
+  const fermo = useReducedMotion();
+  const totale = archivio.length;
+  const nomeCliente = (id) =>
+    dati.clienti?.find((c) => c.id === id)?.nome || null;
 
   /* La lettura procede un file alla volta: si deve vedere il lavoro. */
   useEffect(() => {
     if (fase !== FASI.lettura) return;
-    if (letti.length >= TOTALE_ARCHIVIO) {
+    if (letti.length >= totale) {
       timer.current = setTimeout(() => setFase(FASI.revisione), 420);
       return () => clearTimeout(timer.current);
     }
     timer.current = setTimeout(
-      () => setLetti((p) => [...p, documentiArchivio[p.length]]),
+      () => setLetti((p) => [...p, archivio[p.length]]),
       letti.length === 0 ? 500 : 260,
     );
     return () => clearTimeout(timer.current);
-  }, [fase, letti.length]);
+  }, [fase, letti.length, archivio, totale]);
 
   const avvia = useCallback(() => {
     setLetti([]);
@@ -99,20 +109,22 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
       ...incerti.filter((d) => decisioni[d.nome] === "conferma"),
     ];
     daArchiviare.forEach((d) => {
+      /* peso, sicurezza e perché servono solo alla dimostrazione: nel
+         documento archiviato non ci finiscono. */
+      const { peso, sicurezza, perche, ...campi } = d;
       aggiungi("documenti", {
-        nome: d.nome,
-        clienteId: d.clienteId,
-        impiantoId: d.impiantoId,
+        ...campi,
         tipo: d.tipo || "Da classificare",
         caricatoIl: new Date().toISOString().slice(0, 10),
-        dimensione: d.peso,
+        dimensione: peso,
       });
     });
     setFase(FASI.fatto);
   };
 
   const archiviati =
-    sicuri.length + incerti.filter((d) => decisioni[d.nome] === "conferma").length;
+    sicuri.length +
+    incerti.filter((d) => decisioni[d.nome] === "conferma").length;
 
   return (
     <div className="fixed inset-0 z-[70] flex items-end justify-center sm:items-center">
@@ -154,8 +166,8 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
                   Trascina qui la cartella condivisa, o un archivio ZIP
                 </p>
                 <p className="mx-auto mt-2 max-w-md text-corrente leading-relaxed text-ink-500">
-                  Senza rinominare niente, senza ordinarli prima. Ci pensa il sistema a capire
-                  cos&apos;è ogni file e a chi appartiene.
+                  Senza rinominare niente, senza ordinarli prima. Ci pensa il
+                  sistema a capire cos&apos;è ogni file e a chi appartiene.
                 </p>
                 <button
                   type="button"
@@ -164,17 +176,24 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
                   className="mt-6 inline-flex h-12 items-center gap-2 rounded-[var(--radius-controllo)] bg-sole-500 px-5 text-corrente font-semibold text-ink-900 hover:bg-sole-400"
                 >
                   <Icona misura="sm" nome="FolderOpen" />
-                  Simula: cartella con {TOTALE_ARCHIVIO} documenti
+                  Simula: cartella con {totale} documenti
                 </button>
               </div>
 
               <p className="mt-4 flex gap-2 rounded-[var(--radius-controllo)] bg-surface-alt px-4 py-3 text-piccolo leading-relaxed text-ink-600">
-                <Icona misura="sm" nome="AlertTriangle" className="mt-0.5 shrink-0 text-ink-500" />
+                <Icona
+                  misura="sm"
+                  nome="AlertTriangle"
+                  className="mt-0.5 shrink-0 text-ink-500"
+                />
                 <span>
-                  <strong className="font-semibold text-ink-900">Questa è una simulazione.</strong>{" "}
-                  I file non esistono e le risposte sono già scritte nella demo. Nel gestionale vero
-                  i documenti vengono letti davvero: quello che è identico è il comportamento —
-                  legge, decide, archivia, e dove non è sicuro si ferma e chiede a te.
+                  <strong className="font-semibold text-ink-900">
+                    Questa è una simulazione.
+                  </strong>{" "}
+                  I file non esistono e le risposte sono già scritte nella demo.
+                  Nel gestionale vero i documenti vengono letti davvero: quello
+                  che è identico è il comportamento — legge, decide, archivia, e
+                  dove non è sicuro si ferma e chiede a te.
                 </span>
               </p>
             </>
@@ -188,44 +207,61 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
                   Sto leggendo i documenti…
                 </p>
                 <p className="text-corrente font-bold text-brand-700">
-                  {letti.length} / {TOTALE_ARCHIVIO}
+                  {letti.length} / {totale}
                 </p>
               </div>
               <div className="mt-2 h-2 overflow-hidden rounded-full bg-surface-alt">
                 <div
                   className="h-full rounded-full bg-brand-600 transition-all duration-200"
-                  style={{ width: `${(letti.length / TOTALE_ARCHIVIO) * 100}%` }}
+                  style={{ width: `${(letti.length / totale) * 100}%` }}
                 />
               </div>
 
               <ul className="mt-5 space-y-2">
-                {[...letti].reverse().map((d) => (
-                  <li
-                    key={d.nome}
-                    className="flex items-start gap-3 rounded-[var(--radius-controllo)] border border-line bg-white px-4 py-3"
-                  >
-                    <Icona
-                      misura="sm"
-                      nome={d.sicurezza >= SOGLIA_CERTEZZA ? "CheckCircle2" : "AlertTriangle"}
-                      className={`mt-0.5 shrink-0 ${
-                        d.sicurezza >= SOGLIA_CERTEZZA ? "text-brand-600" : "text-amber-700"
-                      }`}
-                    />
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate font-mono text-mini text-ink-500">{d.nome}</p>
-                      <p className="mt-0.5 text-corrente font-medium text-ink-900">
-                        {d.tipo || "Non riconosciuto"}
-                        {nomeCliente(d.clienteId) ? (
-                          <span className="font-normal text-ink-500">
-                            {" "}
-                            → {nomeCliente(d.clienteId)}
-                          </span>
-                        ) : null}
-                      </p>
-                    </div>
-                    <Percentuale valore={d.sicurezza} />
-                  </li>
-                ))}
+                <AnimatePresence initial={false}>
+                  {[...letti].reverse().map((d) => (
+                    <motion.li
+                      key={d.nome}
+                      layout={!fermo}
+                      initial={fermo ? { opacity: 0 } : { opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: fermo ? 0 : 0.16,
+                        ease: "easeOut",
+                      }}
+                      className="flex items-start gap-3 rounded-[var(--radius-controllo)] border border-line bg-white px-4 py-3"
+                    >
+                      <Icona
+                        misura="sm"
+                        nome={
+                          d.sicurezza >= SOGLIA_CERTEZZA
+                            ? "CheckCircle2"
+                            : "AlertTriangle"
+                        }
+                        className={`mt-0.5 shrink-0 ${
+                          d.sicurezza >= SOGLIA_CERTEZZA
+                            ? "text-brand-600"
+                            : "text-amber-700"
+                        }`}
+                      />
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate font-mono text-mini text-ink-500">
+                          {d.nome}
+                        </p>
+                        <p className="mt-0.5 text-corrente font-medium text-ink-900">
+                          {d.tipo || "Non riconosciuto"}
+                          {nomeCliente(d.clienteId) ? (
+                            <span className="font-normal text-ink-500">
+                              {" "}
+                              → {nomeCliente(d.clienteId)}
+                            </span>
+                          ) : null}
+                        </p>
+                      </div>
+                      <Percentuale valore={d.sicurezza} />
+                    </motion.li>
+                  ))}
+                </AnimatePresence>
               </ul>
             </>
           ) : null}
@@ -235,21 +271,27 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
             <>
               <div className="grid gap-3 sm:grid-cols-2">
                 <div className="rounded-[var(--radius-scheda)] border border-brand-100 bg-brand-50 p-4">
-                  <p className="text-t2 font-bold text-brand-800">{sicuri.length}</p>
+                  <p className="text-t2 font-bold text-brand-800">
+                    {sicuri.length}
+                  </p>
                   <p className="mt-0.5 text-corrente font-medium text-brand-800">
                     archiviati da soli
                   </p>
                   <p className="mt-1 text-piccolo text-ink-600">
-                    Riconosciuti e collegati alla scheda giusta senza chiedere niente.
+                    Riconosciuti e collegati alla scheda giusta senza chiedere
+                    niente.
                   </p>
                 </div>
                 <div className="rounded-[var(--radius-scheda)] border border-sole-200 bg-sole-50 p-4">
-                  <p className="text-t2 font-bold text-[#7a5c05]">{incerti.length}</p>
+                  <p className="text-t2 font-bold text-[#7a5c05]">
+                    {incerti.length}
+                  </p>
                   <p className="mt-0.5 text-corrente font-medium text-[#7a5c05]">
                     da confermare
                   </p>
                   <p className="mt-1 text-piccolo text-ink-600">
-                    Il sistema non è sicuro: decidi tu, e la prossima volta lo sa.
+                    Il sistema non è sicuro: decidi tu, e la prossima volta lo
+                    sa.
                   </p>
                 </div>
               </div>
@@ -267,17 +309,21 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
-                          <p className="truncate font-mono text-mini text-ink-500">{d.nome}</p>
+                          <p className="truncate font-mono text-mini text-ink-500">
+                            {d.nome}
+                          </p>
                           <p className="mt-0.5 text-corrente font-medium text-ink-900">
                             {d.tipo || "Tipo non riconosciuto"}
-                            {nomeCliente(d.clienteId) ? ` → ${nomeCliente(d.clienteId)}` : ""}
+                            {nomeCliente(d.clienteId)
+                              ? ` → ${nomeCliente(d.clienteId)}`
+                              : ""}
                           </p>
                           <p className="mt-1 text-piccolo leading-relaxed text-ink-500">
                             {d.perche}
                           </p>
-                          {etichettaImpianto(d.impiantoId) ? (
+                          {collegamento?.(dati, d) ? (
                             <p className="mt-1 text-mini text-ink-500">
-                              Impianto proposto: {etichettaImpianto(d.impiantoId)}
+                              {collegamento(dati, d)}
                             </p>
                           ) : null}
                         </div>
@@ -287,7 +333,9 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
                       {scelta ? (
                         <p
                           className={`mt-3 flex items-center gap-2 text-piccolo font-semibold ${
-                            scelta === "conferma" ? "text-brand-700" : "text-ink-500"
+                            scelta === "conferma"
+                              ? "text-brand-700"
+                              : "text-ink-500"
                           }`}
                         >
                           <Icona
@@ -295,24 +343,38 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
                             nome={scelta === "conferma" ? "Check" : "X"}
                             className="size-3.5"
                           />
-                          {scelta === "conferma" ? "Confermato, verrà archiviato" : "Lasciato da parte"}
+                          {scelta === "conferma"
+                            ? "Confermato, verrà archiviato"
+                            : "Lasciato da parte"}
                         </p>
                       ) : (
                         <div className="mt-3 flex flex-wrap gap-2">
                           <button
                             type="button"
                             onClick={() =>
-                              setDecisioni((p) => ({ ...p, [d.nome]: "conferma" }))
+                              setDecisioni((p) => ({
+                                ...p,
+                                [d.nome]: "conferma",
+                              }))
                             }
                             data-comando
                             className="flex h-9 items-center gap-1.5 rounded-[var(--radius-controllo)] bg-brand-600 px-3 text-piccolo font-semibold text-white hover:bg-brand-700"
                           >
-                            <Icona misura="sm" nome="Check" className="size-3.5" />
+                            <Icona
+                              misura="sm"
+                              nome="Check"
+                              className="size-3.5"
+                            />
                             Va bene così
                           </button>
                           <button
                             type="button"
-                            onClick={() => setDecisioni((p) => ({ ...p, [d.nome]: "scarta" }))}
+                            onClick={() =>
+                              setDecisioni((p) => ({
+                                ...p,
+                                [d.nome]: "scarta",
+                              }))
+                            }
                             data-comando
                             className="flex h-9 items-center rounded-[var(--radius-controllo)] px-3 text-piccolo font-medium text-ink-600 ring-1 ring-inset ring-line hover:bg-surface-alt"
                           >
@@ -337,12 +399,14 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
                 {archiviati} documenti archiviati
               </h3>
               <p className="mx-auto mt-2 max-w-md text-corrente leading-relaxed text-ink-500">
-                Ognuno è collegato al cliente e all&apos;impianto giusto. Li trovi nelle rispettive
-                schede: non dovrai più cercarli in una cartella.
+                Ognuno è collegato al cliente e all&apos;impianto giusto. Li
+                trovi nelle rispettive schede: non dovrai più cercarli in una
+                cartella.
               </p>
               <p className="mx-auto mt-4 max-w-md rounded-[var(--radius-controllo)] bg-surface-alt px-4 py-3 text-piccolo leading-relaxed text-ink-600">
-                A mano, {TOTALE_ARCHIVIO} documenti sono circa mezz&apos;ora di lavoro. Un archivio
-                vero ne ha qualche migliaio: è il motivo per cui quasi nessuno lo porta dentro.
+                A mano, {totale} documenti sono circa mezz&apos;ora di lavoro.
+                Un archivio vero ne ha qualche migliaio: è il motivo per cui
+                quasi nessuno lo porta dentro.
               </p>
               <div className="mt-6 flex flex-wrap justify-center gap-2">
                 <button
@@ -379,7 +443,10 @@ export default function CaricamentoAssistito({ apri, onChiudi }) {
               data-comando
               className="flex h-11 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-600 px-5 text-corrente font-semibold text-white hover:bg-brand-700"
             >
-              Archivia {sicuri.length + incerti.filter((d) => decisioni[d.nome] === "conferma").length}{" "}
+              Archivia{" "}
+              {sicuri.length +
+                incerti.filter((d) => decisioni[d.nome] === "conferma")
+                  .length}{" "}
               documenti
               <Icona misura="sm" nome="ArrowRight" className="size-4" />
             </button>

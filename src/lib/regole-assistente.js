@@ -11,6 +11,8 @@
 
 import { euro, giorniDaOggi } from "@/components/demo/StatoDemo";
 import { totaleIntervento } from "@/components/demo/ElementiInterventi";
+import { avanzamentoDi, contiCommessa } from "@/components/demo/ElementiCommesse";
+import { MARGINE_ATTESO } from "@/data/demo/commesse";
 
 /* ------------------------------------------------------------------ */
 /*  Aiuti condivisi: servono a scrivere frasi che citano nomi e conti  */
@@ -381,4 +383,220 @@ export const regoleClientiAttivita = [
   prospectAbbandonati,
   attesaProlungata,
   preventiviInBozza,
+];
+
+/* ================================================================== */
+/*  Commesse — Costruzioni Ferraris                                    */
+/*                                                                     */
+/*  In edilizia i soldi non si perdono di colpo: se ne va un pezzo     */
+/*  alla volta, e ci si accorge alla fine. Queste regole guardano i    */
+/*  numeri ogni giorno al posto del titolare.                          */
+/* ================================================================== */
+
+const BASE_CO = "/demo/commesse";
+
+/** I cantieri che stanno ancora andando: sugli altri non c'è più niente da fare. */
+const cantieriAperti = (dati) => (dati.commesse || []).filter((k) => k.stato === "in_corso");
+
+/**
+ * a) Il cantiere sta consumando più di quello che ha prodotto.
+ *    È la regola più importante di tutte: dice oggi quello che il
+ *    consuntivo direbbe fra sei mesi.
+ */
+function margineEroso(dati) {
+  const malati = cantieriAperti(dati)
+    .map((k) => ({ k, c: contiCommessa(k, dati) }))
+    .filter(({ c }) => c.proiettabile && c.marginePrevistoPct < MARGINE_ATTESO * 0.5)
+    .sort((a, b) => a.c.marginePrevistoPct - b.c.marginePrevistoPct);
+  if (!malati.length) return null;
+
+  const { k, c } = malati[0];
+  const differenza = c.margine - c.marginePrevisto;
+
+  return {
+    id: "margine-eroso",
+    gravita: "alta",
+    titolo:
+      malati.length === 1
+        ? `${k.numero} chiuderà al ${c.marginePrevistoPct}%, non al ${c.marginePct}% che risulta oggi`
+        : `${conta(malati.length, "cantiere", "cantieri")} sotto la metà del margine atteso`,
+    testo: `${k.titolo} (${nomeCliente(dati, k.clienteId)}) è al ${c.avanzamento}% e ha già speso ${euro(c.costo)}. Allo stesso ritmo il cantiere costerà ${euro(c.costoAFinire)} contro ${euro(c.ricavo)} di contratto. Sul contratto il margine sembra ancora ${euro(c.margine)}: sono ${euro(differenza)} che non ci sono. Adesso si può ancora intervenire sulle lavorazioni che restano.`,
+    valore: `${c.marginePrevistoPct}%`,
+    azione: { testo: "Apri i conti del cantiere", href: `${BASE_CO}/commesse/${k.id}` },
+  };
+}
+
+/**
+ * b) Lavori fatti in più e mai messi per iscritto.
+ *    Il costo è già uscito, l'incasso non lo deve nessuno.
+ */
+function variantiScoperte(dati) {
+  const scoperte = (dati.varianti || []).filter((v) => v.stato === "eseguita");
+  if (!scoperte.length) return null;
+
+  const valore = scoperte.reduce((s, v) => s + v.importo, 0);
+  const costo = scoperte.reduce((s, v) => s + v.costoStimato, 0);
+  const prima = [...scoperte].sort((a, b) => a.data.localeCompare(b.data))[0];
+  const commessa = (dati.commesse || []).find((k) => k.id === prima.commessaId);
+
+  return {
+    id: "varianti-scoperte",
+    gravita: "alta",
+    titolo: `${conta(scoperte.length, "lavoro eseguito", "lavori eseguiti")} in più e mai approvato per iscritto`,
+    testo: `Il più vecchio è «${prima.titolo}» sul ${commessa?.numero || "cantiere"} di ${nomeCliente(dati, commessa?.clienteId)}, fatto ${giorniFa(prima.data)}. Vi è costato ${euro(costo)} in ore e materiali e oggi non c'è una firma che lo renda esigibile. In cantiere si fa e poi ci si dimentica: è il modo più comune di regalare lavoro.`,
+    valore: euro(valore),
+    azione: { testo: "Manda le varianti in approvazione", href: `${BASE_CO}/varianti` },
+  };
+}
+
+/**
+ * c) Lavoro prodotto e mai messo in un SAL: soldi maturati, non chiesti.
+ */
+function avanzamentoNonFatturato(dati) {
+  const scoperti = cantieriAperti(dati)
+    .map((k) => ({ k, c: contiCommessa(k, dati) }))
+    .filter(({ c }) => c.daFatturare >= 5000)
+    .sort((a, b) => b.c.daFatturare - a.c.daFatturare);
+  if (!scoperti.length) return null;
+
+  const somma = scoperti.reduce((s, { c }) => s + c.daFatturare, 0);
+  const { k, c } = scoperti[0];
+
+  return {
+    id: "avanzamento-non-fatturato",
+    gravita: "alta",
+    titolo: `${euro(somma)} di lavoro già eseguito e non ancora messo in un SAL`,
+    testo: `Su ${k.numero} (${nomeCliente(dati, k.clienteId)}) l'avanzamento è al ${c.avanzamento}%, cioè ${euro(c.prodotto)}, ma finora è stato fatturato ${euro(c.fatturato)}. Sono ${euro(c.daFatturare)} già spesi in ore e materiali che state anticipando voi alla banca.`,
+    valore: euro(somma),
+    azione: { testo: "Prepara lo stato di avanzamento", href: `${BASE_CO}/avanzamento` },
+  };
+}
+
+/**
+ * d) SAL emessi e mai incassati.
+ */
+function salNonIncassati(dati) {
+  const fermi = (dati.sal || []).filter((q) => !q.fatturato && giorniDaOggi(q.data) < -10);
+  if (!fermi.length) return null;
+
+  const somma = fermi.reduce((s, q) => s + q.importo, 0);
+  const primo = [...fermi].sort((a, b) => a.data.localeCompare(b.data))[0];
+  const commessa = (dati.commesse || []).find((k) => k.id === primo.commessaId);
+
+  return {
+    id: "sal-non-incassati",
+    gravita: "media",
+    titolo: `${conta(fermi.length, "SAL approvato", "SAL approvati")} e non ancora fatturato`,
+    testo: `Il ${primo.numero} di ${commessa?.numero || "un cantiere"} (${nomeCliente(dati, commessa?.clienteId)}) è stato chiuso ${giorniFa(primo.data)} per ${euro(primo.importo)}. I lavori sono consegnati: manca solo il documento perché diventino soldi.`,
+    valore: euro(somma),
+    azione: { testo: "Vai all'avanzamento", href: `${BASE_CO}/avanzamento` },
+  };
+}
+
+/**
+ * e) Squadre ferme su un cantiere da troppo: le ore non registrate
+ *    sono costi che compaiono tutti insieme a fine mese.
+ */
+function oreNonRegistrate(dati) {
+  const scoperti = cantieriAperti(dati)
+    .map((k) => {
+      const righe = (dati.ore || []).filter((r) => r.commessaId === k.id);
+      const ultima = righe.sort((a, b) => b.data.localeCompare(a.data))[0];
+      return { k, giorni: ultima ? -giorniDaOggi(ultima.data) : null };
+    })
+    .filter(({ giorni: g }) => g === null || g > 10)
+    .sort((a, b) => (b.giorni ?? 999) - (a.giorni ?? 999));
+  if (!scoperti.length) return null;
+
+  const { k, giorni: g } = scoperti[0];
+  return {
+    id: "ore-non-registrate",
+    gravita: "media",
+    titolo: `${conta(scoperti.length, "cantiere aperto", "cantieri aperti")} senza ore registrate di recente`,
+    testo:
+      g === null
+        ? `Su ${k.numero} (${k.titolo}) non risulta ancora nessuna ora. Finché non ci sono, il costo del cantiere sembra più basso di quello che è.`
+        : `Su ${k.numero} l'ultima registrazione è di ${g} giorni fa, ma la squadra ci sta lavorando. Ogni settimana che manca fa sembrare il margine più alto del vero, e poi arriva tutto insieme.`,
+    azione: { testo: "Registra le ore", href: `${BASE_CO}/ore` },
+  };
+}
+
+/**
+ * f) DDT arrivati senza fattura: costo reale che non è ancora nei conti.
+ */
+function fornituraSenzaFattura(dati) {
+  const senza = (dati.acquisti || []).filter((a) => !a.fattura && giorniDaOggi(a.data) < -20);
+  if (!senza.length) return null;
+
+  const somma = senza.reduce((s, a) => s + a.importo, 0);
+  const fornitori = elenco(senza.map((a) => a.fornitore));
+  const primo = [...senza].sort((a, b) => a.data.localeCompare(b.data))[0];
+
+  return {
+    id: "fornitura-senza-fattura",
+    gravita: "info",
+    titolo: `${conta(senza.length, "fornitura consegnata", "forniture consegnate")} e ancora senza fattura`,
+    testo: `${fornitori}. La più vecchia è «${primo.descrizione}» di ${euro(primo.importo)}, consegnata ${giorniFa(primo.data)}. Il materiale è in cantiere e il costo c'è già: quando arriveranno tutte insieme, il mese sembrerà peggiore di com'è andato.`,
+    valore: euro(somma),
+    azione: { testo: "Controlla gli acquisti", href: `${BASE_CO}/acquisti` },
+  };
+}
+
+/**
+ * g) Ritenute a garanzia dimenticate sui cantieri già chiusi.
+ */
+function ritenuteDaSvincolare(dati) {
+  const chiuse = (dati.commesse || []).filter(
+    (k) => (k.stato === "chiusa" || k.stato === "consegnata") && k.ritenutaGaranzia > 0,
+  );
+  const conRitenuta = chiuse
+    .map((k) => ({ k, c: contiCommessa(k, dati) }))
+    .filter(({ c }) => c.ritenuta > 0);
+  if (!conRitenuta.length) return null;
+
+  const somma = conRitenuta.reduce((s, { c }) => s + c.ritenuta, 0);
+  const { k, c } = conRitenuta[0];
+
+  return {
+    id: "ritenute-da-svincolare",
+    gravita: "info",
+    titolo: `${euro(somma)} di ritenute a garanzia mai richiesti indietro`,
+    testo: `Su ${k.numero} (${nomeCliente(dati, k.clienteId)}) è trattenuto il ${k.ritenutaGaranzia}%, cioè ${euro(c.ritenuta)}. Passato il periodo di garanzia si possono chiedere, ma se nessuno se ne ricorda restano lì: è denaro già guadagnato.`,
+    valore: euro(somma),
+    azione: { testo: "Vedi i cantieri chiusi", href: `${BASE_CO}/commesse` },
+  };
+}
+
+/**
+ * h) Cantieri che stanno per sforare la data di consegna.
+ */
+function consegneInRitardo(dati) {
+  const arretrati = cantieriAperti(dati)
+    .filter((k) => k.finePrevista)
+    .map((k) => ({ k, giorni: giorniDaOggi(k.finePrevista), avanzamento: avanzamentoDi(k) }))
+    .filter(({ giorni: g, avanzamento }) => g <= 30 && avanzamento < 90)
+    .sort((a, b) => a.giorni - b.giorni);
+  if (!arretrati.length) return null;
+
+  const { k, giorni: g, avanzamento } = arretrati[0];
+  const quando = g < 0 ? `scaduta da ${-g} giorni` : g === 0 ? "è oggi" : `fra ${g} giorni`;
+
+  return {
+    id: "consegne-in-ritardo",
+    gravita: "media",
+    titolo: `${k.numero} è al ${avanzamento}% e la consegna ${quando}`,
+    testo: `${k.titolo} per ${nomeCliente(dati, k.clienteId)}. Le fasi ancora indietro sono ${elenco(k.fasi.filter((f) => f.avanzamento < 100).map((f) => f.nome.toLowerCase()))}. Avvisare il cliente adesso costa una telefonata; avvisarlo il giorno della consegna costa il cliente.`,
+    azione: { testo: "Guarda le fasi", href: `${BASE_CO}/commesse/${k.id}` },
+  };
+}
+
+export const regoleCommesse = [
+  margineEroso,
+  variantiScoperte,
+  avanzamentoNonFatturato,
+  salNonIncassati,
+  oreNonRegistrate,
+  fornituraSenzaFattura,
+  ritenuteDaSvincolare,
+  consegneInRitardo,
 ];

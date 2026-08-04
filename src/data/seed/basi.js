@@ -96,7 +96,7 @@ export const basi = [
     ],
     entita: ["Cliente", "Commessa", "Fase", "Attività", "Materiale", "Fornitore", "Costo", "Ora"],
     demoPath: "/demo/commesse",
-    demoPronta: false,
+    demoPronta: true,
     ordine: 3,
   },
   {

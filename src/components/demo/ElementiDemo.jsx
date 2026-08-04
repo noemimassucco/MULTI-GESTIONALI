@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Icona from "@/components/ui/Icona";
 import { dataBreve, giorniDaOggi } from "@/components/demo/StatoDemo";
 
@@ -171,41 +172,72 @@ export function FiltriDemo({ voci, attivo, onScegli }) {
   );
 }
 
-/** Finestra modale semplice per i moduli "nuovo…". */
+/**
+ * Finestra modale semplice per i moduli "nuovo…".
+ * L'apertura è animata appena quel tanto che basta a far capire da dove
+ * arriva il pannello. Chi ha chiesto meno movimento al sistema operativo
+ * non ne vede nessuno.
+ */
 export function ModaleDemo({ aperta, titolo, onChiudi, children }) {
-  if (!aperta) return null;
+  const fermo = useReducedMotion();
+  const durata = fermo ? 0 : 0.18;
+
   return (
-    <div className="fixed inset-0 z-[70] flex items-end justify-center sm:items-center">
-      <button
-        type="button"
-        aria-label="Chiudi"
-        onClick={onChiudi}
-        className="absolute inset-0 bg-ink-900/50"
-      />
-      <div className="relative max-h-[88vh] w-full overflow-y-auto rounded-t-[var(--radius-scheda)] bg-white p-6 shadow-[var(--shadow-lift)] sm:max-w-lg sm:rounded-[var(--radius-scheda)]">
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <h2 className="text-t3 font-bold text-ink-900">{titolo}</h2>
-          <button
+    <AnimatePresence>
+      {aperta ? (
+        <div className="fixed inset-0 z-[70] flex items-end justify-center sm:items-center">
+          <motion.button
             type="button"
+            aria-label="Chiudi"
             onClick={onChiudi}
-            aria-label="Chiudi la finestra"
-            className="flex size-9 items-center justify-center rounded-[var(--radius-controllo)] text-ink-500 hover:bg-surface-alt"
+            className="absolute inset-0 bg-ink-900/50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: durata }}
+          />
+          <motion.div
+            className="relative max-h-[88vh] w-full overflow-y-auto rounded-t-[var(--radius-scheda)] bg-white p-6 shadow-[var(--shadow-lift)] sm:max-w-lg sm:rounded-[var(--radius-scheda)]"
+            initial={fermo ? { opacity: 0 } : { opacity: 0, y: 14, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={fermo ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.99 }}
+            transition={{ duration: durata, ease: [0.22, 0.61, 0.36, 1] }}
           >
-            <Icona misura="sm" nome="X" />
-          </button>
+            <div className="mb-5 flex items-start justify-between gap-4">
+              <h2 className="text-t3 font-bold text-ink-900">{titolo}</h2>
+              <button
+                type="button"
+                onClick={onChiudi}
+                aria-label="Chiudi la finestra"
+                className="flex size-9 items-center justify-center rounded-[var(--radius-controllo)] text-ink-500 hover:bg-surface-alt"
+              >
+                <Icona misura="sm" nome="X" />
+              </button>
+            </div>
+            {children}
+          </motion.div>
         </div>
-        {children}
-      </div>
-    </div>
+      ) : null}
+    </AnimatePresence>
   );
 }
 
-/** Campo del modulo, con etichetta sopra. */
-export function CampoDemo({ etichetta, children }) {
+/**
+ * Campo del modulo, con etichetta sopra ed eventuale errore sotto.
+ * L'errore arriva da Zod attraverso react-hook-form: è scritto una volta
+ * sola, nello schema, e compare qui.
+ */
+export function CampoDemo({ etichetta, errore, children }) {
   return (
     <label className="block">
       <span className="mb-1.5 block text-piccolo font-semibold text-ink-900">{etichetta}</span>
       {children}
+      {errore ? (
+        <span className="mt-1.5 flex items-start gap-1.5 text-piccolo font-medium text-red-700">
+          <Icona misura="sm" nome="AlertTriangle" className="mt-0.5 size-3.5 shrink-0" />
+          {errore}
+        </span>
+      ) : null}
     </label>
   );
 }

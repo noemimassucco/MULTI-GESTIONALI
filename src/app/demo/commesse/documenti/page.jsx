@@ -5,11 +5,11 @@ import { useDemo, dataBreve } from "@/components/demo/StatoDemo";
 import { IntestazioneDemo, RicercaDemo, FiltriDemo } from "@/components/demo/ElementiDemo";
 import TabellaOrdinabile from "@/components/ui/TabellaOrdinabile";
 import CaricamentoAssistito from "@/components/demo/CaricamentoAssistito";
-import { documentiArchivio } from "@/data/demo/archivio-esempio";
+import { documentiArchivioCommesse } from "@/data/demo/archivio-commesse";
 import Icona from "@/components/ui/Icona";
 
-/** L'archivio dei documenti: quello che di solito resta fuori dal gestionale. */
-export default function PaginaDocumenti() {
+/** L'archivio di cantiere: contratti, pratiche, DDT, foto, certificazioni. */
+export default function PaginaDocumentiCommesse() {
   const { dati } = useDemo();
   const [ricerca, setRicerca] = useState("");
   const [filtro, setFiltro] = useState("");
@@ -17,13 +17,8 @@ export default function PaginaDocumenti() {
 
   const documenti = dati.documenti;
 
-  const cliente = (id) => dati.clienti.find((c) => c.id === id);
-  const impianto = (id) => dati.impianti.find((i) => i.id === id);
-  const nomeCliente = (id) => cliente(id)?.nome || "—";
-  const nomeImpianto = (id) => {
-    const i = impianto(id);
-    return i ? `${i.marca} ${i.modello}` : "—";
-  };
+  const nomeCliente = (id) => dati.clienti.find((c) => c.id === id)?.nome || "—";
+  const numeroCommessa = (id) => dati.commesse.find((k) => k.id === id)?.numero || "—";
 
   const tipi = [...new Set(documenti.map((d) => d.tipo))].sort((a, b) => a.localeCompare(b));
 
@@ -35,7 +30,7 @@ export default function PaginaDocumenti() {
   });
 
   /* L'archivio cresce a ogni importazione: si ordina per data, per tipo,
-     per impianto. Senza ordinamento diventa presto illeggibile. */
+     per cantiere. Senza ordinamento diventa presto illeggibile. */
   const colonne = [
     {
       chiave: "nome",
@@ -58,10 +53,10 @@ export default function PaginaDocumenti() {
       classiCella: "text-piccolo text-ink-700",
     },
     {
-      chiave: "impianto",
-      testo: "Impianto",
-      valore: (d) => nomeImpianto(d.impiantoId),
-      classiCella: "text-piccolo text-ink-600",
+      chiave: "cantiere",
+      testo: "Cantiere",
+      valore: (d) => numeroCommessa(d.commessaId),
+      classiCella: "font-mono text-mini text-ink-600",
     },
     { chiave: "tipo", testo: "Tipo", valore: (d) => d.tipo, classiCella: "text-piccolo text-ink-600" },
     {
@@ -96,13 +91,13 @@ export default function PaginaDocumenti() {
 
       <div className="mb-5 rounded-[var(--radius-scheda)] border border-sole-200 bg-sole-50 p-5">
         <h2 className="text-corrente font-bold text-ink-900">
-          L&apos;archivio di prima resta quasi sempre fuori
+          Vent&apos;anni di cantieri stanno in una cartella condivisa
         </h2>
         <p className="mt-1.5 max-w-2xl text-corrente leading-relaxed text-ink-600">
-          Quando si cambia gestionale, i documenti degli anni passati restano nella cartella
-          condivisa: sono migliaia di file, e caricarli a mano uno per uno non li carica nessuno.
+          Contratti scansionati, computi in Excel, pratiche comunali, foto dei capisquadra, DDT
+          fotografati sul furgone. Nessuno li ha mai rinominati e nessuno li caricherà a mano.
           Qui si trascina la cartella così com&apos;è: il sistema legge ogni file, capisce di che
-          documento si tratta e a quale cliente o impianto appartiene, e lo archivia. Dove non è
+          documento si tratta e a quale cliente o cantiere appartiene, e lo archivia. Dove non è
           sicuro si ferma e chiede.
         </p>
         <button
@@ -146,10 +141,10 @@ export default function PaginaDocumenti() {
       <CaricamentoAssistito
         apri={caricamentoAperto}
         onChiudi={() => setCaricamentoAperto(false)}
-        archivio={documentiArchivio}
+        archivio={documentiArchivioCommesse}
         collegamento={(d, doc) => {
-          const i = d.impianti?.find((x) => x.id === doc.impiantoId);
-          return i ? `Impianto proposto: ${i.marca} ${i.modello} · ${i.ubicazione}` : null;
+          const k = d.commesse?.find((x) => x.id === doc.commessaId);
+          return k ? `Cantiere proposto: ${k.numero} · ${k.titolo}` : null;
         }}
       />
     </>

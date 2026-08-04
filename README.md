@@ -147,3 +147,21 @@ Consigliato **Vercel**, che è la piattaforma di chi fa Next.js:
 3. Ogni push sul ramo principale pubblica automaticamente
 
 Il build non richiede accesso a internet per i font, quindi funziona anche in ambienti chiusi.
+
+## Librerie
+
+Oltre a Next.js, React, Tailwind, Supabase, Zod, lucide-react e tailwind-merge,
+il progetto usa:
+
+- **@tanstack/react-table** (v9) — ordinamento delle tabelle lunghe:
+  catalogo in amministrazione (54 righe), ore, acquisti, archivi documenti.
+  Il componente condiviso è `src/components/ui/TabellaOrdinabile.jsx`.
+  Gli elenchi corti restano su `TabellaDemo`: non serve un motore per cinque righe.
+- **react-hook-form** + **@hookform/resolvers** — moduli con validazione.
+  Le regole restano in Zod (`src/lib/schemi-demo.js`): un messaggio d'errore
+  è scritto una volta sola e vale sia nel browser sia lato server.
+- **sonner** — avvisi brevi quando qualcosa è successo e non si vede altrove
+  (ore registrate, variante approvata, fattura arrivata). Montato una volta
+  sola in `src/components/ui/Avvisi.jsx`.
+- **motion** — micro animazioni: apertura dei pannelli e comparsa delle righe
+  durante il caricamento assistito. Rispetta `prefers-reduced-motion`.

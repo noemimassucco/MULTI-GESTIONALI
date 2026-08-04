@@ -6,6 +6,7 @@ import { cambiaDemo, cambiaStato } from "@/app/actions/amministrazione";
 import Bottone from "@/components/ui/Bottone";
 import Icona from "@/components/ui/Icona";
 import Pastiglia from "@/components/ui/Pastiglia";
+import TabellaOrdinabile from "@/components/ui/TabellaOrdinabile";
 import { cn } from "@/lib/cn";
 
 /**
@@ -72,6 +73,63 @@ export default function ElencoGestionali({ gestionali, categorie, basi = [] }) {
     return `${g.nome} ${g.slug}`.toLowerCase().includes(testo);
   });
 
+  /* Con 54 schede l'ordinamento non è un vezzo: si cerca "cosa è ancora
+     in bozza" o "cosa ha la demo" e si vuole vederlo tutto insieme. */
+  const colonne = [
+    {
+      chiave: "nome",
+      testo: "Nome",
+      valore: (g) => g.nome,
+      cella: (g) => (
+        <>
+          <Link
+            href={`/admin/gestionali/${g.slug}`}
+            className="text-corrente font-semibold text-ink-900 hover:text-brand-700"
+          >
+            {g.nome}
+          </Link>
+          <span className="block font-mono text-mini text-ink-500">{g.slug}</span>
+        </>
+      ),
+    },
+    {
+      chiave: "categoria",
+      testo: "Categoria",
+      valore: (g) => nomeCategoria(g.categoriaSlug),
+      classiCella: "text-piccolo text-ink-600",
+    },
+    {
+      chiave: "base",
+      testo: "Base",
+      valore: (g) => nomeBase(g.baseSlug),
+      classiCella: "text-piccolo text-ink-600",
+    },
+    {
+      chiave: "stato",
+      testo: "Stato",
+      valore: (g) => g.stato,
+      cella: (g) => (
+        <Pastiglia variante={g.stato === "pubblicato" ? "successo" : "attesa"}>
+          {g.stato === "pubblicato" ? "Pubblicato" : "Bozza"}
+        </Pastiglia>
+      ),
+    },
+    {
+      chiave: "demo",
+      testo: "Demo",
+      valore: (g) => (g.demoDisponibile ? 1 : 0),
+      cella: (g) => (g.demoDisponibile ? "sì" : "no"),
+      classiCella: "text-piccolo text-ink-600",
+    },
+    {
+      chiave: "azioni",
+      testo: "Azioni",
+      ordinabile: false,
+      nascondiTesto: true,
+      cella: (g) => <ComandiRiga gestionale={g} />,
+    },
+  ];
+
   const filtriStato = [
     { valore: "tutti", testo: "Tutti", conteggio: gestionali.length },
     {
@@ -89,8 +147,8 @@ export default function ElencoGestionali({ gestionali, categorie, basi = [] }) {
   return (
     <>
       <div className="mb-4 flex min-w-0 flex-wrap items-center justify-between gap-3">
-        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-3">
-          <div className="relative min-w-0 flex-1 sm:flex-none">
+        <div className="flex w-full min-w-0 basis-full flex-wrap items-center gap-3 sm:w-auto sm:flex-1 sm:basis-0">
+          <div className="relative w-full min-w-0 sm:w-auto sm:flex-none">
             <Icona
               misura="sm"
               nome="Search"
@@ -116,7 +174,7 @@ export default function ElencoGestionali({ gestionali, categorie, basi = [] }) {
             id="filtro-categoria"
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
-            className="h-12 w-full min-w-0 rounded-[var(--radius-controllo)] border border-line bg-white px-3 text-corrente text-ink-800 focus:border-brand-400 focus:outline-none sm:w-auto"
+            className="h-12 w-full min-w-0 basis-full rounded-[var(--radius-controllo)] border border-line bg-white px-3 text-corrente text-ink-800 focus:border-brand-400 focus:outline-none sm:w-auto sm:basis-auto"
           >
             <option value="">Tutte le categorie</option>
             {categorie.map((c) => (
@@ -150,60 +208,13 @@ export default function ElencoGestionali({ gestionali, categorie, basi = [] }) {
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-[var(--radius-scheda)] border border-line bg-white">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[880px] border-collapse text-left">
-            <thead>
-              <tr className="border-b border-line bg-surface-alt">
-                {["Nome", "Categoria", "Base", "Stato", "Demo", ""].map((t, i) => (
-                  <th
-                    key={t || `azioni-${i}`}
-                    className="whitespace-nowrap px-4 py-2.5 text-mini font-semibold uppercase tracking-wide text-ink-500"
-                  >
-                    {t || <span className="sr-only">Azioni</span>}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-line-soft">
-              {filtrati.map((g) => (
-                <tr key={g.slug}>
-                  <td className="px-4 py-3">
-                    <Link
-                      href={`/admin/gestionali/${g.slug}`}
-                      className="text-corrente font-semibold text-ink-900 hover:text-brand-700"
-                    >
-                      {g.nome}
-                    </Link>
-                    <span className="block font-mono text-mini text-ink-500">{g.slug}</span>
-                  </td>
-                  <td className="px-4 py-3 text-piccolo text-ink-600">
-                    {nomeCategoria(g.categoriaSlug)}
-                  </td>
-                  <td className="px-4 py-3 text-piccolo text-ink-600">{nomeBase(g.baseSlug)}</td>
-                  <td className="px-4 py-3">
-                    <Pastiglia variante={g.stato === "pubblicato" ? "successo" : "attesa"}>
-                      {g.stato === "pubblicato" ? "Pubblicato" : "Bozza"}
-                    </Pastiglia>
-                  </td>
-                  <td className="px-4 py-3 text-piccolo text-ink-600">
-                    {g.demoDisponibile ? "sì" : "no"}
-                  </td>
-                  <td className="px-4 py-3">
-                    <ComandiRiga gestionale={g} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {filtrati.length ? null : (
-          <p className="px-4 py-10 text-center text-corrente text-ink-500">
-            Nessuna scheda corrisponde alla ricerca. Prova con un altro nome o togli i filtri.
-          </p>
-        )}
-      </div>
+      <TabellaOrdinabile
+        righe={filtrati}
+        chiaveIniziale="nome"
+        decrescente={false}
+        colonne={colonne}
+        vuota="Nessuna scheda corrisponde alla ricerca. Prova con un altro nome o togli i filtri."
+      />
     </>
   );
 }
