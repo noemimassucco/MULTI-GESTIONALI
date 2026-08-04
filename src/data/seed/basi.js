@@ -32,7 +32,7 @@ export const basi = [
     ],
     entita: ["Cliente", "Contatto", "Attività", "Scadenza", "Documento", "Preventivo", "Pagamento"],
     demoPath: "/demo/clienti-attivita",
-    demoPronta: false,
+    demoPronta: true,
     ordine: 1,
   },
   {

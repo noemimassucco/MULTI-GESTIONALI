@@ -25,7 +25,7 @@ export default function PaginaContatti() {
 
       <div className="bg-white py-14 lg:py-20">
         <Contenitore>
-          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
             <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
               <h2 className="text-t3 font-bold">Il modo migliore per iniziare</h2>
               <p className="mt-3 text-corrente leading-relaxed text-ink-600">

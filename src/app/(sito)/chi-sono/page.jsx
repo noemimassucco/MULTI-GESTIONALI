@@ -62,7 +62,7 @@ export default function PaginaChiSono() {
     <>
       <section className="border-b border-line bg-surface-blue py-10 lg:py-14">
         <Contenitore>
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
             <div>
               <Pastiglia variante="brand">
                 <Icona misura="sm" nome="HardHat" />

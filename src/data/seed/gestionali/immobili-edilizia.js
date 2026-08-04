@@ -496,7 +496,7 @@ export const gestionaliImmobiliEdilizia = [
     ],
     funzionalita: ["documenti", "scadenze", "preventivi"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 2,
     metaTitle: "Gestionale per geometri e studi tecnici",
     metaDescription: "Gestionale su misura per geometri: clienti, pratiche, comuni, protocolli, scadenze e sopralluoghi.",

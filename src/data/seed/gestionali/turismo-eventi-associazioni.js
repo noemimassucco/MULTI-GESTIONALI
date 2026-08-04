@@ -575,7 +575,7 @@ export const gestionaliTurismoEventiAssociazioni = [
     ],
     funzionalita: ["appuntamenti", "documenti", "commesse", "fatturazione"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 3,
     metaTitle: "Gestionale fotografi e videomaker su misura",
     metaDescription: "Gestionale su misura per fotografi e videomaker: clienti, shooting, selezioni, consegne, liberatorie e pagamenti.",

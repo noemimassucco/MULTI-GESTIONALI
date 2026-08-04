@@ -45,7 +45,7 @@ async function Contenuto({ searchParams }) {
 
       <div className="bg-white py-10 lg:py-14">
         <Contenitore>
-          <div className="grid gap-10 lg:grid-cols-[1fr_320px]">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
             <div className="max-w-2xl">
               <FormRichiesta
                 gestionali={gestionali}

@@ -63,7 +63,7 @@ export default async function PaginaGestionale({ params }) {
             ) : null}
           </nav>
 
-          <div className="mt-6 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end">
             <div>
               {categoria ? (
                 <span
@@ -247,7 +247,7 @@ export default async function PaginaGestionale({ params }) {
 
       {/* ------------------------------------------------ PERSONALIZZAZIONI */}
       <Sezione sfondo="scuro">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div>
             <TitoloSezione
               centrato={false}

@@ -72,7 +72,7 @@ export const gestionaliStudiCommercio = [
     ],
     funzionalita: ["documenti", "scadenze", "fatturazione", "preventivi"],
     stato: "pubblicato",
-    demoDisponibile: false,
+    demoDisponibile: true,
     ordine: 1,
     metaTitle: "Gestionale per commercialisti | Pratiche e scadenze",
     metaDescription: "Gestionale su misura per studi di commercialisti: pratiche, scadenze, documenti e responsabili in un unico posto.",
