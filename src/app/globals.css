@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
+@theme {
+  /* ---- Marchio ---- */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+
+  /* ---- Neutri ---- */
+  --color-ink-900: #0f172a;
+  --color-ink-800: #1e293b;
+  --color-ink-700: #334155;
+  --color-ink-600: #475569;
+  --color-ink-500: #64748b;
+  --color-ink-400: #94a3b8;
+  --color-line: #e2e8f0;
+  --color-line-soft: #eef2f7;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f8fafc;
+  --color-surface-blue: #f5f8ff;
+
+  /* ---- Stati ---- */
+  --color-positivo: #16a34a;
+  --color-attenzione: #d97706;
+  --color-critico: #dc2626;
+
+  /* ---- Tipografia ---- */
+  /* Font ospitati nel progetto (@fontsource-variable): nessuna chiamata a Google al build */
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Ombre ---- */
+  --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
+  --shadow-lift: 0 2px 4px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.08);
+  --shadow-brand: 0 8px 24px rgba(37, 99, 235, 0.22);
+}
+
+/*
+  Colori delle categorie.
+  Ogni categoria ha una tinta piena (icona) e una tenue (sfondo pastiglia).
+  Cambiare qui si riflette su tutto il sito.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --cat-blu: #2563eb;
+  --cat-blu-bg: #eff6ff;
+  --cat-ambra: #d97706;
+  --cat-ambra-bg: #fffbeb;
+  --cat-rosso: #dc2626;
+  --cat-rosso-bg: #fef2f2;
+  --cat-verde: #16a34a;
+  --cat-verde-bg: #f0fdf4;
+  --cat-viola: #7c3aed;
+  --cat-viola-bg: #f5f3ff;
+  --cat-rosa: #db2777;
+  --cat-rosa-bg: #fdf2f8;
+  --cat-ciano: #0891b2;
+  --cat-ciano-bg: #ecfeff;
+  --cat-indaco: #4f46e5;
+  --cat-indaco-bg: #eef2ff;
+  --cat-lime: #65a30d;
+  --cat-lime-bg: #f7fee7;
+  --cat-arancio: #ea580c;
+  --cat-arancio-bg: #fff7ed;
+  --cat-teal: #0d9488;
+  --cat-teal-bg: #f0fdfa;
+  --cat-fucsia: #c026d3;
+  --cat-fucsia-bg: #fdf4ff;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-ink-600);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-ink-900);
+  font-family: var(--font-display);
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Fasce orizzontali scorrevoli (categorie) senza barra visibile */
+.scroll-orizzontale {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-orizzontale::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

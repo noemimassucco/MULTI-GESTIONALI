@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# richieste salvate in locale finché Supabase non è configurato
+.richieste-locali.jsonl

@@ -1,0 +1,865 @@
+
+export const gestionaliTurismoEventiAssociazioni = [
+  // ----- turismo-ristorazione -----
+  {
+    slug: "gestionale-bb-strutture-ricettive",
+    nome: "Gestionale B&B e strutture ricettive",
+    sottotitolo: "Camere, prenotazioni e ospiti in un unico calendario, senza sovrapposizioni",
+    categoriaSlug: "turismo-ristorazione",
+    baseSlug: "prenotazioni-noleggio",
+    moduliAggiuntivi: [
+      "Prenotazioni con più camere collegate allo stesso soggiorno",
+      "Checklist di pulizia personalizzata per tipologia di camera",
+      "Diario manutenzioni con foto",
+      "Catalogo servizi extra a consumo",
+    ],
+    descrizione:
+      "Chi gestisce un bed & breakfast o una piccola struttura ricettiva conosce bene la sequenza: una richiesta arriva per telefono, un'altra da un portale di prenotazione, una terza a voce da un ospite che si presenta senza preavviso. Tenerle tutte su un quaderno o su fogli Excel diversi espone al rischio concreto di assegnare la stessa camera due volte, soprattutto nei periodi di alta occupazione.\n\nIl gestionale B&B e strutture ricettive mette al centro un calendario di disponibilità unico: ogni camera, ogni prenotazione e ogni ospite sono collegati fra loro, dal primo contatto al check-out. I dati degli ospiti necessari per la registrazione vengono raccolti in modo ordinato e restano sempre consultabili ed esportabili; l'eventuale invio automatico ai portali ufficiali, così come la sincronizzazione con Booking o Airbnb, non fa parte della dotazione di base ma può essere valutato come personalizzazione su richiesta.\n\nLe pulizie fra un check-out e il check-in successivo, le piccole manutenzioni delle camere e i servizi extra richiesti dagli ospiti restano collegati alla prenotazione che li ha generati, così chi lavora in struttura sa sempre cosa fare e per quando, senza doverlo ricostruire a memoria o a voce.",
+    problemi: [
+      "Una prenotazione presa per telefono e una arrivata da un portale finiscono su due elenchi diversi, con il rischio di assegnare la stessa camera due volte.",
+      "I dati degli ospiti da raccogliere alla registrazione si scrivono a mano su un modulo e poi si ricopiano altrove, con margine di errore.",
+      "Le pulizie fra un check-out e il check-in successivo si organizzano a voce, e capita che una camera non sia pronta in tempo.",
+      "Un piccolo guasto notato da un ospite, come una tenda che non chiude o un rubinetto che perde, si segna su un foglietto che poi si perde.",
+      "I servizi extra richiesti dagli ospiti, come la colazione in camera o un letto aggiunto, non sempre arrivano a chi deve occuparsene.",
+      "A fine mese ricostruire chi ha pagato l'acconto, chi ha saldato e chi deve ancora i servizi extra richiede di riaprire ricevute sparse.",
+    ],
+    funzioni: [
+      "Camere",
+      "Disponibilità",
+      "Prenotazioni",
+      "Ospiti",
+      "Check-in",
+      "Pulizie",
+      "Manutenzioni",
+      "Pagamenti",
+      "Servizi extra",
+    ],
+    moduli: [
+      "Anagrafica camere",
+      "Calendario disponibilità",
+      "Prenotazioni e conferme",
+      "Schede ospiti",
+      "Check-in e check-out",
+      "Pulizie",
+      "Manutenzioni",
+      "Pagamenti e servizi extra",
+    ],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti degli ospiti: si caricano più foto o un intero archivio ZIP in un solo passaggio e il sistema riconosce ogni documento e lo collega da solo alla prenotazione giusta.",
+      "Listino tariffe differenziato per stagione e per tipologia di camera.",
+      "Gestione di gruppi con più camere collegate alla stessa prenotazione.",
+      "Promemoria dei documenti mancanti prima del check-in.",
+      "Esportazione dei dati ospite in un formato pronto da completare con gli strumenti ufficiali di registrazione.",
+      "Checklist di pulizia diversa per camera singola, doppia o appartamento.",
+      "Gestione di camere comunicanti o unità con più ambienti.",
+      "Report di occupazione per periodo scelto.",
+      "Integrazione con i portali di prenotazione, valutabile come sviluppo su richiesta.",
+      "Gestione di caparre e acconti con regole diverse per canale di prenotazione.",
+    ],
+    utenti: ["Titolare della struttura", "Addetto al ricevimento", "Personale delle pulizie", "Collaboratore stagionale"],
+    vantaggi: [
+      {
+        titolo: "Niente più doppie prenotazioni",
+        testo: "Un solo calendario di disponibilità, aggiornato per ogni camera, riduce il rischio di assegnare lo stesso posto a due ospiti diversi.",
+      },
+      {
+        titolo: "Pulizie organizzate senza rincorrersi",
+        testo: "Ogni check-out genera automaticamente l'attività di pulizia collegata, così il personale sa quali camere preparare e per quando.",
+      },
+      {
+        titolo: "Dati degli ospiti raccolti in ordine",
+        testo: "Le informazioni necessarie alla registrazione restano archiviate per ogni soggiorno, pronte da consultare o esportare quando serve.",
+      },
+      {
+        titolo: "Manutenzioni che non si perdono",
+        testo: "Un piccolo guasto segnalato resta visibile finché non viene risolto, invece di sparire su un foglietto.",
+      },
+      {
+        titolo: "Pagamenti sempre chiari",
+        testo: "Acconti, saldi e servizi extra restano collegati alla prenotazione, così a fine mese i conti tornano senza dover riaprire le ricevute.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale per B&B e strutture ricettive?",
+        risposta: "Il costo dipende dai moduli attivati e dalle personalizzazioni richieste. Dopo un primo confronto sulla struttura e sulle sue esigenze si prepara un preventivo su misura.",
+      },
+      {
+        domanda: "Quanto tempo serve per iniziare a usarlo?",
+        risposta: "I tempi variano in base a quante personalizzazioni servono e a quanti dati vanno importati dalla gestione attuale. Si concordano insieme durante il primo incontro.",
+      },
+      {
+        domanda: "Posso portare le prenotazioni che ho su Excel o sul registro cartaceo?",
+        risposta: "Sì. I dati esistenti si importano all'avvio, e i documenti degli ospiti già raccolti si possono caricare tutti insieme: il caricamento è assistito dall'intelligenza artificiale, che riconosce ogni documento e lo collega alla prenotazione corretta.",
+      },
+      {
+        domanda: "Si può usare dal telefono durante il check-in?",
+        risposta: "Sì, le funzioni principali - calendario, prenotazioni e schede ospiti - sono pensate anche per l'uso da smartphone o tablet al banco della reception.",
+      },
+      {
+        domanda: "Cosa succede se ho bisogno di assistenza?",
+        risposta: "È previsto un riferimento diretto per segnalare problemi o chiedere modifiche, senza passare da un call center anonimo.",
+      },
+      {
+        domanda: "Posso aggiungere altre funzioni in futuro, come il collegamento ai portali?",
+        risposta: "Sì. Il gestionale nasce modulare: funzioni come la sincronizzazione con i portali di prenotazione si possono valutare e sviluppare in un secondo momento.",
+      },
+    ],
+    funzionalita: ["documenti", "personale", "interventi", "fatturazione"],
+    stato: "pubblicato",
+    demoDisponibile: false,
+    ordine: 1,
+    metaTitle: "Gestionale B&B e strutture ricettive su misura",
+    metaDescription: "Gestionale su misura per B&B e strutture ricettive: camere, disponibilità, prenotazioni, ospiti, pulizie e pagamenti in un unico sistema.",
+  },
+  {
+    slug: "gestionale-ristoranti",
+    nome: "Gestionale ristoranti",
+    sottotitolo: "Prenotazioni, tavoli e magazzino sotto controllo",
+    categoriaSlug: "turismo-ristorazione",
+    baseSlug: "prenotazioni-noleggio",
+    moduliAggiuntivi: [
+      "Gestione eventi privati con menu dedicato",
+      "Storico ordini fornitori per materia prima",
+    ],
+    descrizione:
+      "Un ristorante vive di prenotazioni che cambiano all'ultimo momento, tavoli da assegnare bene e un magazzino di materie prime che non deve mai fermare la cucina. Il gestionale ristoranti tiene insieme prenotazioni e disposizione dei tavoli, l'anagrafica dei clienti abituali, il menu con le sue varianti, i fornitori e le giacenze di magazzino, i turni del personale di sala e cucina, e gli eventi privati organizzati nel locale.",
+    problemi: [
+      "Le prenotazioni telefoniche e quelle prese a voce si scrivono su un'agenda cartacea, e capita di sovrapporre due gruppi sullo stesso tavolo.",
+      "Le materie prime si ordinano a sensazione, senza sapere con certezza cosa è già in magazzino.",
+      "I turni di sala e cucina si comunicano a voce o su un gruppo di messaggistica, con il rischio di scoperture nei momenti di punta.",
+      "Gli eventi privati richiesti per compleanni o cene aziendali si gestiscono a parte, senza un collegamento con le prenotazioni ordinarie.",
+    ],
+    funzioni: ["Prenotazioni", "Tavoli", "Clienti", "Menu", "Fornitori", "Magazzino", "Turni", "Eventi"],
+    moduli: ["Prenotazioni e tavoli", "Anagrafica clienti", "Menu e magazzino", "Turni e eventi"],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti dei fornitori: si caricano più fatture o un archivio ZIP insieme e il sistema riconosce ciascun documento e lo archivia sotto il fornitore giusto.",
+      "Piantina della sala personalizzabile con la disposizione reale dei tavoli.",
+      "Menu con varianti stagionali e allergeni collegati ai piatti.",
+      "Soglie di riordino per le materie prime più usate.",
+      "Turni distinti per sala, cucina ed eventi.",
+    ],
+    utenti: ["Titolare", "Responsabile di sala", "Responsabile di cucina"],
+    vantaggi: [
+      {
+        titolo: "Tavoli assegnati senza sovrapposizioni",
+        testo: "Un solo calendario di prenotazioni collegato ai tavoli riduce il rischio di doppie assegnazioni nelle serate piene.",
+      },
+      {
+        titolo: "Magazzino sotto controllo",
+        testo: "Le giacenze delle materie prime restano visibili, così gli ordini ai fornitori si fanno con dati reali e non a sensazione.",
+      },
+      {
+        titolo: "Turni comunicati in un solo posto",
+        testo: "Sala, cucina ed eventi hanno i turni assegnati nello stesso sistema, evitando scoperture nei momenti di punta.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale ristoranti?",
+        risposta: "Il costo dipende dai moduli scelti e dalle personalizzazioni richieste; si definisce con un preventivo dopo un primo confronto.",
+      },
+      {
+        domanda: "Posso importare le prenotazioni che ho già su Excel?",
+        risposta: "Sì, i dati esistenti si importano all'avvio e i documenti dei fornitori già raccolti si possono caricare tutti insieme, con riconoscimento assistito dall'intelligenza artificiale.",
+      },
+      {
+        domanda: "Si può usare da tablet in sala?",
+        risposta: "Sì, le funzioni di prenotazione e assegnazione tavoli sono pensate anche per l'uso da tablet.",
+      },
+    ],
+    funzionalita: ["appuntamenti", "magazzino", "personale", "presenze"],
+    stato: "bozza",
+    demoDisponibile: false,
+    ordine: 2,
+    metaTitle: "Gestionale ristoranti su misura",
+    metaDescription: "Gestionale su misura per ristoranti: prenotazioni, tavoli, menu, magazzino, fornitori, turni ed eventi in un unico sistema.",
+  },
+  {
+    slug: "gestionale-catering",
+    nome: "Gestionale catering",
+    sottotitolo: "Ogni evento seguito dalla richiesta al saldo",
+    categoriaSlug: "turismo-ristorazione",
+    baseSlug: "commesse",
+    moduliAggiuntivi: [
+      "Distinta di carico attrezzature per evento",
+      "Calcolo del costo per partecipante",
+    ],
+    descrizione:
+      "Chi organizza catering lavora a commessa: ogni evento ha un menu concordato, un numero di partecipanti da confermare, personale e attrezzature da portare sul posto, e costi che vanno seguiti fino al saldo. Il gestionale catering segue ogni evento dalla richiesta iniziale al pagamento finale, con il menu scelto, i partecipanti, il personale e le attrezzature assegnate, i fornitori coinvolti e i costi che si sommano man mano.",
+    problemi: [
+      "Ogni evento viene seguito su un file diverso, e ricostruire margine e costi reali richiede di riaprirli tutti.",
+      "Il personale e le attrezzature da portare sul posto si organizzano all'ultimo momento, con il rischio di dimenticare qualcosa.",
+      "Le variazioni dell'ultimo minuto sul numero di partecipanti non sempre arrivano a chi prepara il menu.",
+      "I pagamenti degli eventi, fra acconti e saldi, si rincorrono su ricevute sparse.",
+    ],
+    funzioni: [
+      "Clienti",
+      "Eventi",
+      "Menu",
+      "Partecipanti",
+      "Personale",
+      "Attrezzature",
+      "Fornitori",
+      "Costi",
+      "Pagamenti",
+    ],
+    moduli: ["Clienti ed eventi", "Menu e partecipanti", "Personale e attrezzature", "Fornitori, costi e pagamenti"],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti di evento: preventivi, contratti e fatture fornitore si caricano tutti insieme, anche in cartella o archivio ZIP, e il sistema li riconosce e li collega all'evento giusto.",
+      "Menu componibili con varianti per allergie e intolleranze dei partecipanti.",
+      "Checklist di attrezzature personalizzata per tipo di evento.",
+      "Calcolo automatico dei costi per persona in base al menu scelto.",
+      "Storico fornitori con condizioni concordate per tipo di servizio.",
+    ],
+    utenti: ["Titolare", "Responsabile eventi", "Responsabile di cucina"],
+    vantaggi: [
+      {
+        titolo: "Ogni evento sotto controllo",
+        testo: "Menu, partecipanti, personale e attrezzature restano collegati allo stesso evento, senza file sparsi da ricostruire.",
+      },
+      {
+        titolo: "Costi reali sempre visibili",
+        testo: "Fornitori e costi si sommano sull'evento man mano che vengono registrati, così il margine si vede senza attendere la fine.",
+      },
+      {
+        titolo: "Pagamenti tracciati",
+        testo: "Acconti e saldi restano collegati all'evento, per sapere sempre cosa manca da incassare.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale catering?",
+        risposta: "Il costo dipende dai moduli e dalle personalizzazioni scelte; si definisce con un preventivo su misura.",
+      },
+      {
+        domanda: "Posso portare i dati dei clienti che ho già su Excel?",
+        risposta: "Sì, e i documenti già raccolti per gli eventi passati si possono caricare tutti insieme, con riconoscimento assistito dall'intelligenza artificiale.",
+      },
+      {
+        domanda: "Si può usare da telefono durante un evento?",
+        risposta: "Sì, le informazioni su personale e attrezzature assegnate sono consultabili anche da smartphone.",
+      },
+    ],
+    funzionalita: ["commesse", "preventivi", "personale", "fatturazione"],
+    stato: "bozza",
+    demoDisponibile: false,
+    ordine: 3,
+    metaTitle: "Gestionale catering su misura",
+    metaDescription: "Gestionale su misura per catering: clienti, eventi, menu, partecipanti, personale, attrezzature, fornitori e costi in un sistema.",
+  },
+  {
+    slug: "gestionale-agenzie-viaggio",
+    nome: "Gestionale agenzie di viaggio",
+    sottotitolo: "Richieste, preventivi e pratiche di viaggio in un unico posto",
+    categoriaSlug: "turismo-ristorazione",
+    baseSlug: "clienti-attivita",
+    moduliAggiuntivi: [
+      "Confronto fra preventivi alternativi per lo stesso cliente",
+      "Promemoria scadenze documenti prima della partenza",
+    ],
+    descrizione:
+      "Un'agenzia di viaggio segue ogni cliente dalla richiesta iniziale al rientro dal viaggio, passando per preventivi da confrontare, prenotazioni presso più fornitori e documenti da raccogliere prima della partenza. Il gestionale agenzie di viaggio tiene insieme clienti, richieste e preventivi, i viaggi confermati con le relative prenotazioni, i fornitori coinvolti, i documenti di ogni pratica, i pagamenti e le scadenze da rispettare.",
+    problemi: [
+      "Le richieste dei clienti arrivano da canali diversi (telefono, email, di persona) e si perdono se non vengono raccolte subito.",
+      "I preventivi alternativi proposti allo stesso cliente si confondono fra loro se restano su file separati.",
+      "I documenti necessari per la partenza, come voucher e assicurazioni, si raccolgono all'ultimo momento.",
+      "Le scadenze di pagamento verso i fornitori non sempre sono visibili insieme a quelle dei clienti.",
+    ],
+    funzioni: [
+      "Clienti",
+      "Richieste",
+      "Preventivi",
+      "Viaggi",
+      "Prenotazioni",
+      "Fornitori",
+      "Documenti",
+      "Pagamenti",
+      "Scadenze",
+    ],
+    moduli: ["Clienti e richieste", "Preventivi", "Viaggi e prenotazioni", "Documenti, pagamenti e scadenze"],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti di viaggio: voucher, assicurazioni e conferme si caricano insieme, anche in blocco o via archivio ZIP, e il sistema li riconosce e li collega alla pratica corretta.",
+      "Preventivi multipli confrontabili per lo stesso viaggio.",
+      "Promemoria automatico delle scadenze documentali prima della partenza.",
+      "Collegamento fra fornitori e singole prenotazioni del viaggio.",
+      "Scadenzario pagamenti separato per cliente e per fornitore.",
+    ],
+    utenti: ["Titolare agenzia", "Consulente viaggi", "Amministrazione"],
+    vantaggi: [
+      {
+        titolo: "Nessuna richiesta persa",
+        testo: "Ogni richiesta, da qualunque canale arrivi, resta registrata e collegata al cliente.",
+      },
+      {
+        titolo: "Documenti pronti prima della partenza",
+        testo: "Le scadenze documentali di ogni pratica restano visibili con anticipo, senza rincorse dell'ultimo momento.",
+      },
+      {
+        titolo: "Pagamenti chiari",
+        testo: "Scadenze verso clienti e fornitori restano nello stesso scadenzario, senza doverle ricostruire a mano.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale agenzie di viaggio?",
+        risposta: "Il costo dipende dai moduli scelti; si definisce con un preventivo su misura dopo un primo confronto.",
+      },
+      {
+        domanda: "Posso importare i clienti che ho già su Excel?",
+        risposta: "Sì, e i documenti già raccolti per le pratiche in corso si possono caricare tutti insieme, con riconoscimento assistito dall'intelligenza artificiale.",
+      },
+      {
+        domanda: "Si può usare fuori ufficio?",
+        risposta: "Sì, le informazioni su viaggi e scadenze sono consultabili anche da smartphone o tablet.",
+      },
+    ],
+    funzionalita: ["preventivi", "documenti", "scadenze", "fatturazione"],
+    stato: "bozza",
+    demoDisponibile: false,
+    ordine: 4,
+    metaTitle: "Gestionale agenzie di viaggio su misura",
+    metaDescription: "Gestionale su misura per agenzie di viaggio: clienti, richieste, preventivi, viaggi, prenotazioni, documenti e scadenze.",
+  },
+
+  // ----- eventi-servizi-personali -----
+  {
+    slug: "gestionale-wedding-planner",
+    nome: "Gestionale wedding planner",
+    sottotitolo: "Invitati, fornitori e budget di ogni matrimonio in un unico posto",
+    categoriaSlug: "eventi-servizi-personali",
+    baseSlug: "clienti-attivita",
+    moduliAggiuntivi: [
+      "Gestione tavoli e disposizione invitati",
+      "Budget con confronto fra preventivo e spesa reale",
+    ],
+    descrizione:
+      "Organizzare un matrimonio significa tenere insieme decine di fornitori, una lista di invitati che cambia fino all'ultimo e un budget da rispettare voce per voce. Il gestionale wedding planner segue ogni coppia di clienti dal primo incontro al giorno dell'evento, con la location scelta, i fornitori coinvolti, la lista invitati, il budget suddiviso per voce, le attività da completare e le relative scadenze, e i pagamenti man mano che vengono effettuati.",
+    problemi: [
+      "La lista degli invitati cambia più volte, e tenerla aggiornata su più file diversi genera confusione con i tavoli e i menu.",
+      "Il budget concordato con gli sposi si sfora senza accorgersene, perché i costi dei singoli fornitori restano su preventivi separati.",
+      "Le scadenze verso i fornitori, fra acconti, conferme e consegne, si tengono a mente o su un'agenda cartacea.",
+      "Le attività da completare prima del giorno dell'evento si accumulano nelle ultime settimane senza un ordine chiaro.",
+    ],
+    funzioni: [
+      "Clienti",
+      "Eventi",
+      "Invitati",
+      "Fornitori",
+      "Location",
+      "Budget",
+      "Attività",
+      "Scadenze",
+      "Pagamenti",
+    ],
+    moduli: ["Clienti ed eventi", "Invitati e location", "Fornitori e budget", "Attività, scadenze e pagamenti"],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti dell'evento: contratti con i fornitori, preventivi e conferme si caricano tutti insieme, anche in cartella o archivio ZIP, e il sistema li riconosce e li collega al matrimonio giusto.",
+      "Lista invitati con gestione di tavoli e menu dedicati.",
+      "Budget suddiviso per voce con confronto fra preventivo e spesa reale.",
+      "Timeline delle attività personalizzabile per tipo di cerimonia.",
+      "Scadenzario acconti e saldi per ciascun fornitore.",
+    ],
+    utenti: ["Titolare", "Wedding planner", "Assistente organizzativo"],
+    vantaggi: [
+      {
+        titolo: "Budget sotto controllo",
+        testo: "Ogni costo dei fornitori resta collegato al budget dell'evento, così lo scostamento si vede subito, non a fine lavoro.",
+      },
+      {
+        titolo: "Invitati sempre aggiornati",
+        testo: "La lista invitati resta unica e condivisa, senza versioni diverse che si contraddicono.",
+      },
+      {
+        titolo: "Scadenze fornitori rispettate",
+        testo: "Acconti, conferme e consegne restano visibili con anticipo, evitando corse dell'ultimo momento.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale wedding planner?",
+        risposta: "Il costo dipende dai moduli e dalle personalizzazioni scelte; si definisce con un preventivo su misura.",
+      },
+      {
+        domanda: "Posso importare i dati dei matrimoni che ho già in corso?",
+        risposta: "Sì, ed è possibile caricare tutti insieme i documenti già raccolti per ogni evento, con riconoscimento assistito dall'intelligenza artificiale.",
+      },
+      {
+        domanda: "Si può consultare durante i sopralluoghi?",
+        risposta: "Sì, le informazioni su fornitori, budget e scadenze sono consultabili anche da smartphone.",
+      },
+    ],
+    funzionalita: ["preventivi", "scadenze", "fatturazione", "documenti"],
+    stato: "bozza",
+    demoDisponibile: false,
+    ordine: 1,
+    metaTitle: "Gestionale wedding planner su misura",
+    metaDescription: "Gestionale su misura per wedding planner: clienti, eventi, invitati, fornitori, location, budget e scadenze in un sistema.",
+  },
+  {
+    slug: "gestionale-organizzatori-eventi",
+    nome: "Gestionale organizzatori di eventi",
+    sottotitolo: "Location, fornitori e staff di ogni evento sotto controllo",
+    categoriaSlug: "eventi-servizi-personali",
+    baseSlug: "clienti-attivita",
+    moduliAggiuntivi: [
+      "Pianta della location con disposizione degli spazi",
+      "Assegnazione staff per turno evento",
+    ],
+    descrizione:
+      "Chi organizza eventi aziendali o privati lavora con una data fissa e decine di dettagli da far coincidere: la location, i fornitori, lo staff sul posto, i partecipanti attesi. Il gestionale organizzatori di eventi tiene insieme clienti ed eventi, la location scelta, i partecipanti previsti, i fornitori coinvolti, lo staff assegnato, le attività da completare, i costi che si sommano e i documenti di ogni evento.",
+    problemi: [
+      "Ogni evento viene seguito su file diversi, e i fornitori coinvolti non sempre sono collegati all'evento giusto.",
+      "Lo staff da assegnare il giorno dell'evento si organizza all'ultimo, con il rischio di scoperture.",
+      "I costi dei singoli fornitori si sommano solo a evento concluso, quando è tardi per correggere.",
+      "I documenti di ogni evento, come contratti e autorizzazioni, restano sparsi fra email e cartelle diverse.",
+    ],
+    funzioni: [
+      "Clienti",
+      "Eventi",
+      "Location",
+      "Partecipanti",
+      "Fornitori",
+      "Staff",
+      "Attività",
+      "Costi",
+      "Documenti",
+    ],
+    moduli: ["Clienti ed eventi", "Location e partecipanti", "Fornitori e staff", "Attività, costi e documenti"],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti di ogni evento: contratti, planimetrie e autorizzazioni si caricano tutti insieme, anche in blocco o via archivio ZIP, e il sistema li riconosce e li archivia sotto l'evento giusto.",
+      "Pianta della location personalizzabile per tipo di allestimento.",
+      "Assegnazione staff con turni e ruoli per singolo evento.",
+      "Costi collegati in tempo reale a ciascun fornitore.",
+      "Checklist attività diversa per tipologia di evento, aziendale, privato o pubblico.",
+    ],
+    utenti: ["Titolare", "Event manager", "Coordinatore staff"],
+    vantaggi: [
+      {
+        titolo: "Ogni evento in un solo posto",
+        testo: "Location, fornitori, staff e documenti restano collegati allo stesso evento, senza file sparsi.",
+      },
+      {
+        titolo: "Staff assegnato per tempo",
+        testo: "I turni dello staff si vedono con anticipo, riducendo il rischio di scoperture il giorno dell'evento.",
+      },
+      {
+        titolo: "Costi visibili durante l'evento",
+        testo: "I costi dei fornitori si sommano man mano, non solo a evento concluso.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale organizzatori di eventi?",
+        risposta: "Il costo dipende dai moduli e dalle personalizzazioni scelte; si definisce con un preventivo su misura.",
+      },
+      {
+        domanda: "Posso importare gli eventi che ho già organizzato?",
+        risposta: "Sì, e i documenti raccolti per gli eventi passati si possono caricare tutti insieme, con riconoscimento assistito dall'intelligenza artificiale.",
+      },
+      {
+        domanda: "Si può usare durante il sopralluogo in location?",
+        risposta: "Sì, le informazioni su fornitori e staff sono consultabili anche da smartphone o tablet.",
+      },
+    ],
+    funzionalita: ["commesse", "personale", "documenti", "fatturazione"],
+    stato: "bozza",
+    demoDisponibile: false,
+    ordine: 2,
+    metaTitle: "Gestionale organizzatori di eventi",
+    metaDescription: "Gestionale su misura per organizzatori di eventi: clienti, location, partecipanti, fornitori, staff, costi e documenti.",
+  },
+  {
+    slug: "gestionale-fotografi-videomaker",
+    nome: "Gestionale fotografi e videomaker",
+    sottotitolo: "Clienti, shooting, selezioni e consegne di ogni progetto in un unico posto",
+    categoriaSlug: "eventi-servizi-personali",
+    baseSlug: "clienti-attivita",
+    moduliAggiuntivi: [
+      "Galleria di selezione condivisa con il cliente",
+      "Collegamento fra liberatorie e singoli scatti",
+      "Consegne con link o file scaricabili per il cliente",
+      "Listino servizi con pacchetti personalizzati",
+    ],
+    descrizione:
+      "Un fotografo o un videomaker lavora a progetti che si sovrappongono: mentre si seleziona il materiale di uno shooting, si organizza l'appuntamento per il prossimo, e nel frattempo un cliente aspetta la consegna finale. Tenere tutto su cartelle sparse sul computer, messaggi e agende diverse rende facile perdere il filo di cosa manca a chi.\n\nIl gestionale fotografi e videomaker segue ogni cliente dal primo contatto fino alla consegna: i servizi richiesti, gli appuntamenti fissati, gli shooting effettuati, i progetti in lavorazione, le selezioni fatte insieme al cliente, le consegne finali e le liberatorie raccolte per ogni scatto o ripresa. Le liberatorie restano archiviate come documenti da ritrovare quando servono, collegate al progetto e al soggetto giusto, senza sostituirsi a una valutazione legale sul loro contenuto.\n\nOgni progetto mostra a colpo d'occhio a che punto è: appuntamento fissato, shooting fatto, materiale selezionato, consegna inviata, pagamento ricevuto. Chi lavora da solo o con un piccolo team può vedere subito quali progetti sono fermi e perché, senza dover riaprire ogni cartella per ricordarselo.",
+    problemi: [
+      "Gli appuntamenti fissati per telefono o sui social finiscono su agende diverse, e capita di sovrapporne due nello stesso giorno.",
+      "Il materiale di ogni shooting si archivia su cartelle con nomi diversi, e ritrovare le foto di un cliente specifico richiede tempo.",
+      "Le selezioni fatte insieme al cliente si perdono fra email e messaggi, e non sempre corrispondono a quello che poi viene consegnato.",
+      "Le liberatorie firmate si raccolgono su carta o in PDF sparsi, e quando servono davvero non si trovano.",
+      "Non è sempre chiaro a che punto è un progetto: se è stato consegnato, se è stato pagato, se manca ancora qualcosa.",
+      "I pagamenti di acconti e saldi si tengono a mente, ed è facile dimenticare chi deve ancora saldare.",
+    ],
+    funzioni: [
+      "Clienti",
+      "Servizi",
+      "Appuntamenti",
+      "Shooting",
+      "Progetti",
+      "Selezioni",
+      "Consegne",
+      "Liberatorie",
+      "Pagamenti",
+    ],
+    moduli: [
+      "Anagrafica clienti",
+      "Servizi e listino",
+      "Appuntamenti e shooting",
+      "Progetti",
+      "Selezioni",
+      "Consegne",
+      "Liberatorie",
+      "Pagamenti",
+    ],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale del materiale di ogni shooting: si caricano centinaia di file insieme, anche intere cartelle o archivi ZIP, e il sistema riconosce di che tipo di documento o contenuto si tratta e lo collega da solo al progetto giusto.",
+      "Galleria di selezione condivisibile con il cliente per raccogliere le sue scelte.",
+      "Liberatorie collegate a singoli scatti o a interi progetti, da ritrovare facilmente quando servono.",
+      "Listino servizi con pacchetti e opzioni personalizzabili.",
+      "Promemoria automatico delle consegne in scadenza.",
+      "Watermark automatico sulle anteprime inviate in selezione.",
+      "Report dei progetti fermi per fase, per capire dove intervenire.",
+      "Collegamento fra appuntamento, shooting e progetto derivato.",
+      "Pagamenti scaglionati per fase del progetto: acconto, selezione, consegna.",
+      "Archivio storico dei clienti con progetti passati sempre consultabili.",
+    ],
+    utenti: ["Titolare", "Fotografo o videomaker", "Assistente di studio", "Collaboratore freelance"],
+    vantaggi: [
+      {
+        titolo: "Ogni progetto sempre rintracciabile",
+        testo: "Materiale, selezioni e consegne restano collegati allo stesso progetto, senza cartelle sparse da ricostruire.",
+      },
+      {
+        titolo: "Liberatorie ritrovabili quando servono",
+        testo: "Ogni liberatoria resta archiviata insieme al progetto e al soggetto a cui si riferisce, pronta da recuperare in caso di necessità.",
+      },
+      {
+        titolo: "Selezioni chiare con il cliente",
+        testo: "Le scelte fatte insieme al cliente restano registrate, riducendo fraintendimenti su cosa consegnare.",
+      },
+      {
+        titolo: "Stato del lavoro a colpo d'occhio",
+        testo: "Ogni progetto mostra a che punto è, fra shooting, selezione, consegna o pagamento, senza doverlo ricostruire a memoria.",
+      },
+      {
+        titolo: "Pagamenti tracciati per fase",
+        testo: "Acconti e saldi restano collegati al progetto, per sapere sempre chi deve ancora saldare.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale fotografi e videomaker?",
+        risposta: "Il costo dipende dai moduli attivati e dalle personalizzazioni richieste. Dopo un primo confronto sull'attività si prepara un preventivo su misura.",
+      },
+      {
+        domanda: "Quanto tempo serve per iniziare a usarlo?",
+        risposta: "I tempi variano in base a quante personalizzazioni servono e a quanto materiale va importato dall'archivio attuale. Si concordano insieme all'avvio.",
+      },
+      {
+        domanda: "Posso importare il materiale che ho già organizzato su cartelle o Excel?",
+        risposta: "Sì. I dati dei clienti si importano all'avvio, e il materiale già raccolto per i progetti passati si può caricare tutto insieme: il caricamento è assistito dall'intelligenza artificiale, che riconosce ogni file e lo collega al progetto giusto.",
+      },
+      {
+        domanda: "Si può usare da telefono durante uno shooting?",
+        risposta: "Sì, le funzioni di calendario e progetto sono pensate anche per l'uso da smartphone sul posto.",
+      },
+      {
+        domanda: "Cosa succede se ho bisogno di assistenza?",
+        risposta: "È previsto un riferimento diretto per segnalare problemi o richiedere modifiche, senza passare da un call center anonimo.",
+      },
+      {
+        domanda: "Posso aggiungere altre funzioni in futuro?",
+        risposta: "Sì, il gestionale nasce modulare: nuove funzioni, come una galleria clienti più avanzata, si possono valutare e sviluppare in un secondo momento.",
+      },
+    ],
+    funzionalita: ["appuntamenti", "documenti", "commesse", "fatturazione"],
+    stato: "pubblicato",
+    demoDisponibile: false,
+    ordine: 3,
+    metaTitle: "Gestionale fotografi e videomaker su misura",
+    metaDescription: "Gestionale su misura per fotografi e videomaker: clienti, shooting, selezioni, consegne, liberatorie e pagamenti.",
+  },
+  {
+    slug: "gestionale-agenzie-funebri",
+    nome: "Gestionale agenzie funebri",
+    sottotitolo: "Pratiche, documenti e scadenze seguiti con ordine e riservatezza",
+    categoriaSlug: "eventi-servizi-personali",
+    baseSlug: "clienti-attivita",
+    moduliAggiuntivi: [
+      "Stato pratica visibile a colpo d'occhio",
+      "Storico fornitori con condizioni concordate",
+    ],
+    descrizione:
+      "Un'agenzia funebri segue ogni pratica con attenzione e nei tempi dovuti, tenendo insieme i documenti necessari, i servizi concordati con la famiglia e i fornitori coinvolti. Il gestionale agenzie funebri organizza clienti e pratiche, i servizi richiesti, i documenti raccolti, i fornitori, le scadenze da rispettare, i pagamenti e lo stato di avanzamento di ciascuna pratica, così da avere sempre un quadro chiaro e ordinato.",
+    problemi: [
+      "I documenti necessari per ogni pratica arrivano in momenti diversi e si raccolgono su supporti differenti, con il rischio di perderne qualcuno.",
+      "Le scadenze amministrative di ogni pratica non sono sempre visibili insieme, e vanno tenute a mente o su appunti separati.",
+      "I fornitori coinvolti in ogni servizio si contattano di volta in volta, senza uno storico delle condizioni concordate.",
+      "Lo stato di avanzamento di ogni pratica non è sempre chiaro a chi risponde al telefono, con il rischio di dare informazioni imprecise alla famiglia.",
+    ],
+    funzioni: [
+      "Clienti",
+      "Pratiche",
+      "Servizi",
+      "Documenti",
+      "Fornitori",
+      "Scadenze",
+      "Pagamenti",
+      "Stato pratica",
+    ],
+    moduli: ["Clienti e pratiche", "Servizi e documenti", "Fornitori", "Scadenze e pagamenti"],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti di ogni pratica: si caricano più file insieme, anche in cartella o archivio ZIP, e il sistema riconosce di che documento si tratta e lo collega alla pratica corretta, per un lavoro più rapido e ordinato.",
+      "Elenco dei documenti necessari personalizzato per tipo di pratica.",
+      "Promemoria delle scadenze amministrative con anticipo.",
+      "Storico dei fornitori con le condizioni già concordate.",
+      "Stato della pratica sempre visibile, con le fasi principali aggiornate.",
+    ],
+    utenti: ["Titolare dell'agenzia", "Addetto alle pratiche", "Amministrazione"],
+    vantaggi: [
+      {
+        titolo: "Documenti raccolti in ordine",
+        testo: "Ogni documento resta collegato alla pratica corretta, pronto da ritrovare quando serve.",
+      },
+      {
+        titolo: "Scadenze sempre visibili",
+        testo: "Le scadenze amministrative di ogni pratica si vedono con anticipo, riducendo il rischio di ritardi.",
+      },
+      {
+        titolo: "Informazioni chiare per chi risponde",
+        testo: "Lo stato di ogni pratica è consultabile subito, per rispondere alla famiglia con precisione.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale agenzie funebri?",
+        risposta: "Il costo dipende dai moduli e dalle personalizzazioni scelte; si definisce con un preventivo su misura, con la massima riservatezza.",
+      },
+      {
+        domanda: "Posso importare le pratiche che ho già in corso?",
+        risposta: "Sì, ed è possibile caricare tutti insieme i documenti già raccolti per ogni pratica, con riconoscimento assistito dall'intelligenza artificiale.",
+      },
+      {
+        domanda: "Si può usare da telefono fuori sede?",
+        risposta: "Sì, lo stato delle pratiche e le scadenze sono consultabili anche da smartphone.",
+      },
+    ],
+    funzionalita: ["documenti", "scadenze", "fatturazione"],
+    stato: "bozza",
+    demoDisponibile: false,
+    ordine: 4,
+    metaTitle: "Gestionale agenzie funebri su misura",
+    metaDescription: "Gestionale su misura per agenzie funebri: clienti, pratiche, servizi, documenti, fornitori, scadenze e pagamenti.",
+  },
+
+  // ----- associazioni-assistenza -----
+  {
+    slug: "gestionale-associazioni",
+    nome: "Gestionale associazioni",
+    sottotitolo: "Soci, quote, volontari e attività in un unico registro",
+    categoriaSlug: "associazioni-assistenza",
+    baseSlug: "corsi-iscrizioni",
+    moduliAggiuntivi: [
+      "Scadenzario rinnovo quote",
+      "Registro donazioni per rendicontazione interna",
+    ],
+    descrizione:
+      "Un'associazione tiene insieme soci che rinnovano la quota, volontari che coprono i turni delle attività, ed eventi da organizzare durante l'anno. Il gestionale associazioni raccoglie l'anagrafica dei soci e delle quote versate, le attività e gli eventi in programma, i volontari e i loro turni, i documenti dell'associazione, le comunicazioni verso i soci e le donazioni ricevute, per una rendicontazione interna sempre ordinata.",
+    problemi: [
+      "L'elenco dei soci e delle quote versate si tiene su un foglio Excel che non sempre è aggiornato da chi risponde al telefono.",
+      "I turni dei volontari per le attività si organizzano a voce o su un gruppo di messaggistica, con il rischio di scoperture.",
+      "Le comunicazioni ai soci, come il rinnovo quota o i prossimi eventi, si inviano una per una, senza un elenco aggiornato dei contatti.",
+      "Le donazioni ricevute non sempre vengono registrate in modo ordinato, rendendo difficile la rendicontazione interna a fine anno.",
+    ],
+    funzioni: [
+      "Soci",
+      "Quote",
+      "Attività",
+      "Eventi",
+      "Volontari",
+      "Turni",
+      "Documenti",
+      "Comunicazioni",
+      "Donazioni",
+    ],
+    moduli: ["Soci e quote", "Attività ed eventi", "Volontari e turni", "Documenti, comunicazioni e donazioni"],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti dell'associazione: statuti, verbali e moduli dei soci si caricano tutti insieme, anche in blocco o via archivio ZIP, e il sistema li riconosce e li collega alla scheda giusta.",
+      "Promemoria automatico dei rinnovi quota in scadenza.",
+      "Turni dei volontari personalizzabili per tipo di attività.",
+      "Elenco comunicazioni con filtro per soci attivi o scaduti.",
+      "Registro donazioni collegato ai soci o ai sostenitori occasionali.",
+    ],
+    utenti: ["Presidente o segreteria", "Responsabile volontari", "Tesoriere"],
+    vantaggi: [
+      {
+        titolo: "Soci e quote sempre aggiornati",
+        testo: "L'elenco soci e lo stato delle quote versate restano in un unico posto, consultabile da chi risponde al telefono.",
+      },
+      {
+        titolo: "Turni dei volontari coperti",
+        testo: "I turni per le attività si vedono con anticipo, riducendo il rischio di scoperture.",
+      },
+      {
+        titolo: "Rendicontazione interna più semplice",
+        testo: "Quote e donazioni registrate in modo ordinato rendono più rapido il resoconto di fine anno.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale associazioni?",
+        risposta: "Il costo dipende dai moduli e dalle personalizzazioni scelte; si definisce con un preventivo su misura.",
+      },
+      {
+        domanda: "Posso importare i soci che ho già su Excel?",
+        risposta: "Sì, e i documenti già raccolti, come statuti, moduli e verbali, si possono caricare tutti insieme, con riconoscimento assistito dall'intelligenza artificiale.",
+      },
+      {
+        domanda: "Gestisce gli adempimenti verso il Registro Unico del Terzo Settore?",
+        risposta: "No, il gestionale organizza soci, quote, attività e rendicontazione interna; gli adempimenti normativi restano seguiti con i propri strumenti o consulenti.",
+      },
+    ],
+    funzionalita: ["presenze", "documenti", "scadenze"],
+    stato: "bozza",
+    demoDisponibile: false,
+    ordine: 1,
+    metaTitle: "Gestionale associazioni su misura",
+    metaDescription: "Gestionale su misura per associazioni: soci, quote, attività, eventi, volontari, turni, documenti e donazioni.",
+  },
+  {
+    slug: "gestionale-assistenza-domiciliare",
+    nome: "Gestionale assistenza domiciliare",
+    sottotitolo: "Assistiti, operatori e turni organizzati con ordine",
+    categoriaSlug: "associazioni-assistenza",
+    baseSlug: "personale-turni",
+    moduliAggiuntivi: [
+      "Sostituzioni turno con avviso agli operatori coinvolti",
+      "Riepilogo prestazioni erogate per periodo",
+    ],
+    descrizione:
+      "Un servizio di assistenza domiciliare organizza operatori che si spostano fra più abitazioni, turni da coprire ogni giorno e prestazioni da registrare per ciascun assistito. Il gestionale assistenza domiciliare tiene insieme l'anagrafica degli assistiti e dei loro familiari di riferimento, gli operatori e i turni assegnati, le prestazioni erogate, le note operative, i documenti e i pagamenti, senza trattare informazioni sanitarie o cliniche.",
+    problemi: [
+      "I turni degli operatori si organizzano su un'agenda cartacea, e le sostituzioni dell'ultimo momento si comunicano a voce.",
+      "Le prestazioni erogate presso ogni assistito si annotano su fogli diversi, rendendo difficile ricostruire cosa è stato fatto e quando.",
+      "I contatti dei familiari di riferimento non sono sempre aggiornati o facili da trovare in caso di necessità.",
+      "I documenti amministrativi di ogni assistito, come moduli e autorizzazioni, restano sparsi fra cartelle diverse.",
+    ],
+    funzioni: ["Assistiti", "Familiari", "Operatori", "Turni", "Prestazioni", "Note", "Documenti", "Pagamenti"],
+    moduli: ["Assistiti e familiari", "Operatori e turni", "Prestazioni e note", "Documenti e pagamenti"],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti amministrativi: moduli, autorizzazioni e comunicazioni si caricano insieme, anche in cartella o archivio ZIP, e il sistema li riconosce e li collega alla scheda dell'assistito giusta.",
+      "Turni personalizzabili per fascia oraria e tipo di prestazione.",
+      "Note operative collegate a ciascuna visita, senza contenuti sanitari.",
+      "Riepilogo prestazioni erogate per assistito e per periodo.",
+      "Contatti dei familiari di riferimento sempre aggiornati e a portata di mano.",
+    ],
+    utenti: ["Coordinatore del servizio", "Operatore domiciliare", "Amministrazione"],
+    vantaggi: [
+      {
+        titolo: "Turni sempre coperti",
+        testo: "Le sostituzioni si comunicano agli operatori coinvolti senza passare a voce, riducendo il rischio di scoperture.",
+      },
+      {
+        titolo: "Prestazioni tracciate nel tempo",
+        testo: "Cosa è stato erogato e quando resta registrato per ogni assistito, senza doverlo ricostruire a memoria.",
+      },
+      {
+        titolo: "Familiari sempre raggiungibili",
+        testo: "I contatti di riferimento restano aggiornati e disponibili in caso di necessità.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale assistenza domiciliare?",
+        risposta: "Il costo dipende dai moduli e dalle personalizzazioni scelte; si definisce con un preventivo su misura.",
+      },
+      {
+        domanda: "Gestisce anche le informazioni sanitarie degli assistiti?",
+        risposta: "No, il gestionale organizza turni, prestazioni erogate e documenti amministrativi; non tratta diagnosi o dati sanitari, che restano seguiti con gli strumenti propri del servizio sanitario.",
+      },
+      {
+        domanda: "Posso importare gli assistiti che ho già in gestione?",
+        risposta: "Sì, e i documenti già raccolti si possono caricare tutti insieme, con riconoscimento assistito dall'intelligenza artificiale.",
+      },
+    ],
+    funzionalita: ["presenze", "personale", "documenti"],
+    stato: "bozza",
+    demoDisponibile: false,
+    ordine: 2,
+    metaTitle: "Gestionale assistenza domiciliare",
+    metaDescription: "Gestionale su misura per assistenza domiciliare: assistiti, operatori, turni, prestazioni, documenti e pagamenti.",
+  },
+  {
+    slug: "gestionale-servizi-alla-persona",
+    nome: "Gestionale servizi alla persona",
+    sottotitolo: "Utenti, appuntamenti e prestazioni in un unico sistema",
+    categoriaSlug: "associazioni-assistenza",
+    baseSlug: "personale-turni",
+    moduliAggiuntivi: [
+      "Storico prestazioni per utente",
+      "Promemoria scadenze documentali",
+    ],
+    descrizione:
+      "Chi eroga servizi alla persona segue utenti diversi, ciascuno con appuntamenti e prestazioni da registrare nel tempo. Il gestionale servizi alla persona tiene insieme l'anagrafica degli utenti, gli operatori assegnati, gli appuntamenti fissati, le prestazioni erogate, i documenti, le scadenze da rispettare, le comunicazioni verso gli utenti e i pagamenti, senza trattare informazioni sanitarie.",
+    problemi: [
+      "Gli appuntamenti si fissano su agende diverse a seconda dell'operatore, con il rischio di sovrapposizioni.",
+      "Le prestazioni erogate a ciascun utente si annotano su supporti diversi, rendendo difficile ricostruire lo storico.",
+      "Le scadenze dei documenti degli utenti, come moduli e autorizzazioni, non sono sempre visibili con anticipo.",
+      "Le comunicazioni agli utenti si inviano una per una, senza un elenco aggiornato dei contatti.",
+    ],
+    funzioni: [
+      "Utenti",
+      "Operatori",
+      "Appuntamenti",
+      "Prestazioni",
+      "Documenti",
+      "Scadenze",
+      "Comunicazioni",
+      "Pagamenti",
+    ],
+    moduli: ["Utenti e operatori", "Appuntamenti e prestazioni", "Documenti e scadenze", "Comunicazioni e pagamenti"],
+    personalizzazioni: [
+      "Caricamento assistito dall'intelligenza artificiale dei documenti degli utenti: moduli, autorizzazioni e comunicazioni si caricano insieme, anche in cartella o archivio ZIP, e il sistema riconosce ogni documento e lo collega alla scheda dell'utente giusta.",
+      "Appuntamenti personalizzabili per tipo di prestazione e durata.",
+      "Storico delle prestazioni erogate consultabile per utente.",
+      "Promemoria automatico delle scadenze documentali.",
+      "Comunicazioni agli utenti filtrabili per tipo di servizio.",
+    ],
+    utenti: ["Coordinatore del servizio", "Operatore", "Amministrazione"],
+    vantaggi: [
+      {
+        titolo: "Appuntamenti senza sovrapposizioni",
+        testo: "Un solo calendario condiviso fra gli operatori riduce il rischio di doppie prenotazioni.",
+      },
+      {
+        titolo: "Storico prestazioni consultabile",
+        testo: "Cosa è stato erogato a ciascun utente resta registrato nel tempo, senza doverlo ricostruire a memoria.",
+      },
+      {
+        titolo: "Scadenze documentali sotto controllo",
+        testo: "I documenti in scadenza si vedono con anticipo, riducendo il rischio di dimenticanze.",
+      },
+    ],
+    faq: [
+      {
+        domanda: "Quanto costa il gestionale servizi alla persona?",
+        risposta: "Il costo dipende dai moduli e dalle personalizzazioni scelte; si definisce con un preventivo su misura.",
+      },
+      {
+        domanda: "Gestisce informazioni sanitarie degli utenti?",
+        risposta: "No, il gestionale organizza appuntamenti, prestazioni erogate e documenti amministrativi; non tratta diagnosi o dati sanitari.",
+      },
+      {
+        domanda: "Posso importare gli utenti che ho già in gestione?",
+        risposta: "Sì, e i documenti già raccolti si possono caricare tutti insieme, con riconoscimento assistito dall'intelligenza artificiale.",
+      },
+    ],
+    funzionalita: ["appuntamenti", "documenti", "scadenze"],
+    stato: "bozza",
+    demoDisponibile: false,
+    ordine: 3,
+    metaTitle: "Gestionale servizi alla persona",
+    metaDescription: "Gestionale su misura per servizi alla persona: utenti, operatori, appuntamenti, prestazioni, documenti e pagamenti.",
+  },
+];
