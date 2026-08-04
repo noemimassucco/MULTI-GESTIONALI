@@ -1,0 +1,15 @@
+# Configurazione per Render: letta in automatico quando colleghi il repository.
+# Il sito gira come servizio Node sul piano gratuito.
+services:
+  - type: web
+    name: multi-gestionali
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Quando colleghi Supabase, aggiungi qui (o dal pannello di Render):
+      # NEXT_PUBLIC_SITE_URL, NEXT_PUBLIC_SUPABASE_URL,
+      # NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY
