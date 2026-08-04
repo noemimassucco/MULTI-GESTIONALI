@@ -36,7 +36,7 @@ export default function Navbar({ categorie }) {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
       <Contenitore>
-        <div className="flex h-[68px] items-center justify-between gap-4">
+        <div className="flex h-[var(--barra)] items-center justify-between gap-3">
           <Marchio />
 
           <nav className="hidden shrink-0 items-center gap-0 xl:flex" aria-label="Navigazione principale">
@@ -51,14 +51,15 @@ export default function Navbar({ categorie }) {
                 >
                   <Link
                     href={voce.href}
-                    className={`flex items-center gap-1 whitespace-nowrap rounded-lg px-2.5 py-2 text-[13.5px] font-medium transition-colors ${
+                    data-comando
+                    className={`flex h-9 items-center gap-1 whitespace-nowrap rounded-[var(--radius-controllo)] px-2.5 text-piccolo font-medium transition-colors ${
                       attivo(voce.href)
                         ? "text-brand-700"
                         : "text-ink-600 hover:text-ink-900"
                     }`}
                   >
                     {voce.label}
-                    {isCategorie ? <Icona nome="ChevronDown" className="size-3.5" /> : null}
+                    {isCategorie ? <Icona misura="sm" nome="ChevronDown" /> : null}
                   </Link>
                   {attivo(voce.href) ? (
                     <span className="absolute inset-x-2.5 -bottom-[1px] h-[2px] rounded-full bg-brand-600" />
@@ -66,27 +67,27 @@ export default function Navbar({ categorie }) {
 
                   {isCategorie && menuCategorie ? (
                     <div className="absolute left-1/2 top-full z-50 w-[680px] -translate-x-1/2 pt-3">
-                      <div className="grid grid-cols-2 gap-1 rounded-2xl border border-line bg-white p-3 shadow-[var(--shadow-lift)]">
+                      <div className="grid grid-cols-2 gap-1 rounded-[var(--radius-scheda)] border border-line bg-white p-3 shadow-[var(--shadow-lift)]">
                         {categorie.map((c) => (
                           <Link
                             key={c.slug}
                             href={`/categorie/${c.slug}`}
-                            className="flex items-start gap-3 rounded-xl p-2.5 transition-colors hover:bg-surface-alt"
+                            className="flex items-start gap-3 rounded-[var(--radius-scheda)] p-2.5 transition-colors hover:bg-surface-alt"
                           >
                             <span
-                              className="flex size-9 shrink-0 items-center justify-center rounded-lg"
+                              className="flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-controllo)]"
                               style={{
                                 color: `var(--cat-${c.colore})`,
                                 background: `var(--cat-${c.colore}-bg)`,
                               }}
                             >
-                              <Icona nome={c.icona} className="size-[18px]" />
+                              <Icona misura="sm" nome={c.icona} />
                             </span>
                             <span className="min-w-0">
-                              <span className="block text-[13.5px] font-semibold text-ink-900">
+                              <span className="block text-piccolo font-semibold text-ink-900">
                                 {c.nome}
                               </span>
-                              <span className="block text-[12px] text-ink-500">
+                              <span className="block text-mini text-ink-500">
                                 {c.totale} {c.totale === 1 ? "gestionale" : "gestionali"}
                               </span>
                             </span>
@@ -100,23 +101,25 @@ export default function Navbar({ categorie }) {
             })}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
             <Bottone href="/demo" variante="secondario" misura="sm" className="hidden sm:inline-flex">
-              <Icona nome="PlayCircle" className="size-4" />
+              <Icona misura="sm" nome="PlayCircle" />
               Prova una demo
             </Bottone>
-            <Bottone href="/richiedi" misura="sm">
-              Richiedi informazioni
-              <Icona nome="ArrowRight" className="size-4" />
+            <Bottone href="/richiedi" misura="sm" className="px-3 sm:px-4">
+              <span className="hidden sm:inline">Richiedi informazioni</span>
+              <span className="sm:hidden">Scrivimi</span>
+              <Icona misura="sm" nome="ArrowRight" />
             </Bottone>
             <button
               type="button"
               onClick={() => setApertoMobile((v) => !v)}
-              className="flex size-10 items-center justify-center rounded-lg text-ink-700 hover:bg-surface-alt xl:hidden"
+              data-comando
+              className="flex size-11 items-center justify-center rounded-[var(--radius-controllo)] text-ink-700 hover:bg-surface-alt xl:hidden"
               aria-label={apertoMobile ? "Chiudi il menu" : "Apri il menu"}
               aria-expanded={apertoMobile}
             >
-              <Icona nome={apertoMobile ? "X" : "Menu"} className="size-5" />
+              <Icona misura="md" nome={apertoMobile ? "X" : "Menu"} />
             </button>
           </div>
         </div>
@@ -130,7 +133,8 @@ export default function Navbar({ categorie }) {
                 <Link
                   key={voce.href}
                   href={voce.href}
-                  className={`rounded-lg px-3 py-2.5 text-[15px] font-medium ${
+                  data-comando
+                  className={`flex h-11 items-center rounded-[var(--radius-controllo)] px-3 text-testo font-medium ${
                     attivo(voce.href) ? "bg-brand-50 text-brand-700" : "text-ink-700"
                   }`}
                 >
@@ -139,12 +143,13 @@ export default function Navbar({ categorie }) {
               ))}
               <Link
                 href="/demo"
-                className="mt-2 rounded-lg px-3 py-2.5 text-[15px] font-medium text-ink-700"
+                data-comando
+                className="mt-2 flex h-11 items-center rounded-[var(--radius-controllo)] px-3 text-testo font-medium text-ink-700"
               >
                 Prova una demo
               </Link>
             </nav>
-            <p className="mt-4 border-t border-line pt-4 text-[13px] text-ink-500">
+            <p className="mt-4 border-t border-line pt-4 text-piccolo text-ink-500">
               Scrivi a{" "}
               <a href={`mailto:${sito.email}`} className="font-medium text-brand-700">
                 {sito.email}

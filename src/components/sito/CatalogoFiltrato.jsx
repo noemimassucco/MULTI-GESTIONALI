@@ -90,14 +90,14 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
         <button
           type="button"
           onClick={() => setFiltriAperti((v) => !v)}
-          className="mb-4 flex w-full items-center justify-between rounded-xl border border-line bg-white px-4 py-3 text-[14px] font-semibold text-ink-800 lg:hidden"
+          className="mb-4 flex w-full items-center justify-between rounded-[var(--radius-scheda)] border border-line bg-white px-4 py-3 text-corrente font-semibold text-ink-800 lg:hidden"
           aria-expanded={filtriAperti}
         >
           <span className="flex items-center gap-2">
-            <Icona nome="SlidersHorizontal" className="size-4" />
+            <Icona misura="sm" nome="SlidersHorizontal" />
             Filtri
             {attivi ? (
-              <span className="rounded-full bg-brand-600 px-1.5 py-0.5 text-[11px] text-white">
+              <span className="rounded-full bg-brand-600 px-1.5 py-0.5 text-micro text-white">
                 {attivi}
               </span>
             ) : null}
@@ -106,18 +106,18 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
         </button>
 
         <div className={`${filtriAperti ? "block" : "hidden"} lg:block`}>
-          <div className="sticky top-[88px] space-y-6 rounded-2xl border border-line bg-white p-5">
+          <div className="sticky top-[88px] space-y-6 rounded-[var(--radius-scheda)] border border-line bg-white p-5">
             <div>
               <label
                 htmlFor="ricerca"
-                className="mb-2 block text-[13px] font-semibold text-ink-900"
+                className="mb-2 block text-piccolo font-semibold text-ink-900"
               >
                 Cerca
               </label>
               <div className="relative">
-                <Icona
+                <Icona misura="sm"
                   nome="Search"
-                  className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-400"
+                  className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400"
                 />
                 <input
                   id="ricerca"
@@ -125,18 +125,18 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
                   value={ricerca}
                   onChange={(e) => setRicerca(e.target.value)}
                   placeholder="Es. idraulico, cantieri…"
-                  className="h-10 w-full rounded-lg border border-line bg-white pl-9 pr-3 text-[14px] text-ink-800 placeholder:text-ink-400 focus:border-brand-400 focus:outline-none"
+                  className="h-12 w-full rounded-[var(--radius-controllo)] border border-line bg-white pl-11 pr-3 text-corrente text-ink-800 placeholder:text-ink-400 focus:border-brand-400 focus:outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <p className="mb-2 text-[13px] font-semibold text-ink-900">Categoria</p>
+              <p className="mb-2 text-piccolo font-semibold text-ink-900">Categoria</p>
               <div className="space-y-0.5">
                 <button
                   type="button"
                   onClick={() => setCategoria("")}
-                  className={`w-full rounded-lg px-2.5 py-1.5 text-left text-[13.5px] transition-colors ${
+                  className={`w-full rounded-[var(--radius-controllo)] px-2.5 py-1.5 text-left text-piccolo transition-colors ${
                     !categoria ? "bg-brand-50 font-semibold text-brand-700" : "text-ink-600 hover:bg-surface-alt"
                   }`}
                 >
@@ -147,21 +147,21 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
                     key={c.slug}
                     type="button"
                     onClick={() => setCategoria(c.slug === categoria ? "" : c.slug)}
-                    className={`flex w-full items-center justify-between gap-2 rounded-lg px-2.5 py-1.5 text-left text-[13.5px] transition-colors ${
+                    className={`flex w-full items-center justify-between gap-2 rounded-[var(--radius-controllo)] px-2.5 py-1.5 text-left text-piccolo transition-colors ${
                       categoria === c.slug
                         ? "bg-brand-50 font-semibold text-brand-700"
                         : "text-ink-600 hover:bg-surface-alt"
                     }`}
                   >
                     <span className="truncate">{c.nome}</span>
-                    <span className="shrink-0 text-[11.5px] text-ink-400">{c.totale}</span>
+                    <span className="shrink-0 text-mini text-ink-400">{c.totale}</span>
                   </button>
                 ))}
               </div>
             </div>
 
             <div>
-              <p className="mb-2 text-[13px] font-semibold text-ink-900">Funzioni</p>
+              <p className="mb-2 text-piccolo font-semibold text-ink-900">Funzioni</p>
               <div className="flex flex-wrap gap-1.5">
                 {funzionalita.map((f) => {
                   const scelta = funzioniScelte.includes(f.slug);
@@ -171,7 +171,7 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
                       type="button"
                       onClick={() => alternaFunzione(f.slug)}
                       aria-pressed={scelta}
-                      className={`rounded-full px-2.5 py-1 text-[12px] font-medium transition-colors ${
+                      className={`rounded-full px-2.5 py-1 text-mini font-medium transition-colors ${
                         scelta
                           ? "bg-brand-600 text-white"
                           : "bg-surface-alt text-ink-600 hover:bg-brand-50 hover:text-brand-700"
@@ -185,12 +185,12 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
             </div>
 
             <div className="border-t border-line-soft pt-4">
-              <label className="flex cursor-pointer items-center gap-2.5 text-[13.5px] text-ink-700">
+              <label className="flex cursor-pointer items-center gap-2.5 text-piccolo text-ink-700">
                 <input
                   type="checkbox"
                   checked={soloDemo}
                   onChange={(e) => setSoloDemo(e.target.checked)}
-                  className="size-4 rounded border-line text-brand-600 focus:ring-brand-500"
+                  className="size-5 rounded-[4px] border-line text-brand-600 focus:ring-brand-500"
                 />
                 Solo con demo disponibile
               </label>
@@ -200,7 +200,7 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
               <button
                 type="button"
                 onClick={azzera}
-                className="w-full rounded-lg bg-surface-alt py-2 text-[13px] font-medium text-ink-600 hover:bg-line-soft"
+                className="w-full rounded-[var(--radius-controllo)] bg-surface-alt py-2 text-piccolo font-medium text-ink-600 hover:bg-line-soft"
               >
                 Azzera i filtri
               </button>
@@ -211,7 +211,7 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
 
       {/* ------- Risultati ------- */}
       <div>
-        <p className="mb-5 text-[14px] text-ink-500">
+        <p className="mb-5 text-corrente text-ink-500">
           <strong className="font-semibold text-ink-900">{risultati.length}</strong>{" "}
           {risultati.length === 1 ? "gestionale trovato" : "gestionali trovati"}
         </p>
@@ -228,12 +228,12 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-line bg-surface-alt p-10 text-center">
-            <span className="mx-auto flex size-12 items-center justify-center rounded-xl bg-white text-ink-400">
-              <Icona nome="Search" className="size-5" />
+          <div className="rounded-[var(--radius-scheda)] border border-dashed border-line bg-surface-alt p-10 text-center">
+            <span className="mx-auto flex size-12 items-center justify-center rounded-[var(--radius-scheda)] bg-white text-ink-400">
+              <Icona misura="md" nome="Search" />
             </span>
-            <h3 className="mt-4 text-[17px] font-semibold">Nessun gestionale con questi filtri</h3>
-            <p className="mx-auto mt-2 max-w-md text-[14px] leading-relaxed text-ink-500">
+            <h3 className="mt-4 text-guida font-semibold">Nessun gestionale con questi filtri</h3>
+            <p className="mx-auto mt-2 max-w-md text-corrente leading-relaxed text-ink-500">
               Il catalogo cresce nel tempo. Se il tuo settore non c&apos;è ancora, partiamo dal
               gestionale più simile e lo adattiamo al tuo modo di lavorare.
             </p>

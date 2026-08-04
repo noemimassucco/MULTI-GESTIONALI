@@ -15,12 +15,12 @@ export default function PaginaCategorie() {
 
   return (
     <>
-      <section className="border-b border-line bg-surface-blue py-12 sm:py-16">
+      <section className="border-b border-line bg-surface-blue py-10 lg:py-14">
         <Contenitore>
-          <h1 className="max-w-2xl text-[32px] font-extrabold leading-tight sm:text-[42px]">
+          <h1 className="max-w-2xl text-titolo font-extrabold leading-tight sm:text-mega">
             Scegli il tuo settore
           </h1>
-          <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-ink-500 sm:text-base">
+          <p className="mt-4 max-w-2xl text-testo leading-relaxed text-ink-500">
             {stat.categorie} categorie di attività, {stat.gestionali} gestionali pubblicati. Parti
             dal settore più vicino al tuo: la base è la stessa, cambia il modo in cui viene
             adattata.

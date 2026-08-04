@@ -15,9 +15,9 @@ const scadenze = [
 ];
 
 const coloriStato = {
-  ritardo: { punto: "bg-red-500", testo: "text-red-600", bg: "bg-red-50" },
-  oggi: { punto: "bg-amber-500", testo: "text-amber-600", bg: "bg-amber-50" },
-  prossima: { punto: "bg-brand-500", testo: "text-brand-600", bg: "bg-brand-50" },
+  ritardo: { punto: "bg-red-500", testo: "text-red-700", bg: "bg-red-50" },
+  oggi: { punto: "bg-amber-500", testo: "text-amber-800", bg: "bg-amber-50" },
+  prossima: { punto: "bg-brand-500", testo: "text-brand-700", bg: "bg-brand-50" },
 };
 
 /* Andamento fittizio ma coerente, disegnato a mano per non dipendere da librerie */
@@ -55,22 +55,22 @@ function Grafico() {
  */
 export default function AnteprimaDashboard() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-[var(--shadow-lift)]">
+    <div className="overflow-hidden rounded-[var(--radius-scheda)] border border-line bg-white shadow-[var(--shadow-lift)]">
       {/* barra superiore */}
       <div className="flex items-center gap-3 border-b border-line px-4 py-3">
-        <span className="flex size-7 items-center justify-center rounded-lg bg-brand-600">
-          <span className="size-3 rounded-[3px] border-[1.5px] border-white" />
+        <span className="flex size-7 items-center justify-center rounded-[var(--radius-controllo)] bg-brand-600">
+          <span className="size-3 rounded-[4px] border-[1.5px] border-white" />
         </span>
-        <span className="text-[14px] font-semibold text-ink-900">Dashboard</span>
+        <span className="text-corrente font-semibold text-ink-900">Dashboard</span>
         <span className="ml-auto flex items-center gap-2">
-          <span className="flex size-7 items-center justify-center rounded-lg text-ink-400">
-            <Icona nome="Search" className="size-4" />
+          <span className="flex size-7 items-center justify-center rounded-[var(--radius-controllo)] text-ink-500">
+            <Icona misura="sm" nome="Search" />
           </span>
-          <span className="hidden items-center gap-2 rounded-lg bg-surface-alt py-1 pl-1 pr-2.5 sm:flex">
-            <span className="flex size-6 items-center justify-center rounded-md bg-brand-100 text-[10px] font-bold text-brand-700">
+          <span className="hidden items-center gap-2 rounded-[var(--radius-controllo)] bg-surface-alt py-1 pl-1 pr-2.5 sm:flex">
+            <span className="flex size-6 items-center justify-center rounded-[var(--radius-controllo)] bg-brand-100 text-micro font-bold text-brand-700">
               MR
             </span>
-            <span className="text-[11.5px] font-medium text-ink-700">Mario Rossi</span>
+            <span className="text-mini font-medium text-ink-700">Mario Rossi</span>
           </span>
         </span>
       </div>
@@ -82,11 +82,11 @@ export default function AnteprimaDashboard() {
             (nome, i) => (
               <span
                 key={nome}
-                className={`flex size-7 items-center justify-center rounded-lg ${
-                  i === 0 ? "bg-brand-50 text-brand-600" : "text-ink-400"
+                className={`flex size-7 items-center justify-center rounded-[var(--radius-controllo)] ${
+                  i === 0 ? "bg-brand-50 text-brand-600" : "text-ink-500"
                 }`}
               >
-                <Icona nome={nome} className="size-[15px]" />
+                <Icona misura="md" nome={nome} />
               </span>
             ),
           )}
@@ -96,12 +96,12 @@ export default function AnteprimaDashboard() {
           {/* KPI */}
           <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
             {kpi.map((k) => (
-              <div key={k.etichetta} className="rounded-xl border border-line bg-white p-3">
-                <p className="truncate text-[10.5px] font-medium text-ink-500">{k.etichetta}</p>
-                <p className="mt-1 text-[19px] font-bold leading-tight text-ink-900">{k.valore}</p>
+              <div key={k.etichetta} className="rounded-[var(--radius-scheda)] border border-line bg-white p-3">
+                <p className="truncate text-micro font-medium text-ink-500">{k.etichetta}</p>
+                <p className="mt-1 text-t3 font-bold leading-tight text-ink-900">{k.valore}</p>
                 <p
-                  className={`mt-0.5 text-[10px] font-medium ${
-                    k.allerta ? "text-red-600" : "text-ink-400"
+                  className={`mt-0.5 text-micro font-medium ${
+                    k.allerta ? "text-red-600" : "text-ink-500"
                   }`}
                 >
                   {k.nota}
@@ -112,17 +112,17 @@ export default function AnteprimaDashboard() {
 
           <div className="mt-2.5 grid gap-2.5 lg:grid-cols-[1.35fr_1fr]">
             {/* grafico */}
-            <div className="rounded-xl border border-line bg-white p-3.5">
+            <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-3.5">
               <div className="flex items-center justify-between">
-                <p className="text-[12px] font-semibold text-ink-900">Andamento attività</p>
-                <span className="rounded-md bg-surface-alt px-1.5 py-0.5 text-[10px] font-medium text-ink-500">
+                <p className="text-mini font-semibold text-ink-900">Andamento attività</p>
+                <span className="rounded-[var(--radius-controllo)] bg-surface-alt px-1.5 py-0.5 text-micro font-medium text-ink-500">
                   Ultimi 30 giorni
                 </span>
               </div>
               <div className="mt-2 h-[88px]">
                 <Grafico />
               </div>
-              <div className="mt-1 flex justify-between text-[9.5px] text-ink-400">
+              <div className="mt-1 flex justify-between text-micro text-ink-500">
                 <span>01 mag</span>
                 <span>14 mag</span>
                 <span>28 mag</span>
@@ -130,8 +130,8 @@ export default function AnteprimaDashboard() {
             </div>
 
             {/* scadenze */}
-            <div className="rounded-xl border border-line bg-white p-3.5">
-              <p className="text-[12px] font-semibold text-ink-900">Prossime scadenze</p>
+            <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-3.5">
+              <p className="text-mini font-semibold text-ink-900">Prossime scadenze</p>
               <ul className="mt-2.5 space-y-2">
                 {scadenze.map((s) => {
                   const c = coloriStato[s.stato];
@@ -139,13 +139,13 @@ export default function AnteprimaDashboard() {
                     <li key={s.titolo} className="flex items-start gap-2.5">
                       <span className={`mt-1 size-1.5 shrink-0 rounded-full ${c.punto}`} />
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate text-[11.5px] font-medium text-ink-800">
+                        <span className="block truncate text-mini font-medium text-ink-800">
                           {s.titolo}
                         </span>
-                        <span className="block truncate text-[10px] text-ink-400">{s.dove}</span>
+                        <span className="block truncate text-micro text-ink-500">{s.dove}</span>
                       </span>
                       <span
-                        className={`shrink-0 rounded-md px-1.5 py-0.5 text-[9.5px] font-semibold ${c.bg} ${c.testo}`}
+                        className={`shrink-0 rounded-[var(--radius-controllo)] px-1.5 py-0.5 text-micro font-semibold ${c.bg} ${c.testo}`}
                       >
                         {s.quando}
                       </span>
@@ -166,10 +166,10 @@ export default function AnteprimaDashboard() {
             ].map((a) => (
               <span
                 key={a.label}
-                className="flex items-center gap-2 rounded-xl border border-line bg-white px-2.5 py-2 text-[11px] font-medium text-ink-700"
+                className="flex items-center gap-2 rounded-[var(--radius-scheda)] border border-line bg-white px-2.5 py-2 text-micro font-medium text-ink-700"
               >
-                <span className="flex size-5 items-center justify-center rounded-md bg-brand-50 text-brand-600">
-                  <Icona nome={a.icona} className="size-3" />
+                <span className="flex size-5 items-center justify-center rounded-[var(--radius-controllo)] bg-brand-50 text-brand-600">
+                  <Icona misura="sm" nome={a.icona} />
                 </span>
                 <span className="truncate">{a.label}</span>
               </span>

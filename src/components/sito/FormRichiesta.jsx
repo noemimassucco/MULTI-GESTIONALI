@@ -19,7 +19,7 @@ const strumenti = [
 function Campo({ etichetta, nome, tipo = "text", obbligatorio, errore, aiuto, ...props }) {
   return (
     <div>
-      <label htmlFor={nome} className="mb-1.5 block text-[13.5px] font-semibold text-ink-900">
+      <label htmlFor={nome} className="mb-1.5 block text-piccolo font-semibold text-ink-900">
         {etichetta}
         {obbligatorio ? <span className="ml-0.5 text-brand-600">*</span> : null}
       </label>
@@ -30,14 +30,14 @@ function Campo({ etichetta, nome, tipo = "text", obbligatorio, errore, aiuto, ..
         required={obbligatorio}
         aria-invalid={errore ? "true" : undefined}
         aria-describedby={errore ? `${nome}-errore` : undefined}
-        className={`h-11 w-full rounded-lg border bg-white px-3.5 text-[14.5px] text-ink-800 placeholder:text-ink-400 focus:outline-none ${
+        className={`h-12 w-full rounded-[var(--radius-controllo)] border bg-white px-3.5 text-corrente text-ink-800 placeholder:text-ink-400 focus:outline-none ${
           errore ? "border-red-400 focus:border-red-500" : "border-line focus:border-brand-400"
         }`}
         {...props}
       />
-      {aiuto && !errore ? <p className="mt-1.5 text-[12.5px] text-ink-400">{aiuto}</p> : null}
+      {aiuto && !errore ? <p className="mt-1.5 text-piccolo text-ink-400">{aiuto}</p> : null}
       {errore ? (
-        <p id={`${nome}-errore`} className="mt-1.5 text-[12.5px] font-medium text-red-600">
+        <p id={`${nome}-errore`} className="mt-1.5 text-piccolo font-medium text-red-600">
           {errore}
         </p>
       ) : null}
@@ -48,17 +48,17 @@ function Campo({ etichetta, nome, tipo = "text", obbligatorio, errore, aiuto, ..
 function AreaTesto({ etichetta, nome, aiuto, righe = 3, ...props }) {
   return (
     <div>
-      <label htmlFor={nome} className="mb-1.5 block text-[13.5px] font-semibold text-ink-900">
+      <label htmlFor={nome} className="mb-1.5 block text-piccolo font-semibold text-ink-900">
         {etichetta}
       </label>
       <textarea
         id={nome}
         name={nome}
         rows={righe}
-        className="w-full rounded-lg border border-line bg-white px-3.5 py-2.5 text-[14.5px] leading-relaxed text-ink-800 placeholder:text-ink-400 focus:border-brand-400 focus:outline-none"
+        className="w-full rounded-[var(--radius-controllo)] border border-line bg-white px-3.5 py-2.5 text-corrente leading-relaxed text-ink-800 placeholder:text-ink-400 focus:border-brand-400 focus:outline-none"
         {...props}
       />
-      {aiuto ? <p className="mt-1.5 text-[12.5px] text-ink-400">{aiuto}</p> : null}
+      {aiuto ? <p className="mt-1.5 text-piccolo text-ink-400">{aiuto}</p> : null}
     </div>
   );
 }
@@ -69,10 +69,11 @@ function BottoneInvio() {
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-600 px-6 text-[15px] font-semibold text-white shadow-[var(--shadow-brand)] transition-colors hover:bg-brand-700 disabled:opacity-60"
+      data-comando
+      className="inline-flex h-14 items-center justify-center gap-2 rounded-[var(--radius-controllo)] bg-brand-600 px-6 text-testo font-semibold text-white shadow-[var(--shadow-brand)] transition-colors hover:bg-brand-700 disabled:opacity-60"
     >
       {pending ? "Invio in corso…" : "Invia la richiesta"}
-      {!pending ? <Icona nome="Send" className="size-4" /> : null}
+      {!pending ? <Icona misura="sm" nome="Send" /> : null}
     </button>
   );
 }
@@ -83,12 +84,12 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
 
   if (stato?.ok) {
     return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center">
-        <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-white text-emerald-600">
-          <Icona nome="CheckCircle2" className="size-7" />
+      <div className="rounded-[var(--radius-scheda)] border border-emerald-200 bg-emerald-50 p-6 text-center">
+        <span className="mx-auto flex size-14 items-center justify-center rounded-[var(--radius-scheda)] bg-white text-emerald-600">
+          <Icona misura="lg" nome="CheckCircle2" />
         </span>
-        <h2 className="mt-5 text-[22px] font-bold">Richiesta inviata</h2>
-        <p className="mx-auto mt-3 max-w-md text-[14.5px] leading-relaxed text-ink-600">
+        <h2 className="mt-5 text-t2 font-bold">Richiesta inviata</h2>
+        <p className="mx-auto mt-3 max-w-md text-corrente leading-relaxed text-ink-600">
           Grazie. Leggo con calma quello che mi hai scritto e ti rispondo con una proposta concreta,
           di solito entro due giorni lavorativi. Se nel frattempo vuoi aggiungere qualcosa, scrivi
           pure a{" "}
@@ -110,7 +111,7 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
       </div>
 
       <fieldset className="space-y-5">
-        <legend className="mb-1 text-[15px] font-bold text-ink-900">1. Chi sei</legend>
+        <legend className="mb-1 text-testo font-bold text-ink-900">1. Chi sei</legend>
         <div className="grid gap-5 sm:grid-cols-2">
           <Campo
             etichetta="Nome e cognome"
@@ -157,23 +158,23 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
       </fieldset>
 
       <fieldset className="space-y-5 border-t border-line pt-8">
-        <legend className="mb-1 text-[15px] font-bold text-ink-900">2. Come lavori oggi</legend>
+        <legend className="mb-1 text-testo font-bold text-ink-900">2. Come lavori oggi</legend>
 
         <div>
-          <p className="mb-2.5 text-[13.5px] font-semibold text-ink-900">
+          <p className="mb-2.5 text-piccolo font-semibold text-ink-900">
             Con cosa gestisci il lavoro adesso?
           </p>
           <div className="flex flex-wrap gap-2">
             {strumenti.map((s) => (
               <label
                 key={s}
-                className="flex cursor-pointer items-center gap-2 rounded-lg border border-line bg-white px-3 py-2 text-[13.5px] text-ink-700 transition-colors hover:border-brand-300 hover:bg-brand-50 has-[:checked]:border-brand-400 has-[:checked]:bg-brand-50 has-[:checked]:font-medium has-[:checked]:text-brand-700"
+                className="flex cursor-pointer items-center gap-2 rounded-[var(--radius-controllo)] border border-line bg-white px-3 py-2 text-piccolo text-ink-700 transition-colors hover:border-brand-300 hover:bg-brand-50 has-[:checked]:border-brand-400 has-[:checked]:bg-brand-50 has-[:checked]:font-medium has-[:checked]:text-brand-700"
               >
                 <input
                   type="checkbox"
                   name="strumentiAttuali"
                   value={s}
-                  className="size-4 rounded border-line text-brand-600 focus:ring-brand-500"
+                  className="size-5 rounded-[4px] border-line text-brand-600 focus:ring-brand-500"
                 />
                 {s}
               </label>
@@ -184,7 +185,7 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
         <div>
           <label
             htmlFor="gestionaleInteresse"
-            className="mb-1.5 block text-[13.5px] font-semibold text-ink-900"
+            className="mb-1.5 block text-piccolo font-semibold text-ink-900"
           >
             Gestionale che ti interessa
           </label>
@@ -192,7 +193,7 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
             id="gestionaleInteresse"
             name="gestionaleInteresse"
             defaultValue={gestionalePreselezionato}
-            className="h-11 w-full rounded-lg border border-line bg-white px-3 text-[14.5px] text-ink-800 focus:border-brand-400 focus:outline-none"
+            className="h-12 w-full rounded-[var(--radius-controllo)] border border-line bg-white px-3 text-corrente text-ink-800 focus:border-brand-400 focus:outline-none"
           >
             <option value="">Non lo so ancora / non è in elenco</option>
             {gestionali.map((g) => (
@@ -213,7 +214,7 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
       </fieldset>
 
       <fieldset className="space-y-5 border-t border-line pt-8">
-        <legend className="mb-1 text-[15px] font-bold text-ink-900">3. Cosa ti serve</legend>
+        <legend className="mb-1 text-testo font-bold text-ink-900">3. Cosa ti serve</legend>
         <AreaTesto
           etichetta="Funzioni che non possono mancare"
           nome="funzioniNecessarie"
@@ -237,12 +238,12 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
       </fieldset>
 
       <div className="border-t border-line pt-8">
-        <label className="flex cursor-pointer items-start gap-3 text-[13.5px] leading-relaxed text-ink-600">
+        <label className="flex cursor-pointer items-start gap-3 text-piccolo leading-relaxed text-ink-600">
           <input
             type="checkbox"
             name="consensoPrivacy"
             required
-            className="mt-0.5 size-4 shrink-0 rounded border-line text-brand-600 focus:ring-brand-500"
+            className="mt-0.5 size-5 shrink-0 rounded-[4px] border-line text-brand-600 focus:ring-brand-500"
           />
           <span>
             Acconsento al trattamento dei dati inseriti per essere ricontattato in merito a questa
@@ -254,19 +255,19 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
           </span>
         </label>
         {errori.consensoPrivacy ? (
-          <p className="mt-2 text-[12.5px] font-medium text-red-600">{errori.consensoPrivacy}</p>
+          <p className="mt-2 text-piccolo font-medium text-red-600">{errori.consensoPrivacy}</p>
         ) : null}
 
         {stato?.messaggio && !stato.ok ? (
-          <p className="mt-4 flex items-start gap-2 rounded-lg bg-red-50 p-3 text-[13.5px] text-red-700">
-            <Icona nome="AlertTriangle" className="mt-0.5 size-4 shrink-0" />
+          <p className="mt-4 flex items-start gap-2 rounded-[var(--radius-controllo)] bg-red-50 p-3 text-piccolo text-red-700">
+            <Icona misura="sm" nome="AlertTriangle" className="mt-0.5 shrink-0" />
             {stato.messaggio}
           </p>
         ) : null}
 
         <div className="mt-6 flex flex-wrap items-center gap-4">
           <BottoneInvio />
-          <p className="text-[13px] text-ink-400">Nessun impegno, nessun costo per la valutazione.</p>
+          <p className="text-piccolo text-ink-400">Nessun impegno, nessun costo per la valutazione.</p>
         </div>
       </div>
     </form>

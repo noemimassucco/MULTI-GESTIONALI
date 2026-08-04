@@ -3,9 +3,9 @@ import Link from "next/link";
 /** Logo testuale + simbolo. Il simbolo è un cubo modulare: le basi che si combinano. */
 export default function Marchio({ chiaro = false, className = "" }) {
   return (
-    <Link href="/" className={`flex shrink-0 items-center gap-2.5 ${className}`}>
-      <span className="flex size-9 items-center justify-center rounded-[10px] bg-brand-600 shadow-[var(--shadow-brand)]">
-        <svg viewBox="0 0 24 24" className="size-5" fill="none" aria-hidden="true">
+    <Link href="/" className={`flex shrink-0 items-center gap-2 sm:gap-2.5 ${className}`}>
+      <span className="flex size-8 items-center justify-center rounded-[var(--radius-controllo)] bg-brand-600 shadow-[var(--shadow-brand)] sm:size-9">
+        <svg viewBox="0 0 24 24" className="size-[18px] sm:size-5" fill="none" aria-hidden="true">
           <path
             d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7L12 2.5Z"
             stroke="white"
@@ -16,7 +16,7 @@ export default function Marchio({ chiaro = false, className = "" }) {
         </svg>
       </span>
       <span
-        className={`text-[19px] font-bold tracking-[-0.02em] ${chiaro ? "text-white" : "text-ink-900"}`}
+        className={`text-guida font-bold tracking-[-0.02em] sm:text-t3 ${chiaro ? "text-white" : "text-ink-900"}`}
       >
         Gestioni<span className="text-brand-500">SuMisura</span>
       </span>

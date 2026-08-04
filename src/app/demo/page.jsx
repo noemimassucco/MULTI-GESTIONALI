@@ -18,16 +18,16 @@ export default function PaginaDemo() {
 
   return (
     <>
-      <section className="border-b border-line bg-surface-blue py-12 sm:py-16">
+      <section className="border-b border-line bg-surface-blue py-10 lg:py-14">
         <Contenitore>
           <Pastiglia variante="brand">
-            <Icona nome="Blocks" className="size-3.5" />
+            <Icona misura="sm" nome="Blocks" />
             {basi.length} basi gestionali
           </Pastiglia>
-          <h1 className="mt-5 max-w-2xl text-[32px] font-extrabold leading-tight sm:text-[42px]">
+          <h1 className="mt-5 max-w-2xl text-titolo font-extrabold leading-tight sm:text-mega">
             Le basi su cui è costruito tutto il catalogo
           </h1>
-          <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-ink-500 sm:text-base">
+          <p className="mt-4 max-w-2xl text-testo leading-relaxed text-ink-500">
             I gestionali a catalogo non sono programmi tutti diversi fra loro: sono {basi.length}{" "}
             basi solide, ognuna adattata al settore. È il motivo per cui la personalizzazione costa
             poco e i tempi restano brevi.
@@ -35,9 +35,9 @@ export default function PaginaDemo() {
 
           {/* Dichiarazione onesta sullo stato delle demo */}
           {pronte.length === 0 ? (
-            <div className="mt-8 flex max-w-2xl gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
-              <Icona nome="Clock" className="mt-0.5 size-5 shrink-0 text-amber-600" />
-              <p className="text-[14px] leading-relaxed text-amber-900">
+            <div className="mt-8 flex max-w-2xl gap-3 rounded-[var(--radius-scheda)] border border-amber-200 bg-amber-50 p-4">
+              <Icona misura="md" nome="Clock" className="mt-0.5 shrink-0 text-amber-600" />
+              <p className="text-corrente leading-relaxed text-amber-900">
                 <strong className="font-semibold">Le demo non sono ancora online.</strong> Sto
                 costruendo la prima, quella della base &ldquo;Clienti e attività&rdquo;. Nel
                 frattempo, se vuoi vedere un gestionale vero al lavoro, scrivimi e te lo mostro in
@@ -55,14 +55,14 @@ export default function PaginaDemo() {
             return (
               <article
                 key={base.slug}
-                className="flex flex-col rounded-2xl border border-line bg-white p-6"
+                className="flex flex-col rounded-[var(--radius-scheda)] border border-line bg-white p-6"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <span className="flex size-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                      <Icona nome="Blocks" className="size-5" />
+                    <span className="flex size-11 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-50 text-brand-600">
+                      <Icona misura="md" nome="Blocks" />
                     </span>
-                    <h2 className="text-[19px] font-bold leading-tight">{base.nome}</h2>
+                    <h2 className="text-t3 font-bold leading-tight">{base.nome}</h2>
                   </div>
                   {base.demoPronta ? (
                     <Pastiglia variante="successo">Demo online</Pastiglia>
@@ -71,21 +71,21 @@ export default function PaginaDemo() {
                   )}
                 </div>
 
-                <p className="mt-4 text-[14px] leading-relaxed text-ink-500">{base.descrizione}</p>
+                <p className="mt-4 text-corrente leading-relaxed text-ink-500">{base.descrizione}</p>
 
                 <div className="mt-5">
-                  <p className="text-[12.5px] font-semibold text-ink-900">Cosa contiene</p>
+                  <p className="text-piccolo font-semibold text-ink-900">Cosa contiene</p>
                   <ul className="mt-2 flex flex-wrap gap-1.5">
                     {base.funzioni.slice(0, 8).map((f) => (
                       <li
                         key={f}
-                        className="rounded-md bg-surface-alt px-2 py-1 text-[11.5px] font-medium text-ink-600"
+                        className="rounded-[var(--radius-controllo)] bg-surface-alt px-2 py-1 text-mini font-medium text-ink-600"
                       >
                         {f}
                       </li>
                     ))}
                     {base.funzioni.length > 8 ? (
-                      <li className="px-1 py-1 text-[11.5px] text-ink-400">
+                      <li className="px-1 py-1 text-mini text-ink-400">
                         +{base.funzioni.length - 8}
                       </li>
                     ) : null}
@@ -93,8 +93,8 @@ export default function PaginaDemo() {
                 </div>
 
                 <div className="mt-5">
-                  <p className="text-[12.5px] font-semibold text-ink-900">Adatta a</p>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-500">
+                  <p className="text-piccolo font-semibold text-ink-900">Adatta a</p>
+                  <p className="mt-1.5 text-piccolo leading-relaxed text-ink-500">
                     {base.adattoA.join(" · ")}
                   </p>
                 </div>
@@ -103,17 +103,17 @@ export default function PaginaDemo() {
                   {collegati.length ? (
                     <Link
                       href={`/gestionali?base=${base.slug}`}
-                      className="text-[13px] font-semibold text-brand-700 hover:text-brand-800"
+                      className="text-piccolo font-semibold text-brand-700 hover:text-brand-800"
                     >
                       {collegati.length}{" "}
                       {collegati.length === 1 ? "gestionale usa" : "gestionali usano"} questa base
                     </Link>
                   ) : (
-                    <span className="text-[13px] text-ink-400">Settori in preparazione</span>
+                    <span className="text-piccolo text-ink-400">Settori in preparazione</span>
                   )}
                   {base.demoPronta && base.demoPath ? (
                     <Bottone href={base.demoPath} misura="sm">
-                      <Icona nome="PlayCircle" className="size-4" />
+                      <Icona misura="sm" nome="PlayCircle" />
                       Apri la demo
                     </Bottone>
                   ) : null}
@@ -147,12 +147,12 @@ export default function PaginaDemo() {
               testo: "Al ricaricamento della pagina torna com'era: non puoi rovinare niente.",
             },
           ].map((c) => (
-            <div key={c.titolo} className="rounded-2xl border border-line bg-white p-6">
-              <span className="flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Icona nome={c.icona} className="size-5" />
+            <div key={c.titolo} className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+              <span className="flex size-10 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-50 text-brand-600">
+                <Icona misura="md" nome={c.icona} />
               </span>
-              <h3 className="mt-4 text-[15.5px] font-semibold">{c.titolo}</h3>
-              <p className="mt-2 text-[13.5px] leading-relaxed text-ink-500">{c.testo}</p>
+              <h3 className="mt-4 text-testo font-semibold">{c.titolo}</h3>
+              <p className="mt-2 text-piccolo leading-relaxed text-ink-500">{c.testo}</p>
             </div>
           ))}
         </div>

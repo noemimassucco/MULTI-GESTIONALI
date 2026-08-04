@@ -60,28 +60,28 @@ const principi = [
 export default function PaginaChiSono() {
   return (
     <>
-      <section className="border-b border-line bg-surface-blue py-12 sm:py-16">
+      <section className="border-b border-line bg-surface-blue py-10 lg:py-14">
         <Contenitore>
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
               <Pastiglia variante="brand">
-                <Icona nome="HardHat" className="size-3.5" />
+                <Icona misura="sm" nome="HardHat" />
                 Dall&apos;ufficio tecnico allo sviluppo
               </Pastiglia>
-              <h1 className="mt-5 text-[32px] font-extrabold leading-[1.1] sm:text-[44px]">
+              <h1 className="mt-5 text-titolo font-extrabold leading-[1.1] sm:text-mega">
                 Ho vissuto il problema
                 <br />
                 prima di provare a risolverlo.
               </h1>
-              <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-ink-600 sm:text-[17px]">
+              <p className="mt-5 max-w-xl text-testo leading-relaxed text-ink-600 sm:text-guida">
                 Per anni ho lavorato in un&apos;azienda di impianti, dentro l&apos;ufficio dove i
                 fogli Excel si moltiplicano e i documenti spariscono. I gestionali che costruisco
                 oggi nascono da quelle giornate.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-line bg-white p-7">
-              <p className="text-[13px] font-semibold uppercase tracking-wide text-brand-700">
+            <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+              <p className="text-piccolo font-semibold uppercase tracking-wide text-brand-700">
                 In breve
               </p>
               <ul className="mt-5 space-y-4">
@@ -92,10 +92,10 @@ export default function PaginaChiSono() {
                   { etichetta: "Cosa faccio", valore: "Gestionali su misura per piccole aziende, professionisti e artigiani" },
                 ].map((r) => (
                   <li key={r.etichetta} className="flex gap-4 border-b border-line-soft pb-4 last:border-0 last:pb-0">
-                    <span className="w-28 shrink-0 text-[13px] font-medium text-ink-400">
+                    <span className="w-28 shrink-0 text-piccolo font-medium text-ink-400">
                       {r.etichetta}
                     </span>
-                    <span className="text-[14px] font-medium text-ink-800">{r.valore}</span>
+                    <span className="text-corrente font-medium text-ink-800">{r.valore}</span>
                   </li>
                 ))}
               </ul>
@@ -110,8 +110,8 @@ export default function PaginaChiSono() {
           {racconto.map((p, i) => (
             <p
               key={i}
-              className={`text-[16px] leading-[1.8] text-ink-600 ${i > 0 ? "mt-5" : ""} ${
-                i === 0 ? "!text-[18px] !text-ink-800" : ""
+              className={`text-testo leading-[1.8] text-ink-600 ${i > 0 ? "mt-5" : ""} ${
+                i === 0 ? "text-guida text-ink-800" : ""
               }`}
             >
               {p}
@@ -119,15 +119,15 @@ export default function PaginaChiSono() {
           ))}
 
           <div className="my-12 border-l-[3px] border-brand-500 pl-6">
-            <p className="text-[20px] font-semibold leading-relaxed text-ink-900 sm:text-[23px]">
+            <p className="text-t3 font-semibold leading-relaxed text-ink-900 sm:text-t2">
               Il problema non erano le aziende. Il problema era che quasi tutti i gestionali erano
               progettati pensando a uno standard uguale per tutti.
             </p>
           </div>
 
-          <h2 className="text-[24px] font-bold sm:text-[28px]">Da qui è nata la mia idea</h2>
+          <h2 className="text-t2 font-bold sm:text-t1">Da qui è nata la mia idea</h2>
           {idea.map((p, i) => (
-            <p key={i} className="mt-5 text-[16px] leading-[1.8] text-ink-600">
+            <p key={i} className="mt-5 text-testo leading-[1.8] text-ink-600">
               {p}
             </p>
           ))}
@@ -139,13 +139,13 @@ export default function PaginaChiSono() {
         <TitoloSezione titolo="Come lavoro" />
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {principi.map((p) => (
-            <div key={p.titolo} className="flex gap-4 rounded-2xl border border-line bg-white p-6">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Icona nome={p.icona} className="size-5" />
+            <div key={p.titolo} className="flex gap-4 rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-50 text-brand-600">
+                <Icona misura="md" nome={p.icona} />
               </span>
               <div>
-                <h3 className="text-[16px] font-semibold">{p.titolo}</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-ink-500">{p.testo}</p>
+                <h3 className="text-testo font-semibold">{p.titolo}</h3>
+                <p className="mt-2 text-corrente leading-relaxed text-ink-500">{p.testo}</p>
               </div>
             </div>
           ))}
@@ -153,32 +153,32 @@ export default function PaginaChiSono() {
       </Sezione>
 
       {/* ------------------------------------------------------- OBIETTIVO */}
-      <section className="bg-ink-900 py-16 sm:py-20 lg:py-24">
+      <section className="bg-ink-900 py-14 lg:py-20">
         <Contenitore>
           <div className="mx-auto max-w-3xl">
-            <Pastiglia className="!bg-white/10 !text-brand-200 !ring-white/15">
-              <Icona nome="Bot" className="size-3.5" />
+            <Pastiglia variante="chiara">
+              <Icona misura="sm" nome="Bot" />
               Il mio obiettivo
             </Pastiglia>
-            <h2 className="mt-5 !text-white text-[28px] font-bold leading-tight sm:text-[36px]">
+            <h2 className="mt-5 text-t1 font-bold leading-tight text-white sm:text-titolo">
               Non un archivio di dati.
               <br />
               Un collaboratore intelligente.
             </h2>
             {obiettivo.map((p, i) => (
-              <p key={i} className="mt-5 text-[15.5px] leading-[1.8] text-ink-400">
+              <p key={i} className="mt-5 text-testo leading-[1.8] text-ink-300">
                 {p}
               </p>
             ))}
 
-            <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div className="mt-10 rounded-[var(--radius-scheda)] border border-white/10 bg-white/5 p-6">
               <div className="flex items-center gap-2">
-                <Icona nome="ScanLine" className="size-4 text-brand-300" />
-                <p className="text-[12.5px] font-semibold uppercase tracking-wide text-brand-300">
+                <Icona misura="sm" nome="ScanLine" className="text-brand-300" />
+                <p className="text-piccolo font-semibold uppercase tracking-wide text-brand-300">
                   Un esempio concreto
                 </p>
               </div>
-              <p className="mt-3 text-[15px] leading-relaxed text-ink-400">
+              <p className="mt-3 text-testo leading-relaxed text-ink-300">
                 Quasi tutte le aziende rinunciano a portare il loro storico dentro un gestionale
                 nuovo: sono centinaia di file da caricare e rinominare a mano, e nessuno ha quel
                 tempo. Nei miei gestionali carichi la cartella intera, anche uno ZIP: il sistema
@@ -190,12 +190,12 @@ export default function PaginaChiSono() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Bottone href="/richiedi" misura="lg">
                 Raccontami come lavori
-                <Icona nome="ArrowRight" className="size-4" />
+                <Icona misura="sm" nome="ArrowRight" />
               </Bottone>
               <Bottone
                 href="/gestionali"
                 misura="lg"
-                className="!bg-white/10 !shadow-none ring-1 ring-inset ring-white/20 hover:!bg-white/15"
+                className=""
               >
                 Guarda i gestionali
               </Bottone>

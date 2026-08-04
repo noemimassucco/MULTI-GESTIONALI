@@ -6,14 +6,14 @@ export const metadata = { title: "Pagina non trovata" };
 
 export default function NonTrovata() {
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-white py-20 lg:py-28">
       <Contenitore>
         <div className="mx-auto max-w-lg text-center">
-          <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-surface-alt text-ink-400">
-            <Icona nome="Search" className="size-6" />
+          <span className="mx-auto flex size-14 items-center justify-center rounded-[var(--radius-scheda)] bg-surface-alt text-ink-400">
+            <Icona misura="lg" nome="Search" />
           </span>
-          <h1 className="mt-6 text-[30px] font-extrabold sm:text-[36px]">Questa pagina non c&apos;è</h1>
-          <p className="mt-4 text-[15px] leading-relaxed text-ink-500">
+          <h1 className="mt-6 text-t1 font-extrabold sm:text-titolo">Questa pagina non c&apos;è</h1>
+          <p className="mt-4 text-testo leading-relaxed text-ink-500">
             Forse il collegamento è vecchio, oppure il gestionale che cercavi non è ancora
             pubblicato. Dal catalogo trovi tutto quello che c&apos;è adesso.
           </p>

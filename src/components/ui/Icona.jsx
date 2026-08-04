@@ -110,9 +110,19 @@ const registro = {
 };
 
 /**
- * @param {{nome: string, className?: string, strokeWidth?: number}} props
+ * Icona del sistema.
+ * Tre misure ammesse — sm 16, md 20, lg 24 — e un solo spessore di tratto,
+ * cosi le icone non ballano da una sezione all'altra.
  */
-export default function Icona({ nome, className = "size-5", strokeWidth = 1.75 }) {
+const misure = { sm: "size-4", md: "size-5", lg: "size-6" };
+
+export default function Icona({ nome, misura = "md", className = "" }) {
   const Componente = registro[nome] || Shapes;
-  return <Componente className={className} strokeWidth={strokeWidth} aria-hidden="true" />;
+  return (
+    <Componente
+      className={`${misure[misura] || misure.md} ${className}`}
+      strokeWidth={1.75}
+      aria-hidden="true"
+    />
+  );
 }

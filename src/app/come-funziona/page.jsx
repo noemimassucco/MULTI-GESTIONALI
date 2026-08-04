@@ -106,16 +106,16 @@ export default function PaginaComeFunziona() {
 
   return (
     <>
-      <section className="border-b border-line bg-surface-blue py-12 sm:py-16">
+      <section className="border-b border-line bg-surface-blue py-10 lg:py-14">
         <Contenitore>
           <Pastiglia variante="brand">
-            <Icona nome="Compass" className="size-3.5" />
+            <Icona misura="sm" nome="Compass" />
             Dal primo contatto al lavoro quotidiano
           </Pastiglia>
-          <h1 className="mt-5 max-w-2xl text-[32px] font-extrabold leading-tight sm:text-[42px]">
+          <h1 className="mt-5 max-w-2xl text-titolo font-extrabold leading-tight sm:text-mega">
             Come funziona, passo per passo
           </h1>
-          <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-ink-500 sm:text-base">
+          <p className="mt-4 max-w-2xl text-testo leading-relaxed text-ink-500">
             Nessuna sorpresa e nessun linguaggio da informatici. Qui trovi esattamente cosa succede
             dal momento in cui mi scrivi a quando il gestionale è al lavoro nella tua azienda.
           </p>
@@ -128,12 +128,12 @@ export default function PaginaComeFunziona() {
             {passi.map((p) => (
               <li
                 key={p.numero}
-                className="relative rounded-2xl border border-line bg-white p-6 sm:p-7"
+                className="relative rounded-[var(--radius-scheda)] border border-line bg-white p-6"
               >
                 <div className="flex flex-col gap-5 sm:flex-row">
                   <div className="shrink-0">
                     <span
-                      className="flex size-12 items-center justify-center rounded-xl text-[15px] font-bold"
+                      className="flex size-12 items-center justify-center rounded-[var(--radius-scheda)] text-testo font-bold"
                       style={{
                         color: `var(--cat-${p.colore})`,
                         background: `var(--cat-${p.colore}-bg)`,
@@ -144,13 +144,13 @@ export default function PaginaComeFunziona() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-3">
-                      <h2 className="text-[19px] font-bold">{p.titolo}</h2>
+                      <h2 className="text-t3 font-bold">{p.titolo}</h2>
                       <Pastiglia variante="neutra">
-                        <Icona nome="Clock" className="size-3" />
+                        <Icona misura="sm" nome="Clock" />
                         {p.durata}
                       </Pastiglia>
                     </div>
-                    <p className="mt-3 text-[14.5px] leading-relaxed text-ink-600">{p.testo}</p>
+                    <p className="mt-3 text-corrente leading-relaxed text-ink-600">{p.testo}</p>
                   </div>
                 </div>
               </li>
@@ -183,12 +183,12 @@ export default function PaginaComeFunziona() {
               testo: "Ogni miglioria fatta per un cliente rende più solida la base di quelli successivi.",
             },
           ].map((c) => (
-            <div key={c.titolo} className="rounded-2xl border border-line bg-white p-6">
-              <span className="flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Icona nome={c.icona} className="size-5" />
+            <div key={c.titolo} className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+              <span className="flex size-10 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-50 text-brand-600">
+                <Icona misura="md" nome={c.icona} />
               </span>
-              <h3 className="mt-4 text-[15.5px] font-semibold">{c.titolo}</h3>
-              <p className="mt-2 text-[13.5px] leading-relaxed text-ink-500">{c.testo}</p>
+              <h3 className="mt-4 text-testo font-semibold">{c.titolo}</h3>
+              <p className="mt-2 text-piccolo leading-relaxed text-ink-500">{c.testo}</p>
             </div>
           ))}
         </div>

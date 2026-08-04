@@ -41,26 +41,26 @@ export default async function PaginaCategoria({ params }) {
         className="border-b border-line"
         style={{ background: `var(--cat-${categoria.colore}-bg)` }}
       >
-        <Contenitore className="py-10 sm:py-14">
-          <nav aria-label="Percorso" className="flex items-center gap-1.5 text-[13px]">
+        <Contenitore className="py-10 lg:py-14">
+          <nav aria-label="Percorso" className="flex items-center gap-1.5 text-piccolo">
             <Link href="/categorie" className="text-ink-500 hover:text-ink-900">
               Categorie
             </Link>
-            <Icona nome="ChevronRight" className="size-3.5 text-ink-400" />
+            <Icona misura="sm" nome="ChevronRight" className="text-ink-400" />
             <span className="text-ink-700">{categoria.nome}</span>
           </nav>
 
           <span
-            className="mt-6 flex size-14 items-center justify-center rounded-2xl bg-white shadow-[var(--shadow-soft)]"
+            className="mt-6 flex size-14 items-center justify-center rounded-[var(--radius-scheda)] bg-white shadow-[var(--shadow-soft)]"
             style={{ color: `var(--cat-${categoria.colore})` }}
           >
-            <Icona nome={categoria.icona} className="size-7" />
+            <Icona misura="lg" nome={categoria.icona} />
           </span>
 
-          <h1 className="mt-5 max-w-2xl text-[32px] font-extrabold leading-tight sm:text-[42px]">
+          <h1 className="mt-5 max-w-2xl text-titolo font-extrabold leading-tight sm:text-mega">
             {categoria.nome}
           </h1>
-          <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-ink-600">
+          <p className="mt-4 max-w-2xl text-testo leading-relaxed text-ink-600">
             {categoria.descrizione}
           </p>
         </Contenitore>
@@ -91,16 +91,16 @@ export default async function PaginaCategoria({ params }) {
             <Link
               key={c.slug}
               href={`/categorie/${c.slug}`}
-              className="flex w-[168px] shrink-0 flex-col items-center gap-3 rounded-2xl border border-line bg-white p-5 text-center transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-[var(--shadow-lift)]"
+              className="flex w-[168px] shrink-0 flex-col items-center gap-3 rounded-[var(--radius-scheda)] border border-line bg-white p-5 text-center transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-[var(--shadow-lift)]"
             >
               <span
-                className="flex size-11 items-center justify-center rounded-xl"
+                className="flex size-11 items-center justify-center rounded-[var(--radius-scheda)]"
                 style={{ color: `var(--cat-${c.colore})`, background: `var(--cat-${c.colore}-bg)` }}
               >
-                <Icona nome={c.icona} className="size-5" />
+                <Icona misura="md" nome={c.icona} />
               </span>
-              <span className="text-[13px] font-semibold leading-snug text-ink-900">{c.nome}</span>
-              <span className="text-[11.5px] text-ink-500">
+              <span className="text-piccolo font-semibold leading-snug text-ink-900">{c.nome}</span>
+              <span className="text-mini text-ink-500">
                 {c.totale} {c.totale === 1 ? "gestionale" : "gestionali"}
               </span>
             </Link>

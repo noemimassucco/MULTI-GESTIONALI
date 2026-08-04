@@ -77,44 +77,44 @@ export default function Home() {
     <>
       {/* ---------------------------------------------------------- HERO */}
       <section className="relative overflow-hidden border-b border-line bg-gradient-to-b from-surface-blue to-white">
-        <Contenitore className="py-14 lg:py-20">
+        <Contenitore className="py-10 lg:py-14">
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
             <div>
-              <Pastiglia variante="brand" className="!px-3 !py-1.5">
-                <Icona nome="Blocks" className="size-3.5" />
+              <Pastiglia variante="brand" className="px-3">
+                <Icona misura="sm" nome="Blocks" />
                 Gestionali personalizzabili per ogni attività
               </Pastiglia>
 
-              <h1 className="mt-5 text-[38px] font-extrabold leading-[1.08] sm:text-[48px] lg:text-[54px]">
+              <h1 className="mt-5 text-mega font-extrabold leading-[1.08] sm:text-eroe lg:text-eroe">
                 Il gestionale che <span className="text-brand-600">si adatta a te,</span>
                 <br className="hidden sm:block" /> non il contrario.
               </h1>
 
-              <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-ink-500 sm:text-[17px]">
+              <p className="mt-5 max-w-lg text-testo leading-relaxed text-ink-500 sm:text-guida">
                 Scegli il settore, guarda cosa puoi gestire e scopri come personalizzare il
                 gestionale sulle reali esigenze della tua attività.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Bottone href="/gestionali" misura="lg">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                <Bottone href="/gestionali" misura="lg" className="w-full sm:w-auto">
                   Scopri i gestionali
-                  <Icona nome="ArrowRight" className="size-4" />
+                  <Icona misura="sm" nome="ArrowRight" />
                 </Bottone>
-                <Bottone href="/demo" variante="secondario" misura="lg">
-                  <Icona nome="PlayCircle" className="size-4" />
+                <Bottone href="/demo" variante="secondario" misura="lg" className="w-full sm:w-auto">
+                  <Icona misura="sm" nome="PlayCircle" />
                   Prova una demo
                 </Bottone>
-                <Bottone href="/come-funziona" variante="fantasma" misura="lg">
+                <Bottone href="/come-funziona" variante="fantasma" misura="lg" className="w-full sm:w-auto">
                   Guarda come funziona
                 </Bottone>
               </div>
 
               {/* Prova sociale onesta: nessun numero di clienti inventato */}
               <div className="mt-9 flex items-start gap-3.5 border-t border-line pt-6">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <Icona nome="HardHat" className="size-5" />
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-50 text-brand-600">
+                  <Icona misura="md" nome="HardHat" />
                 </span>
-                <p className="max-w-md text-[13.5px] leading-relaxed text-ink-500">
+                <p className="max-w-md text-piccolo leading-relaxed text-ink-500">
                   Progetto nato dentro l&apos;ufficio tecnico di un&apos;azienda di impianti, dove
                   ho visto per anni cosa succede quando il lavoro vive su Excel e cartelle
                   condivise.{" "}
@@ -127,7 +127,7 @@ export default function Home() {
 
             <div className="lg:-mr-6 xl:-mr-12">
               <AnteprimaDashboard />
-              <p className="mt-3 text-center text-[12px] text-ink-400">
+              <p className="mt-3 text-center text-mini text-ink-400">
                 Esempio di interfaccia con dati inventati
               </p>
             </div>
@@ -146,12 +146,12 @@ export default function Home() {
           {problemi.map((p) => (
             <div
               key={p.testo}
-              className="flex gap-3 rounded-xl border border-line bg-white p-4 transition-colors hover:border-brand-200"
+              className="flex gap-3 rounded-[var(--radius-scheda)] border border-line bg-white p-4 transition-colors hover:border-brand-200"
             >
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-surface-alt text-ink-500">
-                <Icona nome={p.icona} className="size-[18px]" />
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] bg-surface-alt text-ink-500">
+                <Icona misura="sm" nome={p.icona} />
               </span>
-              <p className="text-[13.5px] leading-snug text-ink-600">{p.testo}</p>
+              <p className="text-piccolo leading-snug text-ink-600">{p.testo}</p>
             </div>
           ))}
         </div>
@@ -166,7 +166,7 @@ export default function Home() {
             testo="Trova il gestionale più adatto alla tua attività fra le categorie a catalogo."
           />
           <Bottone href="/categorie" variante="secondario" misura="sm">
-            <Icona nome="LayoutGrid" className="size-4" />
+            <Icona misura="sm" nome="LayoutGrid" />
             Vedi tutti i settori
           </Bottone>
         </div>
@@ -181,19 +181,19 @@ export default function Home() {
       {/* -------------------------------------- PERCHÉ + COME FUNZIONA */}
       <Sezione sfondo="bianco">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-          <div className="rounded-3xl border border-line bg-surface-blue p-8">
-            <h2 className="text-[24px] font-bold leading-tight">
+          <div className="rounded-[var(--radius-scheda)] border border-line bg-surface-blue p-6">
+            <h2 className="text-t2 font-bold leading-tight">
               Perché scegliere un gestionale su misura?
             </h2>
             <ul className="mt-7 grid gap-x-5 gap-y-6 sm:grid-cols-2">
               {vantaggi.slice(0, 6).map((v) => (
                 <li key={v.titolo} className="flex gap-3">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white text-brand-600 shadow-[var(--shadow-soft)]">
-                    <Icona nome={v.icona} className="size-[18px]" />
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] bg-white text-brand-600 shadow-[var(--shadow-soft)]">
+                    <Icona misura="sm" nome={v.icona} />
                   </span>
                   <span>
-                    <span className="block text-[14px] font-semibold text-ink-900">{v.titolo}</span>
-                    <span className="mt-0.5 block text-[13px] leading-snug text-ink-500">
+                    <span className="block text-corrente font-semibold text-ink-900">{v.titolo}</span>
+                    <span className="mt-0.5 block text-piccolo leading-snug text-ink-500">
                       {v.testo}
                     </span>
                   </span>
@@ -203,15 +203,15 @@ export default function Home() {
           </div>
 
           <div>
-            <h2 className="text-[24px] font-bold leading-tight">Come funziona?</h2>
+            <h2 className="text-t2 font-bold leading-tight">Come funziona?</h2>
             <div className="mt-7 grid gap-4 sm:grid-cols-2">
               {passi.map((p) => (
                 <div
                   key={p.numero}
-                  className="rounded-2xl border border-line bg-white p-5 transition-shadow hover:shadow-[var(--shadow-soft)]"
+                  className="rounded-[var(--radius-scheda)] border border-line bg-white p-5 transition-shadow hover:shadow-[var(--shadow-soft)]"
                 >
                   <span
-                    className="flex size-9 items-center justify-center rounded-full text-[14px] font-bold"
+                    className="flex size-9 items-center justify-center rounded-full text-corrente font-bold"
                     style={{
                       color: `var(--cat-${p.colore})`,
                       background: `var(--cat-${p.colore}-bg)`,
@@ -219,17 +219,17 @@ export default function Home() {
                   >
                     {p.numero}
                   </span>
-                  <h3 className="mt-4 text-[16px] font-semibold">{p.titolo}</h3>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-500">{p.testo}</p>
+                  <h3 className="mt-4 text-testo font-semibold">{p.titolo}</h3>
+                  <p className="mt-1.5 text-piccolo leading-relaxed text-ink-500">{p.testo}</p>
                 </div>
               ))}
             </div>
-            <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-line bg-surface-alt p-5">
-              <p className="flex-1 text-[14px] text-ink-600">
+            <div className="mt-4 flex flex-wrap items-center gap-3 rounded-[var(--radius-scheda)] border border-line bg-surface-alt p-5">
+              <p className="flex-1 text-corrente text-ink-600">
                 Hai dubbi su quale sia il gestionale giusto per te?
               </p>
               <Bottone href="/contatti" variante="secondario" misura="sm">
-                <Icona nome="MessageCircle" className="size-4" />
+                <Icona misura="sm" nome="MessageCircle" />
                 Parliamone
               </Bottone>
             </div>
@@ -238,20 +238,20 @@ export default function Home() {
       </Sezione>
 
       {/* ------------------------------------------------------------ IA */}
-      <section className="bg-ink-900 py-16 sm:py-20 lg:py-24">
+      <section className="bg-ink-900 py-14 lg:py-20">
         <Contenitore>
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <Pastiglia className="!bg-white/10 !text-brand-200 !ring-white/15">
-                <Icona nome="Bot" className="size-3.5" />
+              <Pastiglia variante="chiara">
+                <Icona misura="sm" nome="Bot" />
                 Dentro ogni gestionale
               </Pastiglia>
-              <h2 className="mt-5 !text-white text-[28px] font-bold leading-tight sm:text-[36px]">
+              <h2 className="mt-5 text-t1 font-bold leading-tight text-white sm:text-titolo">
                 Lo storico non lo carichi a mano.
                 <br />
                 Lo carichi tutto insieme.
               </h2>
-              <p className="mt-5 max-w-lg text-[15.5px] leading-relaxed text-ink-400">
+              <p className="mt-5 max-w-lg text-testo leading-relaxed text-ink-300">
                 È il motivo per cui quasi tutte le aziende rinunciano a portarsi dentro il passato:
                 sono centinaia di file da caricare e rinominare uno alla volta. Qui carichi la
                 cartella intera, anche uno ZIP: il sistema legge i documenti, capisce di cosa si
@@ -260,7 +260,7 @@ export default function Home() {
               <div className="mt-8">
                 <Bottone href="/personalizzazioni" variante="secondario" misura="lg">
                   Come funziona la personalizzazione
-                  <Icona nome="ArrowRight" className="size-4" />
+                  <Icona misura="sm" nome="ArrowRight" />
                 </Bottone>
               </div>
             </div>
@@ -288,12 +288,12 @@ export default function Home() {
                   testo: "Quello di cui non è sicuro te lo mette da parte, decidi tu.",
                 },
               ].map((c) => (
-                <div key={c.titolo} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <span className="flex size-10 items-center justify-center rounded-xl bg-brand-600/20 text-brand-300">
-                    <Icona nome={c.icona} className="size-5" />
+                <div key={c.titolo} className="rounded-[var(--radius-scheda)] border border-white/10 bg-white/5 p-5">
+                  <span className="flex size-10 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-600/20 text-brand-300">
+                    <Icona misura="md" nome={c.icona} />
                   </span>
-                  <h3 className="mt-4 !text-white text-[15px] font-semibold">{c.titolo}</h3>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-ink-400">{c.testo}</p>
+                  <h3 className="mt-4 text-testo font-semibold text-white">{c.titolo}</h3>
+                  <p className="mt-1.5 text-piccolo leading-relaxed text-ink-300">{c.testo}</p>
                 </div>
               ))}
             </div>
@@ -312,7 +312,7 @@ export default function Home() {
           />
           <Bottone href="/gestionali" variante="secondario" misura="sm">
             Vedi tutti
-            <Icona nome="ArrowRight" className="size-4" />
+            <Icona misura="sm" nome="ArrowRight" />
           </Bottone>
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -336,12 +336,12 @@ export default function Home() {
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {vantaggi.map((v) => (
-            <div key={v.titolo} className="rounded-2xl border border-line bg-white p-5">
-              <span className="flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Icona nome={v.icona} className="size-5" />
+            <div key={v.titolo} className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
+              <span className="flex size-10 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-50 text-brand-600">
+                <Icona misura="md" nome={v.icona} />
               </span>
-              <h3 className="mt-4 text-[15px] font-semibold">{v.titolo}</h3>
-              <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-500">{v.testo}</p>
+              <h3 className="mt-4 text-testo font-semibold">{v.titolo}</h3>
+              <p className="mt-1.5 text-piccolo leading-relaxed text-ink-500">{v.testo}</p>
             </div>
           ))}
         </div>

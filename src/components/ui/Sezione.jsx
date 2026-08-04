@@ -1,21 +1,34 @@
-/** Contenitore a larghezza massima, usato da tutte le sezioni. */
-export function Contenitore({ className = "", children }) {
-  return <div className={`mx-auto w-full max-w-[1240px] px-5 sm:px-8 ${className}`}>{children}</div>;
+import { cn } from "@/lib/cn";
+
+/** Contenitore a larghezza massima: la stessa per ogni sezione di ogni pagina. */
+export function Contenitore({ className, children }) {
+  return (
+    <div className={cn("mx-auto w-full max-w-[var(--contenitore)] px-5 lg:px-8", className)}>
+      {children}
+    </div>
+  );
 }
 
+const sfondi = {
+  bianco: "bg-white",
+  alt: "bg-surface-alt",
+  blu: "bg-surface-blue",
+  scuro: "bg-ink-900",
+};
+
+/* Due sole misure di respiro verticale. */
+const respiri = {
+  normale: "py-10 lg:py-14",
+  testata: "py-10 lg:py-14",
+};
+
 /**
- * Fascia di pagina con sfondo opzionale e spaziatura verticale coerente.
- * @param {{sfondo?: "bianco"|"alt"|"blu"|"scuro"}} props
+ * Fascia di pagina: sfondo, respiro verticale e contenitore in un colpo solo.
+ * @param {{sfondo?: keyof sfondi, respiro?: keyof respiri}} props
  */
-export function Sezione({ sfondo = "bianco", className = "", id, children }) {
-  const sfondi = {
-    bianco: "bg-white",
-    alt: "bg-surface-alt",
-    blu: "bg-surface-blue",
-    scuro: "bg-ink-900",
-  };
+export function Sezione({ sfondo = "bianco", respiro = "normale", className, id, children }) {
   return (
-    <section id={id} className={`${sfondi[sfondo]} py-16 sm:py-20 lg:py-24 ${className}`}>
+    <section id={id} className={cn(sfondi[sfondo], respiri[respiro], className)}>
       <Contenitore>{children}</Contenitore>
     </section>
   );
@@ -28,36 +41,18 @@ export function TitoloSezione({
   testo,
   centrato = true,
   chiaro = false,
-  className = "",
+  className,
 }) {
   return (
-    <div
-      className={`${centrato ? "mx-auto max-w-2xl text-center" : "max-w-2xl"} ${className}`}
-    >
+    <div className={cn(centrato ? "mx-auto max-w-2xl text-center" : "max-w-2xl", className)}>
       {occhiello ? (
-        <p
-          className={`mb-3 text-[13px] font-semibold uppercase tracking-[0.08em] ${
-            chiaro ? "text-brand-300" : "text-brand-600"
-          }`}
-        >
+        <p className={cn("occhiello mb-3", chiaro ? "text-brand-300" : "text-brand-700")}>
           {occhiello}
         </p>
       ) : null}
-      <h2
-        className={`text-[26px] font-bold leading-[1.2] sm:text-[32px] lg:text-[38px] ${
-          chiaro ? "!text-white" : ""
-        }`}
-      >
-        {titolo}
-      </h2>
+      <h2 className={cn("text-t1 font-bold lg:text-titolo", chiaro && "text-white")}>{titolo}</h2>
       {testo ? (
-        <p
-          className={`mt-4 text-[15px] leading-relaxed sm:text-base ${
-            chiaro ? "text-ink-400" : "text-ink-500"
-          }`}
-        >
-          {testo}
-        </p>
+        <p className={cn("mt-4 text-testo", chiaro ? "text-ink-300" : "text-ink-500")}>{testo}</p>
       ) : null}
     </div>
   );

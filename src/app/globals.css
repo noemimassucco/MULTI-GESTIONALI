@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* =====================================================================
+   SISTEMA DI DESIGN
+   Tutto quello che riguarda misure, colori e caratteri sta qui dentro.
+   Nessun valore arbitrario nei componenti: se serve una misura nuova,
+   si aggiunge prima qui.
+   ===================================================================== */
+
 @theme {
   /* ---- Marchio ---- */
   --color-brand-50: #eff6ff;
@@ -18,8 +25,9 @@
   --color-ink-800: #1e293b;
   --color-ink-700: #334155;
   --color-ink-600: #475569;
-  --color-ink-500: #64748b;
-  --color-ink-400: #94a3b8;
+  --color-ink-500: #5b6674; /* alzato: il precedente non passava il contrasto a 12px */
+  --color-ink-400: #667080;
+  --color-ink-300: #b9c2ce; /* solo su fondi scuri */
   --color-line: #e2e8f0;
   --color-line-soft: #eef2f7;
   --color-surface: #ffffff;
@@ -27,76 +35,110 @@
   --color-surface-blue: #f5f8ff;
 
   /* ---- Stati ---- */
-  --color-positivo: #16a34a;
-  --color-attenzione: #d97706;
-  --color-critico: #dc2626;
+  --color-positivo: #15803d;
+  --color-attenzione: #b45309;
+  --color-critico: #b91c1c;
 
-  /* ---- Tipografia ---- */
-  /* Font ospitati nel progetto (@fontsource-variable): nessuna chiamata a Google al build */
+  /* ---- Caratteri ---- */
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Plus Jakarta Sans Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Scala tipografica: 10 gradini, nient'altro ----
+     I nomi dicono il ruolo, non la misura. */
+  --text-micro: 0.6875rem;        /* 11   etichette maiuscolette */
+  --text-micro--line-height: 1.45;
+  --text-mini: 0.75rem;           /* 12   tag, note piccole      */
+  --text-mini--line-height: 1.4;
+  --text-piccolo: 0.8125rem;      /* 13   didascalie, meta       */
+  --text-piccolo--line-height: 1.5;
+  --text-corrente: 0.875rem;      /* 14   interfaccia            */
+  --text-corrente--line-height: 1.55;
+  --text-testo: 1rem;             /* 16   corpo del testo        */
+  --text-testo--line-height: 1.65;
+  --text-guida: 1.125rem;         /* 18   sottotitoli, occhielli */
+  --text-guida--line-height: 1.6;
+  --text-t3: 1.25rem;             /* 20   titoli di card         */
+  --text-t3--line-height: 1.35;
+  --text-t2: 1.5rem;              /* 24   titoli di blocco       */
+  --text-t2--line-height: 1.25;
+  --text-t1: 1.875rem;            /* 30   titoli di sezione      */
+  --text-t1--line-height: 1.18;
+  --text-titolo: 2.25rem;         /* 36   titoli di pagina       */
+  --text-titolo--line-height: 1.12;
+  --text-mega: 2.75rem;           /* 44   testata                */
+  --text-mega--line-height: 1.08;
+  --text-eroe: 3.375rem;          /* 54   home                   */
+  --text-eroe--line-height: 1.04;
+
+  /* ---- Raggi: tre soli valori ---- */
+  --radius-controllo: 0.5rem;  /*  8  bottoni, campi, tag piccoli */
+  --radius-scheda: 1rem;       /* 16  card, pannelli, immagini    */
 
   /* ---- Ombre ---- */
   --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
   --shadow-lift: 0 2px 4px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.08);
-  --shadow-brand: 0 8px 24px rgba(37, 99, 235, 0.22);
+  --shadow-brand: 0 6px 20px rgba(37, 99, 235, 0.2);
 }
 
-/*
-  Colori delle categorie.
-  Ogni categoria ha una tinta piena (icona) e una tenue (sfondo pastiglia).
-  Cambiare qui si riflette su tutto il sito.
-*/
+/* ---- Misure fisse dell'impaginato ---- */
 :root {
-  --cat-blu: #2563eb;
-  --cat-blu-bg: #eff6ff;
-  --cat-ambra: #d97706;
-  --cat-ambra-bg: #fffbeb;
-  --cat-rosso: #dc2626;
-  --cat-rosso-bg: #fef2f2;
-  --cat-verde: #16a34a;
-  --cat-verde-bg: #f0fdf4;
-  --cat-viola: #7c3aed;
-  --cat-viola-bg: #f5f3ff;
-  --cat-rosa: #db2777;
-  --cat-rosa-bg: #fdf2f8;
-  --cat-ciano: #0891b2;
-  --cat-ciano-bg: #ecfeff;
-  --cat-indaco: #4f46e5;
-  --cat-indaco-bg: #eef2ff;
-  --cat-lime: #65a30d;
-  --cat-lime-bg: #f7fee7;
-  --cat-arancio: #ea580c;
-  --cat-arancio-bg: #fff7ed;
-  --cat-teal: #0d9488;
-  --cat-teal-bg: #f0fdfa;
-  --cat-fucsia: #c026d3;
-  --cat-fucsia-bg: #fdf4ff;
+  --contenitore: 1200px;   /* larghezza massima del contenuto */
+  --margine: 20px;         /* respiro laterale su mobile      */
+  --margine-lg: 32px;      /* respiro laterale da tablet in su*/
+  --barra: 68px;           /* altezza della barra in alto     */
+  --rail: 76px;            /* colonna icone (solo da 2xl)     */
+
+  /* Altezze dei controlli: tre, e sono queste */
+  --h-sm: 40px;
+  --h-md: 48px;
+  --h-lg: 56px;
+
+  /* Colori delle categorie: tinta piena + tinta tenue */
+  --cat-blu: #2563eb;      --cat-blu-bg: #eff6ff;
+  --cat-ambra: #b45309;    --cat-ambra-bg: #fffbeb;
+  --cat-rosso: #b91c1c;    --cat-rosso-bg: #fef2f2;
+  --cat-verde: #15803d;    --cat-verde-bg: #f0fdf4;
+  --cat-viola: #6d28d9;    --cat-viola-bg: #f5f3ff;
+  --cat-rosa: #be185d;     --cat-rosa-bg: #fdf2f8;
+  --cat-ciano: #0e7490;    --cat-ciano-bg: #ecfeff;
+  --cat-indaco: #4338ca;   --cat-indaco-bg: #eef2ff;
+  --cat-lime: #4d7c0f;     --cat-lime-bg: #f7fee7;
+  --cat-arancio: #c2410c;  --cat-arancio-bg: #fff7ed;
+  --cat-teal: #0f766e;     --cat-teal-bg: #f0fdfa;
+  --cat-fucsia: #a21caf;   --cat-fucsia-bg: #fdf4ff;
 }
 
-body {
-  background: var(--color-surface);
-  color: var(--color-ink-600);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-}
+/* Dentro @layer base, altrimenti queste regole batterebbero le utility:
+   `text-white` su un <h2> veniva ignorato e il titolo restava invisibile. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--barra) + 16px);
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  color: var(--color-ink-900);
-  font-family: var(--font-display);
-  letter-spacing: -0.022em;
-  text-wrap: balance;
-}
+  body {
+    background: var(--color-surface);
+    color: var(--color-ink-600);
+    font-family: var(--font-sans);
+    font-size: var(--text-testo);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; /* rete di sicurezza contro gli sfondamenti */
+  }
 
-p {
-  text-wrap: pretty;
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink-900);
+    font-family: var(--font-display);
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
 
-html {
-  scroll-behavior: smooth;
+  p {
+    text-wrap: pretty;
+  }
 }
 
 :focus-visible {
@@ -105,13 +147,29 @@ html {
   border-radius: 6px;
 }
 
-/* Fasce orizzontali scorrevoli (categorie) senza barra visibile */
+/* Fasce orizzontali scorrevoli senza barra visibile */
 .scroll-orizzontale {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 .scroll-orizzontale::-webkit-scrollbar {
   display: none;
+}
+
+/* Etichetta maiuscoletta: un solo posto, un solo stile */
+.occhiello {
+  font-size: var(--text-micro);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* Bersagli tattili: su mobile nessun comando scende sotto i 44px */
+@media (pointer: coarse) {
+  a[data-comando],
+  button[data-comando] {
+    min-height: 44px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

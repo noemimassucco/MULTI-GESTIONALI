@@ -37,13 +37,15 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen antialiased">
         <a
           href="#contenuto"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-[var(--radius-controllo)] focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-white"
         >
           Vai al contenuto
         </a>
-        <Navbar categorie={categorie} />
         <BarraLaterale />
-        <div className="2xl:pl-[76px]">
+        {/* Un solo incolonnamento per barra, contenuto e piè di pagina:
+            se la colonna di icone c'è, sposta tutto, non solo il centro. */}
+        <div className="2xl:pl-[var(--rail)]">
+          <Navbar categorie={categorie} />
           <main id="contenuto">{children}</main>
           <PiePagina categorie={categorie} gestionali={gestionali} />
         </div>

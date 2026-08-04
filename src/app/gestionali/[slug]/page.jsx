@@ -47,12 +47,12 @@ export default async function PaginaGestionale({ params }) {
         className="border-b border-line"
         style={{ background: categoria ? `var(--cat-${categoria.colore}-bg)` : "var(--cat-blu-bg)" }}
       >
-        <Contenitore className="py-10 sm:py-14">
-          <nav aria-label="Percorso" className="flex flex-wrap items-center gap-1.5 text-[13px]">
+        <Contenitore className="py-10 lg:py-14">
+          <nav aria-label="Percorso" className="flex flex-wrap items-center gap-1.5 text-piccolo">
             <Link href="/gestionali" className="text-ink-500 hover:text-ink-900">
               Gestionali
             </Link>
-            <Icona nome="ChevronRight" className="size-3.5 text-ink-400" />
+            <Icona misura="sm" nome="ChevronRight" className="text-ink-400" />
             {categoria ? (
               <Link
                 href={`/categorie/${categoria.slug}`}
@@ -67,26 +67,26 @@ export default async function PaginaGestionale({ params }) {
             <div>
               {categoria ? (
                 <span
-                  className="flex size-14 items-center justify-center rounded-2xl bg-white shadow-[var(--shadow-soft)]"
+                  className="flex size-14 items-center justify-center rounded-[var(--radius-scheda)] bg-white shadow-[var(--shadow-soft)]"
                   style={{ color: `var(--cat-${categoria.colore})` }}
                 >
-                  <Icona nome={categoria.icona} className="size-7" />
+                  <Icona misura="lg" nome={categoria.icona} />
                 </span>
               ) : null}
-              <h1 className="mt-5 text-[32px] font-extrabold leading-[1.1] sm:text-[42px]">
+              <h1 className="mt-5 text-titolo font-extrabold leading-[1.1] sm:text-mega">
                 {gestionale.nome}
               </h1>
-              <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-ink-600 sm:text-[17px]">
+              <p className="mt-4 max-w-xl text-testo leading-relaxed text-ink-600 sm:text-guida">
                 {gestionale.sottotitolo}
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Bottone href={`/richiedi?gestionale=${gestionale.slug}`} misura="lg">
                   Richiedi informazioni
-                  <Icona nome="ArrowRight" className="size-4" />
+                  <Icona misura="sm" nome="ArrowRight" />
                 </Bottone>
                 {gestionale.demoDisponibile && base?.demoPath ? (
                   <Bottone href={base.demoPath} variante="secondario" misura="lg">
-                    <Icona nome="PlayCircle" className="size-4" />
+                    <Icona misura="sm" nome="PlayCircle" />
                     Prova la demo
                   </Bottone>
                 ) : (
@@ -99,18 +99,18 @@ export default async function PaginaGestionale({ params }) {
 
             {/* Riquadro base collegata */}
             {base ? (
-              <div className="rounded-2xl border border-line bg-white p-6">
+              <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
                 <div className="flex items-center gap-2">
-                  <Icona nome="Blocks" className="size-4 text-brand-600" />
-                  <p className="text-[12.5px] font-semibold uppercase tracking-wide text-brand-700">
+                  <Icona misura="sm" nome="Blocks" className="text-brand-600" />
+                  <p className="text-piccolo font-semibold uppercase tracking-wide text-brand-700">
                     Parte dalla base
                   </p>
                 </div>
-                <h2 className="mt-2 text-[19px] font-bold">{base.nome}</h2>
-                <p className="mt-2 text-[13.5px] leading-relaxed text-ink-500">{base.descrizione}</p>
+                <h2 className="mt-2 text-t3 font-bold">{base.nome}</h2>
+                <p className="mt-2 text-piccolo leading-relaxed text-ink-500">{base.descrizione}</p>
                 {gestionale.moduliAggiuntivi?.length ? (
                   <>
-                    <p className="mt-5 text-[12.5px] font-semibold text-ink-900">
+                    <p className="mt-5 text-piccolo font-semibold text-ink-900">
                       Più i moduli specifici per il tuo settore:
                     </p>
                     <ul className="mt-2 flex flex-wrap gap-1.5">
@@ -132,40 +132,40 @@ export default async function PaginaGestionale({ params }) {
       <Sezione sfondo="bianco">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr]">
           <div>
-            <h2 className="text-[24px] font-bold leading-tight sm:text-[30px]">
+            <h2 className="text-t2 font-bold leading-tight sm:text-t1">
               Cosa succede oggi senza un gestionale
             </h2>
             <ul className="mt-7 space-y-3">
               {gestionale.problemi.map((p) => (
                 <li key={p} className="flex gap-3">
                   <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-500">
-                    <Icona nome="X" className="size-3.5" strokeWidth={2.5} />
+                    <Icona misura="sm" nome="X" />
                   </span>
-                  <span className="text-[14.5px] leading-relaxed text-ink-600">{p}</span>
+                  <span className="text-corrente leading-relaxed text-ink-600">{p}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="rounded-2xl bg-surface-alt p-7">
+          <div className="rounded-[var(--radius-scheda)] bg-surface-alt p-6">
             {paragrafi.map((p, i) => (
               <p
                 key={i}
-                className={`text-[15px] leading-[1.75] text-ink-600 ${i > 0 ? "mt-4" : ""}`}
+                className={`text-testo leading-[1.75] text-ink-600 ${i > 0 ? "mt-4" : ""}`}
               >
                 {p}
               </p>
             ))}
             {gestionale.utenti?.length ? (
               <div className="mt-7 border-t border-line pt-5">
-                <p className="text-[12.5px] font-semibold uppercase tracking-wide text-ink-900">
+                <p className="text-piccolo font-semibold uppercase tracking-wide text-ink-900">
                   Chi lo usa in azienda
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-1.5">
                   {gestionale.utenti.map((u) => (
                     <li key={u}>
                       <Pastiglia variante="contorno">
-                        <Icona nome="UserCog" className="size-3" />
+                        <Icona misura="sm" nome="UserCog" />
                         {u}
                       </Pastiglia>
                     </li>
@@ -189,26 +189,26 @@ export default async function PaginaGestionale({ params }) {
           {gestionale.funzioni.map((f) => (
             <li
               key={f}
-              className="flex items-center gap-3 rounded-xl border border-line bg-white px-4 py-3"
+              className="flex items-center gap-3 rounded-[var(--radius-scheda)] border border-line bg-white px-4 py-3"
             >
               <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-                <Icona nome="Check" className="size-3.5" strokeWidth={2.5} />
+                <Icona misura="sm" nome="Check" />
               </span>
-              <span className="text-[14px] font-medium text-ink-800">{f}</span>
+              <span className="text-corrente font-medium text-ink-800">{f}</span>
             </li>
           ))}
         </ul>
 
         {gestionale.moduli?.length ? (
           <div className="mt-12">
-            <h3 className="text-[18px] font-bold">Moduli inclusi</h3>
+            <h3 className="text-guida font-bold">Moduli inclusi</h3>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {gestionale.moduli.map((m) => (
-                <div key={m} className="rounded-xl border border-line bg-white p-4">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-                    <Icona nome="Layers" className="size-[18px]" />
+                <div key={m} className="rounded-[var(--radius-scheda)] border border-line bg-white p-4">
+                  <span className="flex size-9 items-center justify-center rounded-[var(--radius-controllo)] bg-brand-50 text-brand-600">
+                    <Icona misura="sm" nome="Layers" />
                   </span>
-                  <p className="mt-3 text-[14px] font-semibold text-ink-900">{m}</p>
+                  <p className="mt-3 text-corrente font-semibold text-ink-900">{m}</p>
                 </div>
               ))}
             </div>
@@ -226,12 +226,12 @@ export default async function PaginaGestionale({ params }) {
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {gestionale.vantaggi.map((v) => (
-              <div key={v.titolo} className="rounded-2xl border border-line bg-white p-6">
-                <span className="flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <Icona nome="Zap" className="size-5" />
+              <div key={v.titolo} className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+                <span className="flex size-10 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-50 text-brand-600">
+                  <Icona misura="md" nome="Zap" />
                 </span>
-                <h3 className="mt-4 text-[16px] font-semibold">{v.titolo}</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-ink-500">{v.testo}</p>
+                <h3 className="mt-4 text-testo font-semibold">{v.titolo}</h3>
+                <p className="mt-2 text-corrente leading-relaxed text-ink-500">{v.testo}</p>
               </div>
             ))}
           </div>
@@ -252,7 +252,7 @@ export default async function PaginaGestionale({ params }) {
             <div className="mt-8">
               <Bottone href={`/richiedi?gestionale=${gestionale.slug}`} misura="lg">
                 Raccontami come lavori
-                <Icona nome="ArrowRight" className="size-4" />
+                <Icona misura="sm" nome="ArrowRight" />
               </Bottone>
             </div>
           </div>
@@ -260,10 +260,10 @@ export default async function PaginaGestionale({ params }) {
             {gestionale.personalizzazioni.map((p) => (
               <li
                 key={p}
-                className="flex gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+                className="flex gap-2.5 rounded-[var(--radius-scheda)] border border-white/10 bg-white/5 px-4 py-3"
               >
-                <Icona nome="Check" className="mt-0.5 size-4 shrink-0 text-brand-400" strokeWidth={2.5} />
-                <span className="text-[13.5px] leading-snug text-ink-400">{p}</span>
+                <Icona misura="sm" nome="Check" className="mt-0.5 shrink-0 text-brand-400" />
+                <span className="text-piccolo leading-snug text-ink-300">{p}</span>
               </li>
             ))}
           </ul>
