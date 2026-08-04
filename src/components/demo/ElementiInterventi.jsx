@@ -25,9 +25,9 @@ export function passaggioDi(intervento) {
 
 const STATI = {
   programmato: "bg-surface-alt text-ink-700 ring-line",
-  in_corso: "bg-sole-100 text-[#7a5c05] ring-sole-200",
-  chiuso: "bg-brand-50 text-brand-800 ring-brand-100",
-  fatturato: "bg-violet-50 text-violet-800 ring-violet-200",
+  in_corso: "bg-accento-50 text-accento-700 ring-accento-100",
+  chiuso: "bg-brand-50 text-brand-700 ring-brand-100",
+  fatturato: "bg-brand-100 text-brand-800 ring-brand-200",
 };
 
 /** Pastiglia di stato dell'intervento. */
@@ -56,7 +56,7 @@ export function BarraPassaggi({ intervento }) {
           <li key={p.stato} className="flex items-center gap-1">
             <span
               className={`flex h-8 items-center gap-2 rounded-full px-3 text-mini font-semibold ${
-                fatto ? "bg-brand-600 text-white" : "bg-surface-alt text-ink-500 ring-1 ring-inset ring-line"
+                fatto ? "bg-brand-700 text-white" : "bg-surface-alt text-ink-500 ring-1 ring-inset ring-line"
               }`}
             >
               <Icona misura="sm" nome={p.icona} className="size-3.5" />
@@ -64,7 +64,7 @@ export function BarraPassaggi({ intervento }) {
             </span>
             {i < PASSAGGI.length - 1 ? (
               <span
-                className={`h-0.5 w-3 rounded-full ${fatto ? "bg-brand-600" : "bg-line"}`}
+                className={`h-px w-4 ${fatto ? "bg-brand-700" : "bg-line"}`}
                 aria-hidden="true"
               />
             ) : null}
@@ -76,8 +76,8 @@ export function BarraPassaggi({ intervento }) {
 }
 
 const URGENZE = {
-  alta: { testo: "Urgente", classi: "bg-red-50 text-red-800 ring-red-200" },
-  media: { testo: "Normale", classi: "bg-sole-100 text-[#7a5c05] ring-sole-200" },
+  alta: { testo: "Urgente", classi: "bg-[#f8efec] text-critico ring-[#eddcd7]" },
+  media: { testo: "Normale", classi: "bg-accento-50 text-accento-700 ring-accento-100" },
   bassa: { testo: "Quando capita", classi: "bg-surface-alt text-ink-600 ring-line" },
 };
 
@@ -110,7 +110,7 @@ export function Bollino({ stato }) {
   return (
     <span
       className={`inline-flex h-6 shrink-0 items-center gap-1 rounded-full px-2 text-mini font-semibold leading-none ring-1 ring-inset ${
-        ok ? "bg-brand-50 text-brand-800 ring-brand-100" : "bg-red-50 text-red-800 ring-red-200"
+        ok ? "bg-brand-50 text-brand-700 ring-brand-100" : "bg-[#f8efec] text-critico ring-[#eddcd7]"
       }`}
     >
       <Icona misura="sm" nome={ok ? "Check" : "AlertTriangle"} className="size-3" />
@@ -138,15 +138,15 @@ export function RiepilogoCosti({ intervento }) {
         <dt className="text-ink-500">
           Manodopera {intervento.durataOre ? `(${intervento.durataOre} h × ${euro(COSTO_ORARIO)})` : ""}
         </dt>
-        <dd className="font-medium text-ink-900">{euro(manodopera)}</dd>
+        <dd className="cifre font-medium text-ink-900">{euro(manodopera)}</dd>
       </div>
       <div className="flex justify-between text-corrente">
         <dt className="text-ink-500">Materiali</dt>
-        <dd className="font-medium text-ink-900">{euro(materiali)}</dd>
+        <dd className="cifre font-medium text-ink-900">{euro(materiali)}</dd>
       </div>
       <div className="flex justify-between border-t border-line pt-2 text-testo">
         <dt className="font-bold text-ink-900">Totale</dt>
-        <dd className="font-bold text-brand-700">{euro(totale)}</dd>
+        <dd className="cifre font-bold text-brand-700">{euro(totale)}</dd>
       </div>
     </dl>
   );

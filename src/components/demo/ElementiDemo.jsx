@@ -13,50 +13,66 @@ import { dataBreve, giorniDaOggi } from "@/components/demo/StatoDemo";
 /** Intestazione di pagina: titolo, sottotitolo e azioni a destra. */
 export function IntestazioneDemo({ titolo, sottotitolo, children }) {
   return (
-    <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <h1 className="text-t2 font-bold text-ink-900">{titolo}</h1>
-        {sottotitolo ? <p className="mt-1 text-corrente text-ink-500">{sottotitolo}</p> : null}
+    <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
+      <div className="min-w-0">
+        <h1 className="text-t2 lg:text-t1">{titolo}</h1>
+        {sottotitolo ? (
+          <p className="mt-2 max-w-2xl text-corrente leading-relaxed text-ink-600">{sottotitolo}</p>
+        ) : null}
       </div>
-      {children ? <div className="flex flex-wrap gap-2">{children}</div> : null}
+      {children ? <div className="flex shrink-0 flex-wrap gap-2">{children}</div> : null}
     </div>
   );
 }
 
-/** Riquadro numerico della dashboard. */
-export function KpiDemo({ etichetta, valore, nota, tono = "neutro" }) {
+/**
+ * Riquadro numerico della dashboard.
+ * Il numero è in Manrope con le cifre della stessa larghezza: incolonnati
+ * uno accanto all'altro non ballano mai.
+ */
+export function KpiDemo({ etichetta, valore, nota, tono = "neutro", icona }) {
   const toni = {
     neutro: "text-ink-900",
     ok: "text-brand-700",
-    allerta: "text-amber-700",
-    critico: "text-red-700",
+    allerta: "text-accento-600",
+    critico: "text-critico",
   };
   return (
-    <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-4">
-      <p className="text-mini font-medium text-ink-500">{etichetta}</p>
-      <p className={`mt-1 text-t2 font-bold leading-none ${toni[tono]}`}>{valore}</p>
-      {nota ? <p className="mt-1.5 text-mini text-ink-500">{nota}</p> : null}
+    <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
+      <div className="flex items-center gap-2.5">
+        {icona ? <Icona misura="sm" nome={icona} className="shrink-0 text-ink-400" /> : null}
+        <p className="min-w-0 truncate text-mini font-medium text-ink-500">{etichetta}</p>
+      </div>
+      <p className={`cifre mt-3 text-t1 font-extrabold leading-none ${toni[tono]}`}>{valore}</p>
+      {nota ? <p className="mt-2.5 text-mini text-ink-500">{nota}</p> : null}
     </div>
   );
 }
 
+/* Tre soli modi di colorare uno stato: fermo, in movimento, concluso.
+   Il rosso resta per quello che è davvero fuori tempo. */
+const NEUTRO = "bg-surface-alt text-ink-700 ring-line";
+const CORSO = "bg-accento-50 text-accento-700 ring-accento-100";
+const FATTO = "bg-brand-50 text-brand-700 ring-brand-100";
+const MALE = "bg-[#f8efec] text-critico ring-[#eddcd7]";
+
 const STATI = {
   /* attività */
-  da_fare: { testo: "Da fare", classi: "bg-surface-alt text-ink-700 ring-line" },
-  in_corso: { testo: "In corso", classi: "bg-sole-100 text-[#7a5c05] ring-sole-200" },
-  in_attesa: { testo: "In attesa", classi: "bg-violet-50 text-violet-800 ring-violet-200" },
-  completata: { testo: "Completata", classi: "bg-brand-50 text-brand-800 ring-brand-100" },
+  da_fare: { testo: "Da fare", classi: NEUTRO },
+  in_corso: { testo: "In corso", classi: CORSO },
+  in_attesa: { testo: "In attesa", classi: NEUTRO },
+  completata: { testo: "Completata", classi: FATTO },
   /* preventivi */
-  bozza: { testo: "Bozza", classi: "bg-surface-alt text-ink-700 ring-line" },
-  inviato: { testo: "Inviato", classi: "bg-sole-100 text-[#7a5c05] ring-sole-200" },
-  accettato: { testo: "Accettato", classi: "bg-brand-50 text-brand-800 ring-brand-100" },
-  rifiutato: { testo: "Rifiutato", classi: "bg-red-50 text-red-800 ring-red-200" },
+  bozza: { testo: "Bozza", classi: NEUTRO },
+  inviato: { testo: "Inviato", classi: CORSO },
+  accettato: { testo: "Accettato", classi: FATTO },
+  rifiutato: { testo: "Rifiutato", classi: NEUTRO },
   /* pagamenti */
-  incassato: { testo: "Incassato", classi: "bg-brand-50 text-brand-800 ring-brand-100" },
-  in_ritardo: { testo: "In ritardo", classi: "bg-red-50 text-red-800 ring-red-200" },
+  incassato: { testo: "Incassato", classi: FATTO },
+  in_ritardo: { testo: "In ritardo", classi: MALE },
   /* clienti */
-  attivo: { testo: "Attivo", classi: "bg-brand-50 text-brand-800 ring-brand-100" },
-  prospect: { testo: "Potenziale", classi: "bg-sole-100 text-[#7a5c05] ring-sole-200" },
+  attivo: { testo: "Attivo", classi: FATTO },
+  prospect: { testo: "Potenziale", classi: CORSO },
 };
 
 /** Pastiglia di stato coerente in tutta la demo. */
@@ -78,13 +94,13 @@ export function DataScadenza({ iso, fatta = false }) {
   let nota = "";
   if (!fatta) {
     if (g < 0) {
-      classi = "font-semibold text-red-700";
+      classi = "font-semibold text-critico";
       nota = g === -1 ? " · ieri" : ` · ${-g} gg fa`;
     } else if (g === 0) {
-      classi = "font-semibold text-amber-700";
+      classi = "font-semibold text-accento-600";
       nota = " · oggi";
     } else if (g <= 3) {
-      classi = "font-medium text-amber-700";
+      classi = "font-medium text-accento-600";
       nota = g === 1 ? " · domani" : ` · fra ${g} gg`;
     }
   }
@@ -138,7 +154,7 @@ export function RicercaDemo({ valore, onCambia, placeholder = "Cerca…" }) {
         value={valore}
         onChange={(e) => onCambia(e.target.value)}
         placeholder={placeholder}
-        className="h-10 w-full rounded-[var(--radius-controllo)] border border-line bg-white pl-9 pr-3 text-corrente text-ink-800 placeholder:text-ink-400 focus:border-brand-400 focus:outline-none sm:w-64"
+        className="h-10 w-full rounded-[var(--radius-controllo)] border border-line bg-white pl-9 pr-3 text-corrente text-ink-800 placeholder:text-ink-400 focus:border-brand-400 focus:outline-none sm:w-72"
       />
     </div>
   );
@@ -154,10 +170,10 @@ export function FiltriDemo({ voci, attivo, onScegli }) {
           type="button"
           onClick={() => onScegli(v.valore === attivo ? "" : v.valore)}
           aria-pressed={v.valore === attivo}
-          className={`h-9 rounded-full px-3 text-piccolo font-medium transition-colors ${
+          className={`h-9 rounded-full px-3.5 text-piccolo font-medium transition-colors duration-150 ${
             v.valore === attivo
-              ? "bg-ink-900 text-white"
-              : "bg-white text-ink-600 ring-1 ring-inset ring-line hover:bg-surface-alt"
+              ? "bg-brand-900 text-white"
+              : "bg-white text-ink-600 ring-1 ring-inset ring-line hover:border-brand-300 hover:text-ink-900"
           }`}
         >
           {v.testo}

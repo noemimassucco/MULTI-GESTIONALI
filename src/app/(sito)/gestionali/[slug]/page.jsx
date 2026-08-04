@@ -43,11 +43,8 @@ export default async function PaginaGestionale({ params }) {
   return (
     <>
       {/* ------------------------------------------------------- TESTATA */}
-      <section
-        className="border-b border-line"
-        style={{ background: categoria ? `var(--cat-${categoria.colore}-bg)` : "var(--cat-blu-bg)" }}
-      >
-        <Contenitore className="py-10 lg:py-14">
+      <section className="border-b border-line bg-surface-alt">
+        <Contenitore className="pb-16 pt-8 lg:pb-24 lg:pt-10">
           <nav aria-label="Percorso" className="flex flex-wrap items-center gap-1.5 text-piccolo">
             <Link href="/gestionali" className="text-ink-500 hover:text-ink-900">
               Gestionali
@@ -63,23 +60,16 @@ export default async function PaginaGestionale({ params }) {
             ) : null}
           </nav>
 
-          <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end">
+          <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start lg:gap-16">
             <div>
               {categoria ? (
-                <span
-                  className="flex size-14 items-center justify-center rounded-[var(--radius-scheda)] bg-white shadow-[var(--shadow-soft)]"
-                  style={{ color: `var(--cat-${categoria.colore})` }}
-                >
-                  <Icona misura="lg" nome={categoria.icona} />
-                </span>
+                <p className="occhiello filetto text-accento-600">{categoria.nome}</p>
               ) : null}
-              <h1 className="mt-5 text-titolo font-extrabold leading-[1.1] sm:text-mega">
-                {gestionale.nome}
-              </h1>
-              <p className="mt-4 max-w-xl text-testo leading-relaxed text-ink-600 sm:text-guida">
+              <h1 className="mt-8 text-titolo sm:text-mega">{gestionale.nome}</h1>
+              <p className="mt-7 max-w-xl text-guida leading-relaxed text-ink-600">
                 {gestionale.sottotitolo}
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-10 flex flex-wrap gap-3">
                 <Bottone href={`/richiedi?gestionale=${gestionale.slug}`} misura="lg">
                   Richiedi informazioni
                   <Icona misura="sm" nome="ArrowRight" />
@@ -99,21 +89,21 @@ export default async function PaginaGestionale({ params }) {
 
             {/* Riquadro base collegata */}
             {base ? (
-              <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+              <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-7">
                 <div className="flex items-center gap-2">
                   <Icona misura="sm" nome="Blocks" className="text-brand-600" />
-                  <p className="text-piccolo font-semibold uppercase tracking-wide text-brand-700">
-                    Parte dalla base
-                  </p>
+                  <p className="occhiello text-brand-700">Parte dalla base</p>
                 </div>
-                <h2 className="mt-2 text-t3 font-bold">{base.nome}</h2>
-                <p className="mt-2 text-piccolo leading-relaxed text-ink-500">{base.descrizione}</p>
+                <h2 className="mt-4 text-t3">{base.nome}</h2>
+                <p className="mt-3 text-corrente leading-relaxed text-ink-600">
+                  {base.descrizione}
+                </p>
                 {gestionale.moduliAggiuntivi?.length ? (
                   <>
-                    <p className="mt-5 text-piccolo font-semibold text-ink-900">
+                    <p className="mt-7 text-piccolo font-semibold text-ink-900">
                       Più i moduli specifici per il tuo settore:
                     </p>
-                    <ul className="mt-2 flex flex-wrap gap-1.5">
+                    <ul className="mt-3 flex flex-wrap gap-1.5">
                       {gestionale.moduliAggiuntivi.map((m) => (
                         <li key={m}>
                           <Pastiglia variante="brand">{m}</Pastiglia>
@@ -132,21 +122,17 @@ export default async function PaginaGestionale({ params }) {
       {/* Il concetto del sito applicato al settore: a sinistra com'è oggi
           (i problemi), a destra com'è con il gestionale (i vantaggi).    */}
       <Sezione sfondo="bianco">
-        <TitoloSezione
-          centrato={false}
-          occhiello="Prima e dopo"
-          titolo="La stessa settimana, con e senza"
-        />
-        <div className="mt-10 grid overflow-hidden rounded-[var(--radius-scheda)] border border-line lg:grid-cols-2">
+        <TitoloSezione occhiello="Prima e dopo" titolo="La stessa settimana, con e senza" />
+        <div className="mt-14 grid overflow-hidden rounded-[var(--radius-scheda)] border border-line lg:grid-cols-2">
           {/* PRIMA */}
-          <div className="bg-[var(--carta-prima)] p-6 sm:p-8">
-            <p className="inline-flex rounded-full bg-ink-900/80 px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.1em] text-white">
+          <div className="bg-[var(--carta-prima)] p-7 sm:p-10">
+            <p className="occhiello inline-flex rounded-full bg-ink-900/85 px-3 py-1.5 text-[10px] leading-none text-white">
               Oggi, senza
             </p>
-            <ul className="mt-6 space-y-3.5">
+            <ul className="mt-7 space-y-4">
               {gestionale.problemi.map((p) => (
                 <li key={p} className="flex gap-3">
-                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-white text-red-600">
+                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-white text-critico">
                     <Icona misura="sm" nome="X" className="size-3.5" />
                   </span>
                   <span className="text-corrente leading-relaxed text-[#4a4438]">{p}</span>
@@ -156,11 +142,11 @@ export default async function PaginaGestionale({ params }) {
           </div>
 
           {/* DOPO */}
-          <div className="border-t-[3px] border-sole-500 bg-white p-6 sm:p-8 lg:border-l-[3px] lg:border-t-0">
-            <p className="inline-flex rounded-full bg-brand-600 px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.1em] text-white">
+          <div className="border-t-2 border-accento-500 bg-white p-7 sm:p-10 lg:border-l-2 lg:border-t-0">
+            <p className="occhiello inline-flex rounded-full bg-brand-700 px-3 py-1.5 text-[10px] leading-none text-white">
               Con il gestionale
             </p>
-            <ul className="mt-6 space-y-3.5">
+            <ul className="mt-7 space-y-4">
               {gestionale.vantaggi.map((v) => (
                 <li key={v.titolo} className="flex gap-3">
                   <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700">
@@ -175,22 +161,17 @@ export default async function PaginaGestionale({ params }) {
           </div>
         </div>
 
-        <div className="mt-10 rounded-[var(--radius-scheda)] bg-surface-alt p-6 sm:p-8">
+        <div className="mt-14 border-t border-line pt-14">
           <div className="max-w-3xl">
             {paragrafi.map((p, i) => (
-              <p
-                key={i}
-                className={`text-testo leading-[1.75] text-ink-600 ${i > 0 ? "mt-4" : ""}`}
-              >
+              <p key={i} className={`text-testo leading-loose text-ink-600 ${i > 0 ? "mt-6" : ""}`}>
                 {p}
               </p>
             ))}
             {gestionale.utenti?.length ? (
-              <div className="mt-7 border-t border-line pt-5">
-                <p className="text-piccolo font-semibold uppercase tracking-wide text-ink-900">
-                  Chi lo usa in azienda
-                </p>
-                <ul className="mt-3 flex flex-wrap gap-1.5">
+              <div className="mt-10 border-t border-line pt-7">
+                <p className="occhiello text-ink-500">Chi lo usa in azienda</p>
+                <ul className="mt-4 flex flex-wrap gap-1.5">
                   {gestionale.utenti.map((u) => (
                     <li key={u}>
                       <Pastiglia variante="contorno">
@@ -209,19 +190,18 @@ export default async function PaginaGestionale({ params }) {
       {/* ------------------------------------------------------- FUNZIONI */}
       <Sezione sfondo="alt">
         <TitoloSezione
-          centrato={false}
           occhiello="Cosa gestisce"
           titolo="Le funzioni comprese nella base"
           testo="Sono già attive dal primo giorno. Ognuna può essere rinominata o adattata al tuo modo di chiamare le cose."
         />
-        <ul className="mt-10 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {gestionale.funzioni.map((f) => (
             <li
               key={f}
-              className="flex items-center gap-3 rounded-[var(--radius-scheda)] border border-line bg-white px-4 py-3"
+              className="flex items-center gap-3.5 rounded-[var(--radius-controllo)] border border-line bg-white px-4 py-3.5"
             >
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-                <Icona misura="sm" nome="Check" />
+              <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                <Icona misura="sm" nome="Check" className="size-3.5" />
               </span>
               <span className="text-corrente font-medium text-ink-800">{f}</span>
             </li>
@@ -229,15 +209,18 @@ export default async function PaginaGestionale({ params }) {
         </ul>
 
         {gestionale.moduli?.length ? (
-          <div className="mt-12">
-            <h3 className="text-guida font-bold">Moduli inclusi</h3>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 border-t border-line pt-14">
+            <h3 className="text-guida">Moduli inclusi</h3>
+            <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {gestionale.moduli.map((m) => (
-                <div key={m} className="rounded-[var(--radius-scheda)] border border-line bg-white p-4">
-                  <span className="flex size-9 items-center justify-center rounded-[var(--radius-controllo)] bg-brand-50 text-brand-600">
+                <div
+                  key={m}
+                  className="rounded-[var(--radius-scheda)] border border-line bg-white p-5"
+                >
+                  <span className="flex size-10 items-center justify-center rounded-[var(--radius-controllo)] bg-brand-50 text-brand-600">
                     <Icona misura="sm" nome="Layers" />
                   </span>
-                  <p className="mt-3 text-corrente font-semibold text-ink-900">{m}</p>
+                  <p className="mt-4 text-corrente font-semibold text-ink-900">{m}</p>
                 </div>
               ))}
             </div>
@@ -247,30 +230,26 @@ export default async function PaginaGestionale({ params }) {
 
       {/* ------------------------------------------------ PERSONALIZZAZIONI */}
       <Sezione sfondo="scuro">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
           <div>
             <TitoloSezione
-              centrato={false}
               chiaro
               occhiello="Su misura"
               titolo="Cosa possiamo cambiare per te"
               testo="La base è il punto di partenza, non il traguardo. Queste sono le modifiche più richieste in questo settore: se quello che ti serve non è in elenco, chiedimelo."
             />
-            <div className="mt-8">
-              <Bottone href={`/richiedi?gestionale=${gestionale.slug}`} misura="lg">
+            <div className="mt-10">
+              <Bottone href={`/richiedi?gestionale=${gestionale.slug}`} variante="accento" misura="lg">
                 Raccontami come lavori
                 <Icona misura="sm" nome="ArrowRight" />
               </Bottone>
             </div>
           </div>
-          <ul className="grid gap-2.5 sm:grid-cols-2">
+          <ul className="border-t border-white/15">
             {gestionale.personalizzazioni.map((p) => (
-              <li
-                key={p}
-                className="flex gap-2.5 rounded-[var(--radius-scheda)] border border-white/10 bg-white/5 px-4 py-3"
-              >
-                <Icona misura="sm" nome="Check" className="mt-0.5 shrink-0 text-brand-400" />
-                <span className="text-piccolo leading-snug text-ink-300">{p}</span>
+              <li key={p} className="flex gap-4 border-b border-white/15 py-4">
+                <Icona misura="sm" nome="Check" className="mt-0.5 shrink-0 text-accento-300" />
+                <span className="text-corrente leading-relaxed text-brand-100">{p}</span>
               </li>
             ))}
           </ul>
@@ -280,8 +259,8 @@ export default async function PaginaGestionale({ params }) {
       {/* ------------------------------------------------------------ FAQ */}
       {gestionale.faq?.length ? (
         <Sezione sfondo="alt">
-          <TitoloSezione titolo="Domande frequenti" />
-          <div className="mx-auto mt-10 max-w-3xl">
+          <TitoloSezione occhiello="Dubbi ricorrenti" titolo="Domande frequenti" />
+          <div className="mt-14 max-w-3xl">
             <FaqAccordion voci={gestionale.faq} />
           </div>
         </Sezione>
@@ -291,11 +270,10 @@ export default async function PaginaGestionale({ params }) {
       {correlati.length ? (
         <Sezione sfondo="bianco">
           <TitoloSezione
-            centrato={false}
             titolo="Gestionali simili"
             testo="Settori vicini, oppure che partono dalla stessa base."
           />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {correlati.map((g) => (
               <GestionaleCard
                 key={g.slug}
