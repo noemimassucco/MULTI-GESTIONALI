@@ -96,7 +96,7 @@ function ModuloNuovoCliente({ onSalva, onAnnulla }) {
         </button>
         <button
           type="submit"
-          className="h-10 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
+          className="h-10 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
         >
           Salva cliente
         </button>
@@ -138,7 +138,7 @@ export default function PaginaClienti() {
           type="button"
           onClick={() => setModaleAperta(true)}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
         >
           <Icona misura="sm" nome="Users" className="size-3.5" />
           Nuovo cliente

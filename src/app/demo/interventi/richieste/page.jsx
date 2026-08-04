@@ -21,8 +21,8 @@ const oggiIso = () => new Date().toISOString().slice(0, 10);
 const PESO_URGENZA = { alta: 0, media: 1, bassa: 2 };
 
 const BARRA_URGENZA = {
-  alta: { classi: "bg-critico", testo: "Urgente" },
-  media: { classi: "bg-accento-500", testo: "Normale" },
+  alta: { classi: "bg-red-500", testo: "Urgente" },
+  media: { classi: "bg-sole-500", testo: "Normale" },
   bassa: { classi: "bg-line", testo: "Quando capita" },
 };
 
@@ -36,7 +36,7 @@ function prossimoNumero(interventi) {
 }
 
 const classiBottoneScuro =
-  "flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600";
+  "flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800";
 
 const classiBottoneChiaro =
   "h-10 rounded-[var(--radius-controllo)] px-4 text-piccolo font-semibold text-ink-600 hover:bg-surface-alt";
@@ -378,7 +378,7 @@ export default function PaginaRichieste() {
           })}
 
           {!elenco.length ? (
-            <li className="px-6 py-12 text-center text-corrente text-ink-500">
+            <li className="px-5 py-10 text-center text-corrente text-ink-500">
               {filtro === "da_programmare"
                 ? "Niente in attesa: ogni richiesta ha già un tecnico e un orario."
                 : filtro === "programmata"

@@ -141,7 +141,7 @@ export default function SchedaIntervento() {
       </div>
 
       {/* --------------------------------------------- dove e da chi */}
-      <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+      <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
         <TitoloPannello testo="Dove e da chi" />
         <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <Riga icona="Users" etichetta="Cliente">
@@ -208,7 +208,7 @@ export default function SchedaIntervento() {
 
       {/* ------------------------------------ programmato: si comincia */}
       {i.stato === "programmato" ? (
-        <div className="mt-4 rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+        <div className="mt-4 rounded-[var(--radius-scheda)] border border-line bg-white p-5">
           <TitoloPannello
             testo="Il rapportino"
             nota="Il tecnico apre l'intervento dal telefono quando arriva sul posto."
@@ -227,8 +227,8 @@ export default function SchedaIntervento() {
 
       {/* ------------------------------------- in corso: il rapportino */}
       {i.stato === "in_corso" ? (
-        <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-          <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+        <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+          <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
             <TitoloPannello
               testo="Rapportino"
               nota="Si compila mentre si lavora: ore, ricambi, note, foto e firma."
@@ -273,7 +273,7 @@ export default function SchedaIntervento() {
                         onClick={() => togliMateriale(indice)}
                         title="Togli dal rapportino"
                         aria-label={`Togli dal rapportino: ${m.nome}`}
-                        className="flex size-7 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] text-ink-500 hover:bg-surface-alt hover:text-critico"
+                        className="flex size-7 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] text-ink-500 hover:bg-surface-alt hover:text-red-700"
                       >
                         <Icona misura="sm" nome="X" className="size-3.5" />
                       </button>
@@ -312,7 +312,7 @@ export default function SchedaIntervento() {
                   type="button"
                   onClick={aggiungiMateriale}
                   data-comando
-                  className="h-11 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
+                  className="h-11 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
                 >
                   Aggiungi
                 </button>
@@ -372,7 +372,7 @@ export default function SchedaIntervento() {
 
           {/* -------------------------------- conto che si aggiorna */}
           <div>
-            <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+            <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
               <TitoloPannello testo="Il conto" nota="Si aggiorna mentre compili il rapportino." />
               <RiepilogoCosti intervento={i} />
               <button
@@ -400,8 +400,8 @@ export default function SchedaIntervento() {
 
       {/* ------------------------------------- chiuso: sola lettura */}
       {i.stato === "chiuso" ? (
-        <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-          <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+        <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+          <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
             <TitoloPannello
               testo="Rapportino"
               nota="Compilato dal tecnico sul posto. Resta com'è: fa fede."
@@ -441,11 +441,11 @@ export default function SchedaIntervento() {
           </div>
 
           <div>
-            <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+            <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
               <TitoloPannello testo="Il conto" />
               <RiepilogoCosti intervento={i} />
               {i.fatturato ? (
-                <p className="mt-5 flex items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-50 px-3 py-2.5 text-corrente font-semibold text-brand-700">
+                <p className="mt-5 flex items-center gap-2 rounded-[var(--radius-controllo)] bg-violet-50 px-3 py-2.5 text-corrente font-semibold text-violet-800">
                   <Icona misura="sm" nome="FileStack" className="size-4" />
                   Già fatturato
                 </p>

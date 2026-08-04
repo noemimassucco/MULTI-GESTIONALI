@@ -42,7 +42,7 @@ function ComandiRiga({ gestionale }) {
         <p
           className={cn(
             "basis-full text-right text-mini font-medium",
-            esito.ok ? "text-brand-700" : "text-critico",
+            esito.ok ? "text-brand-700" : "text-red-600",
           )}
         >
           {esito.messaggio}
@@ -195,7 +195,7 @@ export default function ElencoGestionali({ gestionali, categorie, basi = [] }) {
               className={cn(
                 "h-9 rounded-full px-3 text-piccolo font-medium transition-colors",
                 f.valore === stato
-                  ? "bg-brand-700 text-white"
+                  ? "bg-ink-900 text-white"
                   : "bg-white text-ink-600 ring-1 ring-inset ring-line hover:bg-surface-alt",
               )}
             >

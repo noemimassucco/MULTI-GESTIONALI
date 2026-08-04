@@ -99,7 +99,7 @@ export default function ModuloCategoria({ categoria }) {
             <p
               className={cn(
                 "text-piccolo font-medium",
-                esito.ok ? "text-brand-700" : "text-critico",
+                esito.ok ? "text-brand-700" : "text-red-600",
               )}
             >
               {esito.messaggio}

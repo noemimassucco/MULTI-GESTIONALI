@@ -10,10 +10,10 @@ export default function GestionaleCard({ gestionale, categoria, base }) {
   const { slug, nome, sottotitolo, funzioni, demoDisponibile } = gestionale;
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-[var(--radius-scheda)] border border-line bg-white transition-colors duration-200 hover:border-brand-300">
+    <article className="group relative flex flex-col overflow-hidden rounded-[var(--radius-scheda)] border border-line bg-white transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-[var(--shadow-lift)]">
       {/* Anteprima grafica: schema astratto di una schermata, non uno screenshot finto */}
       <div
-        className="relative h-[128px] overflow-hidden border-b border-line"
+        className="relative h-[104px] overflow-hidden border-b border-line"
         style={{ background: categoria ? `var(--cat-${categoria.colore}-bg)` : "var(--cat-blu-bg)" }}
       >
         <div className="absolute inset-0 flex items-center gap-2 p-4 opacity-70">
@@ -41,7 +41,7 @@ export default function GestionaleCard({ gestionale, categoria, base }) {
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-5">
         <div className="flex flex-wrap items-center gap-1.5">
           {categoria ? (
             <Pastiglia colore={categoria.colore}>{categoria.nome}</Pastiglia>
@@ -52,14 +52,14 @@ export default function GestionaleCard({ gestionale, categoria, base }) {
           </Pastiglia>
         </div>
 
-        <h3 className="mt-4 text-guida leading-snug">
+        <h3 className="mt-3 text-guida font-semibold leading-snug">
           <Link href={`/gestionali/${slug}`} className="after:absolute after:inset-0">
             {nome}
           </Link>
         </h3>
-        <p className="mt-2.5 line-clamp-2 text-corrente leading-relaxed text-ink-600">{sottotitolo}</p>
+        <p className="mt-2 line-clamp-2 text-corrente leading-relaxed text-ink-500">{sottotitolo}</p>
 
-        <ul className="mt-5 flex flex-wrap gap-1.5">
+        <ul className="mt-4 flex flex-wrap gap-1.5">
           {funzioni.slice(0, 5).map((f) => (
             <li
               key={f}
@@ -75,7 +75,7 @@ export default function GestionaleCard({ gestionale, categoria, base }) {
           ) : null}
         </ul>
 
-        <div className="mt-6 flex items-center justify-between gap-2 border-t border-line-soft pt-5">
+        <div className="mt-5 flex items-center justify-between gap-2 border-t border-line-soft pt-4">
           <span className="inline-flex items-center gap-1.5 text-piccolo font-semibold text-brand-700">
             Scopri
             <Icona misura="sm"
@@ -84,7 +84,7 @@ export default function GestionaleCard({ gestionale, categoria, base }) {
             />
           </span>
           {demoDisponibile ? (
-            <span className="inline-flex items-center gap-1.5 text-piccolo font-medium text-accento-600">
+            <span className="inline-flex items-center gap-1.5 text-piccolo font-medium text-emerald-700">
               <Icona misura="sm" nome="PlayCircle" />
               Demo disponibile
             </span>

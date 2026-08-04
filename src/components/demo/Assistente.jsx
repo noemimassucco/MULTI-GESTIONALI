@@ -15,13 +15,13 @@ const PESO = { alta: 0, media: 1, info: 2 };
 const TONI = {
   alta: {
     icona: "AlertTriangle",
-    riquadro: "bg-[#f8efec] text-critico",
-    valore: "text-critico",
+    riquadro: "bg-red-50 text-red-700",
+    valore: "text-red-700",
   },
   media: {
     icona: "Clock",
-    riquadro: "bg-accento-50 text-accento-600",
-    valore: "text-accento-600",
+    riquadro: "bg-sole-100 text-amber-700",
+    valore: "text-amber-700",
   },
   info: {
     icona: "Sparkles",
@@ -34,16 +34,16 @@ const TONI = {
 function RigaAvviso({ avviso }) {
   const tono = TONI[avviso.gravita] || TONI.info;
   return (
-    <li className="flex flex-wrap items-start gap-x-5 gap-y-2 px-6 py-5">
+    <li className="flex flex-wrap items-start gap-x-4 gap-y-2 px-4 py-4 sm:px-5">
       <span
-        className={`mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] ${tono.riquadro}`}
+        className={`mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] ${tono.riquadro}`}
       >
         <Icona misura="sm" nome={tono.icona} className="size-4" />
       </span>
 
       <div className="min-w-0 flex-1">
-        <p className="text-corrente font-semibold text-ink-900">{avviso.titolo}</p>
-        <p className="mt-1.5 text-piccolo leading-relaxed text-ink-600">{avviso.testo}</p>
+        <p className="text-corrente font-bold text-ink-900">{avviso.titolo}</p>
+        <p className="mt-1 text-piccolo leading-relaxed text-ink-600">{avviso.testo}</p>
         {avviso.azione ? (
           <Link
             href={avviso.azione.href}
@@ -56,7 +56,7 @@ function RigaAvviso({ avviso }) {
       </div>
 
       {avviso.valore ? (
-        <span className={`cifre ml-auto shrink-0 text-t3 font-extrabold leading-none ${tono.valore}`}>
+        <span className={`ml-auto shrink-0 text-t3 font-bold leading-none ${tono.valore}`}>
           {avviso.valore}
         </span>
       ) : null}
@@ -77,11 +77,11 @@ export default function Assistente({ regole = [] }) {
     .sort((a, b) => (PESO[a.gravita] ?? 2) - (PESO[b.gravita] ?? 2));
 
   return (
-    <section className="mt-5 overflow-hidden rounded-[var(--radius-scheda)] border border-line bg-white">
-      <header className="border-b border-line-soft px-6 py-5">
-        <p className="occhiello text-accento-600">Assistente</p>
-        <h2 className="mt-2.5 text-t3">L&apos;assistente ha notato</h2>
-        <p className="mt-2 max-w-2xl text-piccolo leading-relaxed text-ink-500">
+    <section className="mt-4 rounded-[var(--radius-scheda)] border border-line bg-white">
+      <header className="border-b border-line-soft px-4 py-4 sm:px-5">
+        <p className="occhiello text-brand-700">Suggerimenti</p>
+        <h2 className="mt-1 text-t3 font-bold text-ink-900">L&apos;assistente ha notato</h2>
+        <p className="mt-1 max-w-2xl text-piccolo leading-relaxed text-ink-500">
           Nessuno ha chiesto niente: sono cose che il gestionale vede da solo guardando i tuoi dati.
         </p>
       </header>
@@ -93,7 +93,7 @@ export default function Assistente({ regole = [] }) {
           ))}
         </ul>
       ) : (
-        <div className="flex items-center gap-3 px-6 py-7">
+        <div className="flex items-center gap-3 px-4 py-6 sm:px-5">
           <span className="flex size-8 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] bg-brand-50 text-brand-700">
             <Icona misura="sm" nome="CheckCircle2" className="size-4" />
           </span>
@@ -103,7 +103,7 @@ export default function Assistente({ regole = [] }) {
         </div>
       )}
 
-      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-line-soft bg-surface-alt px-6 py-4">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-line-soft bg-surface-alt px-4 py-3 sm:px-5">
         <p className="text-mini text-ink-500">
           Questi suggerimenti nascono da regole scritte sul tuo modo di lavorare: si aggiungono e si
           tolgono.

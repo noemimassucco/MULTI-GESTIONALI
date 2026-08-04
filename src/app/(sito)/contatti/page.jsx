@@ -100,7 +100,7 @@ export default function PaginaContatti() {
                   Le demo online sono in preparazione. Nel frattempo te lo mostro io in
                   videochiamata, sul tuo settore, in venti minuti.
                 </p>
-                <div className="mt-5">
+                <div className="mt-4">
                   <Bottone href="/richiedi" variante="secondario" misura="sm">
                     Chiedi una dimostrazione
                   </Bottone>

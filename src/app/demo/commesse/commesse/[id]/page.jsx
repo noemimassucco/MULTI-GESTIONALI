@@ -32,7 +32,7 @@ function TitoloPannello({ testo, nota, children }) {
 
 function Pannello({ children }) {
   return (
-    <section className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+    <section className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
       {children}
     </section>
   );
@@ -122,7 +122,7 @@ export default function SchedaCommessa() {
       {/* -------------------------------------------------------- conti */}
       <RiepilogoCommessa conti={conti} />
 
-      <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+      <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
         {/* -------------------------------------------------- le fasi */}
         <Pannello>
           <TitoloPannello
@@ -180,7 +180,7 @@ export default function SchedaCommessa() {
               <dt className="text-corrente font-bold text-ink-900">Da mettere in un SAL</dt>
               <dd
                 className={`text-testo font-bold tabular-nums ${
-                  conti.daFatturare > 0 ? "text-accento-600" : "text-brand-700"
+                  conti.daFatturare > 0 ? "text-amber-700" : "text-brand-700"
                 }`}
               >
                 {euro(conti.daFatturare)}
@@ -212,7 +212,7 @@ export default function SchedaCommessa() {
                     </span>
                     <span
                       className={`block text-mini font-semibold ${
-                        q.fatturato ? "text-brand-700" : "text-accento-600"
+                        q.fatturato ? "text-brand-700" : "text-amber-700"
                       }`}
                     >
                       {q.fatturato ? "fatturato" : "da fatturare"}
@@ -238,7 +238,7 @@ export default function SchedaCommessa() {
       </div>
 
       {/* ----------------------------------------------------- varianti */}
-      <div className="mt-5">
+      <div className="mt-4">
         <Pannello>
           <TitoloPannello
             testo="Varianti"
@@ -282,7 +282,7 @@ export default function SchedaCommessa() {
         </Pannello>
       </div>
 
-      <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
+      <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* ----------------------------------------------------- ore */}
         <Pannello>
           <TitoloPannello
@@ -358,7 +358,7 @@ export default function SchedaCommessa() {
                       {euro(a.importo)}
                     </span>
                     {!a.fattura ? (
-                      <span className="block text-mini font-semibold text-accento-600">
+                      <span className="block text-mini font-semibold text-amber-700">
                         senza fattura
                       </span>
                     ) : null}
@@ -376,7 +376,7 @@ export default function SchedaCommessa() {
       </div>
 
       {/* --------------------------------------------------- documenti */}
-      <div className="mt-5">
+      <div className="mt-4">
         <Pannello>
           <TitoloPannello
             testo="Documenti del cantiere"

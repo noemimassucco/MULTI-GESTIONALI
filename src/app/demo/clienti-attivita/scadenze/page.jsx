@@ -14,8 +14,8 @@ import Icona from "@/components/ui/Icona";
 
 const TIPI = {
   adempimento: { testo: "Adempimento", classi: "bg-brand-50 text-brand-800 ring-brand-100" },
-  pagamento: { testo: "Pagamento", classi: "bg-accento-50 text-accento-700 ring-accento-100" },
-  rinnovo: { testo: "Rinnovo", classi: "bg-brand-50 text-brand-700 ring-brand-100" },
+  pagamento: { testo: "Pagamento", classi: "bg-sole-100 text-[#7a5c05] ring-sole-200" },
+  rinnovo: { testo: "Rinnovo", classi: "bg-violet-50 text-violet-800 ring-violet-200" },
 };
 
 const oggiIso = () => new Date().toISOString().slice(0, 10);
@@ -103,7 +103,7 @@ function ModuloNuovaScadenza({ clienti, onSalva, onAnnulla }) {
         </button>
         <button
           type="submit"
-          className="h-10 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
+          className="h-10 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
         >
           Salva scadenza
         </button>
@@ -152,7 +152,7 @@ function RigaScadenza({ scadenza, nomeCliente, onAlterna }) {
 function GruppoScadenze({ titolo, voci, vuoto, nomeCliente, aggiorna }) {
   return (
     <section className="rounded-[var(--radius-scheda)] border border-line bg-white">
-      <header className="border-b border-line-soft px-6 py-4">
+      <header className="border-b border-line-soft px-5 py-3.5">
         <h2 className="text-testo font-bold text-ink-900">
           {titolo}
           {voci.length ? (
@@ -210,7 +210,7 @@ export default function PaginaScadenze() {
           type="button"
           onClick={() => setModaleAperta(true)}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
         >
           <Icona misura="sm" nome="Clock" className="size-3.5" />
           Nuova scadenza

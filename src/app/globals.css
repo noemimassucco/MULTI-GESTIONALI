@@ -5,160 +5,122 @@
    Tutto quello che riguarda misure, colori e caratteri sta qui dentro.
    Nessun valore arbitrario nei componenti: se serve una misura nuova,
    si aggiunge prima qui.
-
-   Direzione: carta avorio, verde petrolio profondo, grigi caldi.
-   La terracotta compare pochissimo, e proprio per questo si vede.
-   Niente colori saturi: l'autorevolezza sta nel contrasto e nello
-   spazio, non nella tinta.
    ===================================================================== */
 
 @theme {
-  /* ---- Verde petrolio: il colore dell'azienda ----
-     Il 700 è #0f3d2e, il verde dello schema: barre laterali, bande scure,
-     comandi principali. Gli altri gradini nascono da lì. */
-  --color-brand-50: #e8f0ec; /* verde chiaro dello schema */
-  --color-brand-100: #d3e3db;
-  --color-brand-200: #adc9bd;
-  --color-brand-300: #7ea79a;
-  --color-brand-400: #4f8474;
-  --color-brand-500: #2c6252;
-  --color-brand-600: #1a4c3a;
-  --color-brand-700: #0f3d2e; /* verde petrolio dello schema */
-  --color-brand-800: #0b3025;
-  --color-brand-900: #08251d;
-  --color-brand-950: #061c16;
+  /* ---- Marchio ---- */
+  --color-brand-50: #edf5f0;
+  --color-brand-100: #d8eae0;
+  --color-brand-200: #b4d6c5;
+  --color-brand-300: #8abea5;
+  --color-brand-400: #57a281;
+  --color-brand-500: #2e8862;
+  --color-brand-600: #0f6b4f;
+  --color-brand-700: #0b5840;
+  --color-brand-800: #094734;
+  --color-brand-900: #063528;
 
-  /* ---- Terracotta: il 500 è #c86a44, quello dello schema ---- */
-  --color-accento-50: #fbf2ee;
-  --color-accento-100: #f6e2d8;
-  --color-accento-200: #eec7b4;
-  --color-accento-300: #e0a184;
-  --color-accento-400: #d68360;
-  --color-accento-500: #c86a44; /* terracotta dello schema */
-  --color-accento-600: #ab5535;
-  --color-accento-700: #8a4429;
+  /* ---- Sole: giallo cantiere, la firma del marchio (CTA, linea prima/dopo) ---- */
+  --color-sole-50: #fff8e0;
+  --color-sole-100: #fff0c2;
+  --color-sole-200: #ffe59a;
+  --color-sole-300: #ffd86b;
+  --color-sole-400: #ffd052;
+  --color-sole-500: #ffc93d;
+  --color-sole-600: #f0b424;
+  --color-sole-700: #d89c12;
 
-  /* ---- Alias in uscita ----
-     Il giallo "sole" della versione precedente non fa più parte della
-     palette. I nomi restano finché tutte le schermate non sono passate
-     alla terracotta, così niente si rompe per strada: puntano già ai
-     nuovi valori. Da togliere quando `sole-` non compare più. */
-  --color-sole-50: #fbf2ee;
-  --color-sole-100: #f6e2d8;
-  --color-sole-200: #eec7b4;
-  --color-sole-300: #e0a184;
-  --color-sole-400: #d68360;
-  --color-sole-500: #c86a44;
-  --color-sole-600: #ab5535;
-  --color-sole-700: #8a4429;
-
-  /* ---- Grigi ----
-     Il 900 è #1f2937, il grigio scuro dello schema; i gradini sotto
-     scendono dalla stessa famiglia. */
-  --color-ink-900: #1f2937; /* grigio scuro dello schema */
-  --color-ink-800: #2f3a48;
-  --color-ink-700: #414d5c;
-  --color-ink-600: #566172;
-  --color-ink-500: #5b6577;
-  --color-ink-400: #66707f; /* note e icone: sotto al testo, ma leggibile */
-  --color-ink-300: #b6c2bd; /* solo su fondi scuri */
-
-  /* ---- Superfici e linee ----
-     I bordi sono appena percepibili: separano senza disegnare. */
-  --color-line: #e5e7eb; /* grigio chiaro dello schema */
-  --color-line-soft: #eef0f2;
+  /* ---- Neutri ---- */
+  --color-ink-900: #14201b;
+  --color-ink-800: #22312a;
+  --color-ink-700: #33423a;
+  --color-ink-600: #49584f;
+  --color-ink-500: #5c6b61;
+  --color-ink-400: #616b78;
+  --color-ink-300: #afbfb4; /* solo su fondi scuri */
+  --color-line: #e5e2d8;
+  --color-line-soft: #f0ede4;
   --color-surface: #ffffff;
-  --color-surface-alt: #faf7f2; /* l'avorio dello schema: il fondo di tutto */
-  --color-surface-blue: #f4f0e8; /* carta un tono più profondo */
+  --color-surface-alt: #f8f7f2;
+  --color-surface-blue: #f6f3eb; /* "carta": il fondo caldo delle testate */
 
   /* ---- Stati ---- */
-  --color-positivo: #1a7a4f;
-  --color-attenzione: #a15a1e;
-  --color-critico: #c0392b;
+  --color-positivo: #15803d;
+  --color-attenzione: #b45309;
+  --color-critico: #b91c1c;
 
-  /* ---- Caratteri ----
-     Playfair per i titoli: è quello che dà l'idea del progetto pensato.
-     Inter per tutto il testo. Manrope solo per i numeri, che hanno
-     bisogno di cifre della stessa larghezza. */
-  --font-sans: "Manrope Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Playfair Display Variable", Georgia, "Times New Roman", serif;
-  --font-cifre: "Manrope Variable", "Inter Variable", ui-sans-serif, sans-serif;
+  /* ---- Caratteri ---- */
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
-  /* ---- Scala tipografica ----
-     I nomi dicono il ruolo, non la misura. Interlinee più larghe di
-     prima: il testo deve respirare quanto il resto. */
-  --text-micro: 0.6875rem; /* 11   etichette maiuscolette */
-  --text-micro--line-height: 1.5;
-  --text-mini: 0.75rem; /* 12   tag, note piccole      */
-  --text-mini--line-height: 1.5;
-  --text-piccolo: 0.8125rem; /* 13   didascalie, meta       */
-  --text-piccolo--line-height: 1.6;
-  --text-corrente: 0.875rem; /* 14   interfaccia            */
-  --text-corrente--line-height: 1.6;
-  --text-testo: 1rem; /* 16   corpo del testo        */
-  --text-testo--line-height: 1.75;
-  --text-guida: 1.125rem; /* 18   sottotitoli, occhielli */
-  --text-guida--line-height: 1.7;
-  --text-t3: 1.375rem; /* 22   titoli di card         */
-  --text-t3--line-height: 1.4;
-  --text-t2: 1.625rem; /* 26   titoli di blocco       */
-  --text-t2--line-height: 1.3;
-  --text-t1: 2.125rem; /* 34   titoli di sezione      */
-  --text-t1--line-height: 1.2;
-  --text-titolo: 2.75rem; /* 44   titoli di pagina       */
-  --text-titolo--line-height: 1.14;
-  --text-mega: 3.25rem; /* 52   testata                */
-  --text-mega--line-height: 1.1;
-  --text-eroe: 4.25rem; /* 68   home                   */
-  --text-eroe--line-height: 1.06;
+  /* ---- Scala tipografica: 10 gradini, nient'altro ----
+     I nomi dicono il ruolo, non la misura. */
+  --text-micro: 0.6875rem;        /* 11   etichette maiuscolette */
+  --text-micro--line-height: 1.45;
+  --text-mini: 0.75rem;           /* 12   tag, note piccole      */
+  --text-mini--line-height: 1.4;
+  --text-piccolo: 0.8125rem;      /* 13   didascalie, meta       */
+  --text-piccolo--line-height: 1.5;
+  --text-corrente: 0.875rem;      /* 14   interfaccia            */
+  --text-corrente--line-height: 1.55;
+  --text-testo: 1rem;             /* 16   corpo del testo        */
+  --text-testo--line-height: 1.65;
+  --text-guida: 1.125rem;         /* 18   sottotitoli, occhielli */
+  --text-guida--line-height: 1.6;
+  --text-t3: 1.25rem;             /* 20   titoli di card         */
+  --text-t3--line-height: 1.35;
+  --text-t2: 1.5rem;              /* 24   titoli di blocco       */
+  --text-t2--line-height: 1.25;
+  --text-t1: 1.875rem;            /* 30   titoli di sezione      */
+  --text-t1--line-height: 1.18;
+  --text-titolo: 2.25rem;         /* 36   titoli di pagina       */
+  --text-titolo--line-height: 1.12;
+  --text-mega: 2.75rem;           /* 44   testata                */
+  --text-mega--line-height: 1.08;
+  --text-eroe: 3.375rem;          /* 54   home                   */
+  --text-eroe--line-height: 1.04;
 
-  /* ---- Raggi: due soli valori ---- */
-  --radius-controllo: 0.5rem; /*  8  bottoni, campi, tag piccoli */
-  --radius-scheda: 0.75rem; /* 12  card, pannelli, immagini    */
+  /* ---- Raggi: tre soli valori ---- */
+  --radius-controllo: 0.5rem;  /*  8  bottoni, campi, tag piccoli */
+  --radius-scheda: 1rem;       /* 16  card, pannelli, immagini    */
 
-  /* ---- Ombre: quasi invisibili ----
-     Servono a staccare di un capello, non a fare volume. */
-  --shadow-soft: 0 1px 2px rgba(28, 26, 22, 0.03);
-  --shadow-lift: 0 1px 3px rgba(28, 26, 22, 0.04), 0 14px 32px rgba(28, 26, 22, 0.06);
-  --shadow-brand: 0 10px 26px rgba(35, 79, 69, 0.16);
+  /* ---- Ombre ---- */
+  --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
+  --shadow-lift: 0 2px 4px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.08);
+  --shadow-brand: 0 6px 18px rgba(240, 180, 36, 0.3);
 }
 
 /* ---- Misure fisse dell'impaginato ---- */
 :root {
-  --contenitore: 1240px; /* larghezza massima del contenuto */
-  --margine: 22px; /* respiro laterale su mobile      */
-  --margine-lg: 40px; /* respiro laterale da tablet in su*/
-  --barra: 76px; /* altezza della barra in alto     */
-  --rail: 76px; /* colonna icone (solo da 2xl)     */
-
-  /* Ritmo verticale delle sezioni: tre passi, e sono questi */
-  --sezione: 72px;
-  --sezione-lg: 116px;
+  --contenitore: 1200px;   /* larghezza massima del contenuto */
+  --margine: 20px;         /* respiro laterale su mobile      */
+  --margine-lg: 32px;      /* respiro laterale da tablet in su*/
+  --barra: 68px;           /* altezza della barra in alto     */
+  --rail: 76px;            /* colonna icone (solo da 2xl)     */
 
   /* Altezze dei controlli: tre, e sono queste */
   --h-sm: 40px;
   --h-md: 48px;
   --h-lg: 56px;
 
-  /* Colori delle categorie: dodici tinte spente, sorelle della palette.
-     Devono distinguersi fra loro senza urlare sopra l'avorio. */
-  --cat-blu: #2f5573;        --cat-blu-bg: #eef2f6;
-  --cat-ambra: #8a6320;      --cat-ambra-bg: #f7f2e6;
-  --cat-rosso: #9b4034;      --cat-rosso-bg: #f8efec;
-  --cat-verde: #3a6b4c;      --cat-verde-bg: #eef4ef;
-  --cat-viola: #5b4a75;      --cat-viola-bg: #f2f0f6;
-  --cat-rosa: #8e4560;       --cat-rosa-bg: #f7eff2;
-  --cat-ciano: #2c6470;      --cat-ciano-bg: #ecf3f4;
-  --cat-indaco: #414a75;     --cat-indaco-bg: #eff0f6;
-  --cat-lime: #5a6b2f;       --cat-lime-bg: #f2f4e8;
-  --cat-arancio: #96522a;    --cat-arancio-bg: #f8f1ea;
-  --cat-teal: #2b6459;       --cat-teal-bg: #ecf3f1;
-  --cat-fucsia: #7a4270;     --cat-fucsia-bg: #f5eff4;
+  /* Colori delle categorie: tinta piena + tinta tenue */
+  --cat-blu: #2563eb;      --cat-blu-bg: #eff6ff;
+  --cat-ambra: #b45309;    --cat-ambra-bg: #fffbeb;
+  --cat-rosso: #b91c1c;    --cat-rosso-bg: #fef2f2;
+  --cat-verde: #15803d;    --cat-verde-bg: #f0fdf4;
+  --cat-viola: #6d28d9;    --cat-viola-bg: #f5f3ff;
+  --cat-rosa: #be185d;     --cat-rosa-bg: #fdf2f8;
+  --cat-ciano: #0e7490;    --cat-ciano-bg: #ecfeff;
+  --cat-indaco: #4338ca;   --cat-indaco-bg: #eef2ff;
+  --cat-lime: #4d7c0f;     --cat-lime-bg: #f7fee7;
+  --cat-arancio: #c2410c;  --cat-arancio-bg: #fff7ed;
+  --cat-teal: #0f766e;     --cat-teal-bg: #f0fdfa;
+  --cat-fucsia: #a21caf;   --cat-fucsia-bg: #fdf4ff;
 
   /* Lato "prima" del confronto: carta vissuta e foglietti */
-  --carta-prima: #e9e2d4;
-  --foglietto-giallo: #f6edcf;
-  --foglietto-rosa: #f3ded7;
+  --carta-prima: #ece7da;
+  --foglietto-giallo: #fff6c4;
+  --foglietto-rosa: #ffe4e0;
 }
 
 /* Dentro @layer base, altrimenti queste regole batterebbero le utility:
@@ -166,50 +128,31 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--barra) + 20px);
+    scroll-padding-top: calc(var(--barra) + 16px);
   }
 
   body {
-    background: var(--color-surface-alt);
+    background: var(--color-surface);
     color: var(--color-ink-600);
     font-family: var(--font-sans);
     font-size: var(--text-testo);
-    line-height: 1.75;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden; /* rete di sicurezza contro gli sfondamenti */
   }
 
-  /* I titoli grandi sono in Playfair: alle misure alte va stretto,
-     alle misure piccole va lasciato stare. */
   h1,
-  h2 {
-    color: var(--color-ink-900);
-    font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.012em;
-    text-wrap: balance;
-  }
-
-  /* Titoli di lavoro: qui conta la chiarezza, non l'eleganza. */
+  h2,
   h3,
   h4 {
     color: var(--color-ink-900);
-    font-family: var(--font-sans);
-    font-weight: 600;
-    letter-spacing: -0.011em;
+    font-family: var(--font-display);
+    letter-spacing: -0.028em;
     text-wrap: balance;
   }
 
   p {
     text-wrap: pretty;
-  }
-
-  /* Le cifre non ballano mai: stessa larghezza, sempre. */
-  .cifre {
-    font-family: var(--font-cifre);
-    font-feature-settings: "tnum" 1;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.02em;
   }
 }
 
@@ -228,32 +171,12 @@
   display: none;
 }
 
-/* Dentro il gestionale i titoli sono in Manrope, non in Playfair: là si
-   lavora, e un carattere da rivista sopra una tabella distrae. Il serif
-   resta la voce del sito pubblico. */
-.app h1,
-.app h2 {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  letter-spacing: -0.022em;
-}
-
 /* Etichetta maiuscoletta: un solo posto, un solo stile */
 .occhiello {
   font-size: var(--text-micro);
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-}
-
-/* Filetto sottile sotto un occhiello, come nelle testate dei giornali */
-.filetto::after {
-  content: "";
-  display: block;
-  width: 34px;
-  height: 2px;
-  margin-top: 14px;
-  background: var(--color-accento-500);
 }
 
 /* Bersagli tattili: su mobile nessun comando scende sotto i 44px */

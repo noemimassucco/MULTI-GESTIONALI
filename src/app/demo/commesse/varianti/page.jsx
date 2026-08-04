@@ -103,7 +103,7 @@ export default function PaginaVarianti() {
           type="button"
           onClick={() => setModuloAperto(true)}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-accento-500 px-4 text-piccolo font-semibold text-ink-900 hover:bg-accento-400"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-sole-500 px-4 text-piccolo font-semibold text-ink-900 hover:bg-sole-400"
         >
           <Icona misura="sm" nome="Plus" className="size-3.5" />
           Nuova variante
@@ -112,15 +112,15 @@ export default function PaginaVarianti() {
 
       {/* ------------------------------------------- il buco, spiegato */}
       {scoperte.length ? (
-        <div className="mb-5 rounded-[var(--radius-scheda)] border border-[#f2d9d6] bg-[#fbeceb] p-5">
+        <div className="mb-5 rounded-[var(--radius-scheda)] border border-red-200 bg-red-50 p-5">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="min-w-0">
-              <h2 className="text-corrente font-bold text-critico">
+              <h2 className="text-corrente font-bold text-red-900">
                 {scoperte.length === 1
                   ? "Un lavoro è già stato eseguito senza approvazione"
                   : `${scoperte.length} lavori sono già stati eseguiti senza approvazione`}
               </h2>
-              <p className="mt-1.5 max-w-2xl text-corrente leading-relaxed text-critico">
+              <p className="mt-1.5 max-w-2xl text-corrente leading-relaxed text-red-800">
                 In cantiere si trova l&apos;imprevisto, si risolve e si va avanti: è il mestiere. Il
                 problema è dopo, quando bisogna farselo pagare e non c&apos;è niente di scritto.
                 Questi lavori vi sono costati {euro(costoScoperto)} in ore e materiali, e a oggi
@@ -128,10 +128,10 @@ export default function PaginaVarianti() {
               </p>
             </div>
             <div className="shrink-0 text-right">
-              <p className="text-t1 font-bold leading-none text-critico">
+              <p className="text-t1 font-bold leading-none text-red-800">
                 {euro(valoreScoperto)}
               </p>
-              <p className="mt-1 text-mini font-medium text-critico">non esigibili</p>
+              <p className="mt-1 text-mini font-medium text-red-700">non esigibili</p>
             </div>
           </div>
         </div>
@@ -155,7 +155,7 @@ export default function PaginaVarianti() {
             <li
               key={v.id}
               className={`rounded-[var(--radius-scheda)] border bg-white p-5 ${
-                v.stato === "eseguita" ? "border-[#f2d9d6]" : "border-line"
+                v.stato === "eseguita" ? "border-red-200" : "border-line"
               }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
@@ -183,7 +183,7 @@ export default function PaginaVarianti() {
                   <p className="mt-1 text-mini text-ink-500">vi costa {euro(v.costoStimato)}</p>
                   <p
                     className={`mt-1 text-mini font-semibold ${
-                      v.importo - v.costoStimato > 0 ? "text-brand-700" : "text-critico"
+                      v.importo - v.costoStimato > 0 ? "text-brand-700" : "text-red-700"
                     }`}
                   >
                     {euro(v.importo - v.costoStimato)} di margine
@@ -251,7 +251,7 @@ export default function PaginaVarianti() {
         })}
 
         {!varianti.length ? (
-          <li className="rounded-[var(--radius-scheda)] border border-line bg-white px-6 py-12 text-center text-corrente text-ink-500">
+          <li className="rounded-[var(--radius-scheda)] border border-line bg-white px-5 py-10 text-center text-corrente text-ink-500">
             Nessuna variante registrata.
           </li>
         ) : null}

@@ -3,10 +3,7 @@ import { cn } from "@/lib/cn";
 /** Contenitore a larghezza massima: la stessa per ogni sezione di ogni pagina. */
 export function Contenitore({ className, children }) {
   return (
-    <div className={cn(
-        "mx-auto w-full max-w-[var(--contenitore)] px-[var(--margine)] lg:px-[var(--margine-lg)]",
-        className,
-      )}>
+    <div className={cn("mx-auto w-full max-w-[var(--contenitore)] px-5 lg:px-8", className)}>
       {children}
     </div>
   );
@@ -16,15 +13,13 @@ const sfondi = {
   bianco: "bg-white",
   alt: "bg-surface-alt",
   blu: "bg-surface-blue",
-  scuro: "bg-brand-900",
+  scuro: "bg-ink-900",
 };
 
-/* Il respiro verticale delle fasce. Largo di proposito: è lo spazio
-   vuoto a far sembrare progettata una pagina, non il numero di elementi. */
+/* Due sole misure di respiro verticale. */
 const respiri = {
-  normale: "py-[var(--sezione)] lg:py-[var(--sezione-lg)]",
-  stretto: "py-14 lg:py-20",
-  testata: "pt-14 pb-[var(--sezione)] lg:pt-20 lg:pb-[var(--sezione-lg)]",
+  normale: "py-10 lg:py-14",
+  testata: "py-10 lg:py-14",
 };
 
 /**
@@ -39,49 +34,29 @@ export function Sezione({ sfondo = "bianco", respiro = "normale", className, id,
   );
 }
 
-/**
- * Intestazione di sezione: occhiello, titolo, testo introduttivo.
- * Impaginata come l'apertura di un articolo: filetto sottile, titolo in
- * Playfair, un capoverso di respiro. Niente barre colorate.
- */
+/** Intestazione di sezione: occhiello, titolo, testo introduttivo. */
 export function TitoloSezione({
   occhiello,
   titolo,
   testo,
-  centrato = false,
+  centrato = true,
   chiaro = false,
   className,
 }) {
   return (
-    <div className={cn(centrato ? "mx-auto max-w-[46rem] text-center" : "max-w-[42rem]", className)}>
+    <div className={cn(centrato ? "mx-auto max-w-2xl text-center" : "max-w-2xl", className)}>
       {occhiello ? (
-        <p
-          className={cn(
-            "occhiello",
-            chiaro ? "text-accento-300" : "text-accento-600",
-          )}
-        >
+        <p className={cn("occhiello mb-3", chiaro ? "text-sole-300" : "text-brand-700")}>
           {occhiello}
         </p>
       ) : null}
-      <h2
-        className={cn(
-          "text-t1 lg:text-titolo",
-          occhiello ? "mt-5" : "",
-          chiaro && "text-white",
-        )}
-      >
-        {titolo}
-      </h2>
+      <h2 className={cn("text-t1 font-bold lg:text-titolo", chiaro && "text-white")}>{titolo}</h2>
+      <span
+        aria-hidden="true"
+        className={cn("mt-4 block h-1 w-12 rounded-full bg-sole-400", centrato && "mx-auto")}
+      />
       {testo ? (
-        <p
-          className={cn(
-            "mt-5 text-testo leading-relaxed",
-            chiaro ? "text-brand-100" : "text-ink-600",
-          )}
-        >
-          {testo}
-        </p>
+        <p className={cn("mt-4 text-testo", chiaro ? "text-ink-300" : "text-ink-500")}>{testo}</p>
       ) : null}
     </div>
   );

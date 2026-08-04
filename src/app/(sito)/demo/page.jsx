@@ -35,9 +35,9 @@ export default function PaginaDemo() {
 
           {/* Dichiarazione onesta sullo stato delle demo */}
           {pronte.length === 0 ? (
-            <div className="mt-8 flex max-w-2xl gap-3 rounded-[var(--radius-scheda)] border border-accento-200 bg-accento-50 p-4">
-              <Icona misura="md" nome="Clock" className="mt-0.5 shrink-0 text-accento-600" />
-              <p className="text-corrente leading-relaxed text-accento-700">
+            <div className="mt-8 flex max-w-2xl gap-3 rounded-[var(--radius-scheda)] border border-amber-200 bg-amber-50 p-4">
+              <Icona misura="md" nome="Clock" className="mt-0.5 shrink-0 text-amber-600" />
+              <p className="text-corrente leading-relaxed text-amber-900">
                 <strong className="font-semibold">Le demo non sono ancora online.</strong> Sto
                 costruendo la prima, quella della base &ldquo;Clienti e attività&rdquo;. Nel
                 frattempo, se vuoi vedere un gestionale vero al lavoro, scrivimi e te lo mostro in

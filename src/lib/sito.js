@@ -14,11 +14,10 @@ export const sito = {
 };
 
 /** Voci della barra di navigazione principale. */
-/* Etichette corte: nella barra si legge di sfuggita, e ogni parola in più
-   toglie respiro. I titoli distesi restano dentro le pagine. */
 export const navigazione = [
-  { href: "/gestionali", label: "Gestionali" },
-  { href: "/categorie", label: "Settori" },
+  { href: "/", label: "Home" },
+  { href: "/gestionali", label: "Tutti i gestionali" },
+  { href: "/categorie", label: "Categorie" },
   { href: "/come-funziona", label: "Come funziona" },
   { href: "/personalizzazioni", label: "Personalizzazioni" },
   { href: "/chi-sono", label: "Chi sono" },

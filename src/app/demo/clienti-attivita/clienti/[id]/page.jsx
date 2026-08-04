@@ -116,7 +116,7 @@ export default function SchedaCliente() {
       </div>
 
       {/* -------------------------------------------------------- note */}
-      <div className="mt-4 rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+      <div className="mt-4 rounded-[var(--radius-scheda)] border border-line bg-white p-5">
         <h2 className="mb-2 text-testo font-bold text-ink-900">Note</h2>
         <textarea
           key={cliente.id}

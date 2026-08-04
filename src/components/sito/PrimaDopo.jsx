@@ -46,7 +46,7 @@ function LatoPrima() {
         }}
       />
 
-      <span className="absolute left-4 top-4 rounded-full bg-ink-900/85 px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.1em] text-white">
+      <span className="absolute left-4 top-4 rounded-full bg-ink-900/80 px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.1em] text-white">
         Oggi, martedì · 7:30
       </span>
 
@@ -117,8 +117,8 @@ function LatoPrima() {
 
 /**
  * Prima/Dopo: a sinistra il lavoro com'è oggi, a destra lo stesso
- * martedì dentro il gestionale. La linea si trascina (mouse, dito o
- * frecce della tastiera).
+ * martedì dentro il gestionale. La linea gialla si trascina (mouse,
+ * dito o frecce della tastiera).
  */
 export default function PrimaDopo() {
   const [pct, setPct] = useState(46);
@@ -145,7 +145,7 @@ export default function PrimaDopo() {
       onPointerMove={(e) => inTrascinamento && aggiorna(e.clientX)}
       onPointerUp={() => setInTrascinamento(false)}
       onPointerCancel={() => setInTrascinamento(false)}
-      className="relative h-[420px] select-none overflow-hidden rounded-[var(--radius-scheda)] border border-line shadow-[var(--shadow-soft)] sm:h-[480px]"
+      className="relative h-[400px] select-none overflow-hidden rounded-[var(--radius-scheda)] border border-line shadow-[var(--shadow-lift)] sm:h-[460px]"
     >
       {/* PRIMA — sotto, sempre a piena larghezza */}
       <LatoPrima />
@@ -153,10 +153,10 @@ export default function PrimaDopo() {
       {/* DOPO — sopra, rivelato da destra */}
       <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pct}%)` }}>
         <div className="absolute inset-0 bg-surface-alt p-3 sm:p-5">
-          <span className="absolute right-4 top-4 z-10 rounded-full bg-brand-700 px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.1em] text-white">
+          <span className="absolute right-4 top-4 z-10 rounded-full bg-brand-600 px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.1em] text-white">
             Con il gestionale
           </span>
-          <div className="mx-auto h-full max-w-2xl overflow-hidden pt-10">
+          <div className="mx-auto h-full max-w-3xl overflow-hidden pt-8">
             <AnteprimaDashboard />
           </div>
         </div>
@@ -169,9 +169,9 @@ export default function PrimaDopo() {
         className="absolute inset-y-0 z-20 -ml-[22px] w-11 cursor-ew-resize touch-none"
         aria-hidden="true"
       >
-        <span className="absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 bg-accento-500" />
+        <span className="absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 bg-sole-500" />
         <span
-          className={`absolute left-1/2 top-1/2 flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-accento-500 text-white shadow-[0_4px_16px_rgba(0,0,0,0.2)] transition-transform ${
+          className={`absolute left-1/2 top-1/2 flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-sole-500 text-ink-900 shadow-[0_4px_16px_rgba(0,0,0,0.25)] transition-transform ${
             inTrascinamento ? "scale-110" : ""
           }`}
         >

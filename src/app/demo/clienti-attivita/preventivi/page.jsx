@@ -82,7 +82,7 @@ function ModuloNuovoPreventivo({ clienti, onSalva, onAnnulla }) {
         </button>
         <button
           type="submit"
-          className="h-10 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
+          className="h-10 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
         >
           Salva bozza
         </button>
@@ -117,7 +117,7 @@ function AzioniPreventivo({ preventivo, aggiorna }) {
         <button
           type="button"
           onClick={() => aggiorna("preventivi", preventivo.id, { stato: "rifiutato" })}
-          className="h-8 rounded-[var(--radius-controllo)] bg-white px-2.5 text-mini font-semibold text-critico ring-1 ring-inset ring-[#f2d9d6] transition-colors hover:bg-[#fbeceb]"
+          className="h-8 rounded-[var(--radius-controllo)] bg-white px-2.5 text-mini font-semibold text-red-800 ring-1 ring-inset ring-red-200 transition-colors hover:bg-red-50"
         >
           Rifiutato
         </button>
@@ -165,7 +165,7 @@ export default function PaginaPreventivi() {
           type="button"
           onClick={() => setModaleAperta(true)}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
         >
           <Icona misura="sm" nome="FileSpreadsheet" className="size-3.5" />
           Nuovo preventivo

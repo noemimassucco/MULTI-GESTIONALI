@@ -1,8 +1,5 @@
-/* Caratteri serviti dal sito, non da Google: il build non ha rete e in
-   più il sito non dipende da un dominio esterno per essere leggibile. */
 import "@fontsource-variable/inter";
-import "@fontsource-variable/playfair-display";
-import "@fontsource-variable/manrope";
+import "@fontsource-variable/archivo";
 import "./globals.css";
 import Avvisi from "@/components/ui/Avvisi";
 import { sito } from "@/lib/sito";
@@ -25,7 +22,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0e2420",
+  themeColor: "#14201b",
 };
 
 /** Radice: solo caratteri, stili globali e corpo pagina. La cornice del

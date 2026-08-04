@@ -106,7 +106,7 @@ export default function CatalogoFiltrato({ gestionali, categorie, basi, funziona
         </button>
 
         <div className={`${filtriAperti ? "block" : "hidden"} lg:block`}>
-          <div className="sticky top-[88px] space-y-6 rounded-[var(--radius-scheda)] border border-line bg-white p-6">
+          <div className="sticky top-[88px] space-y-6 rounded-[var(--radius-scheda)] border border-line bg-white p-5">
             <div>
               <label
                 htmlFor="ricerca"

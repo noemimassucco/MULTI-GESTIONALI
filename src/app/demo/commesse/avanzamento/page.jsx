@@ -53,7 +53,7 @@ export default function PaginaAvanzamento() {
         sottotitolo="Quello che è stato eseguito vale già dei soldi: qui si vede quanti, e quanti ne sono stati chiesti."
       />
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
         <KpiDemo
           etichetta="Prodotto non ancora richiesto"
           valore={euro(daFatturare)}
@@ -75,8 +75,8 @@ export default function PaginaAvanzamento() {
 
       {/* -------------------------------------- SAL già pronti da fatturare */}
       {salPronti.length ? (
-        <section className="mt-5 rounded-[var(--radius-scheda)] border border-accento-200 bg-white">
-          <header className="border-b border-line-soft bg-accento-50 px-6 py-4">
+        <section className="mt-4 rounded-[var(--radius-scheda)] border border-sole-200 bg-white">
+          <header className="border-b border-line-soft bg-sole-50 px-5 py-3.5">
             <h2 className="text-testo font-bold text-ink-900">
               Approvati e non ancora fatturati
             </h2>
@@ -90,7 +90,7 @@ export default function PaginaAvanzamento() {
               return (
                 <li
                   key={q.id}
-                  className="flex flex-wrap items-center gap-x-4 gap-y-2 px-6 py-4"
+                  className="flex flex-wrap items-center gap-x-4 gap-y-2 px-5 py-4"
                 >
                   <div className="min-w-0 flex-1">
                     <p className="text-corrente font-semibold text-ink-900">
@@ -120,8 +120,8 @@ export default function PaginaAvanzamento() {
       ) : null}
 
       {/* ----------------------------------------- cantiere per cantiere */}
-      <section className="mt-5 rounded-[var(--radius-scheda)] border border-line bg-white">
-        <header className="border-b border-line-soft px-6 py-4">
+      <section className="mt-4 rounded-[var(--radius-scheda)] border border-line bg-white">
+        <header className="border-b border-line-soft px-5 py-3.5">
           <h2 className="text-testo font-bold text-ink-900">Cantiere per cantiere</h2>
           <p className="mt-1 text-piccolo text-ink-500">
             La differenza fra quanto è stato prodotto e quanto è già stato chiesto al cliente.
@@ -130,7 +130,7 @@ export default function PaginaAvanzamento() {
 
         <ul className="divide-y divide-line-soft">
           {aperti.map(({ k, c }) => (
-            <li key={k.id} className="px-6 py-4">
+            <li key={k.id} className="px-5 py-4">
               <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                 <div className="min-w-0">
                   <Link
@@ -146,7 +146,7 @@ export default function PaginaAvanzamento() {
                     type="button"
                     onClick={() => setDaEmettere({ k, c })}
                     data-comando
-                    className="flex h-10 shrink-0 items-center gap-1.5 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
+                    className="flex h-10 shrink-0 items-center gap-1.5 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
                   >
                     <Icona misura="sm" nome="FileStack" className="size-3.5" />
                     Emetti SAL
@@ -185,7 +185,7 @@ export default function PaginaAvanzamento() {
                   <dt className="text-mini text-ink-500">Da chiedere</dt>
                   <dd
                     className={`text-corrente font-bold tabular-nums ${
-                      c.daFatturare > 0 ? "text-accento-600" : "text-brand-700"
+                      c.daFatturare > 0 ? "text-amber-700" : "text-brand-700"
                     }`}
                   >
                     {euro(c.daFatturare)}
@@ -196,7 +196,7 @@ export default function PaginaAvanzamento() {
           ))}
 
           {!aperti.length ? (
-            <li className="px-6 py-12 text-center text-corrente text-ink-500">
+            <li className="px-5 py-10 text-center text-corrente text-ink-500">
               Nessun cantiere in corso o consegnato.
             </li>
           ) : null}

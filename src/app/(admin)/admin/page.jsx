@@ -25,7 +25,7 @@ function dataOra(iso) {
 /** Riquadro con un numero grosso e una riga di spiegazione. */
 function Riquadro({ icona, etichetta, numero, nota }) {
   return (
-    <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
+    <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-4">
       <div className="flex items-center gap-2 text-ink-500">
         <Icona misura="sm" nome={icona} className="text-ink-400" />
         <span className="text-mini font-semibold uppercase tracking-wide">{etichetta}</span>
@@ -126,14 +126,14 @@ export default async function PaginaRiepilogo() {
             ))}
           </ul>
         ) : (
-          <p className="px-6 py-12 text-center text-corrente text-ink-500">
+          <p className="px-4 py-10 text-center text-corrente text-ink-500">
             Non è ancora arrivata nessuna richiesta dal modulo del sito.
           </p>
         )}
       </section>
 
       {/* ------------------------------------------- modifiche in sospeso */}
-      <section className="mt-6 rounded-[var(--radius-scheda)] border border-line bg-white p-5">
+      <section className="mt-6 rounded-[var(--radius-scheda)] border border-line bg-white p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-testo font-bold text-ink-900">
             Modifiche non ancora committate: {modifiche}
