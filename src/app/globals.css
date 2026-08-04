@@ -9,30 +9,40 @@
 
 @theme {
   /* ---- Marchio ---- */
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
+  --color-brand-50: #edf5f0;
+  --color-brand-100: #d8eae0;
+  --color-brand-200: #b4d6c5;
+  --color-brand-300: #8abea5;
+  --color-brand-400: #57a281;
+  --color-brand-500: #2e8862;
+  --color-brand-600: #0f6b4f;
+  --color-brand-700: #0b5840;
+  --color-brand-800: #094734;
+  --color-brand-900: #063528;
+
+  /* ---- Sole: giallo cantiere, la firma del marchio (CTA, linea prima/dopo) ---- */
+  --color-sole-50: #fff8e0;
+  --color-sole-100: #fff0c2;
+  --color-sole-200: #ffe59a;
+  --color-sole-300: #ffd86b;
+  --color-sole-400: #ffd052;
+  --color-sole-500: #ffc93d;
+  --color-sole-600: #f0b424;
+  --color-sole-700: #d89c12;
 
   /* ---- Neutri ---- */
-  --color-ink-900: #0f172a;
-  --color-ink-800: #1e293b;
-  --color-ink-700: #334155;
-  --color-ink-600: #475569;
-  --color-ink-500: #5b6674; /* alzato: il precedente non passava il contrasto a 12px */
-  --color-ink-400: #667080;
-  --color-ink-300: #b9c2ce; /* solo su fondi scuri */
-  --color-line: #e2e8f0;
-  --color-line-soft: #eef2f7;
+  --color-ink-900: #14201b;
+  --color-ink-800: #22312a;
+  --color-ink-700: #33423a;
+  --color-ink-600: #49584f;
+  --color-ink-500: #5c6b61;
+  --color-ink-400: #66766b;
+  --color-ink-300: #afbfb4; /* solo su fondi scuri */
+  --color-line: #e5e2d8;
+  --color-line-soft: #f0ede4;
   --color-surface: #ffffff;
-  --color-surface-alt: #f8fafc;
-  --color-surface-blue: #f5f8ff;
+  --color-surface-alt: #f8f7f2;
+  --color-surface-blue: #f6f3eb; /* "carta": il fondo caldo delle testate */
 
   /* ---- Stati ---- */
   --color-positivo: #15803d;
@@ -41,7 +51,7 @@
 
   /* ---- Caratteri ---- */
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Plus Jakarta Sans Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
   /* ---- Scala tipografica: 10 gradini, nient'altro ----
      I nomi dicono il ruolo, non la misura. */
@@ -77,7 +87,7 @@
   /* ---- Ombre ---- */
   --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
   --shadow-lift: 0 2px 4px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.08);
-  --shadow-brand: 0 6px 20px rgba(37, 99, 235, 0.2);
+  --shadow-brand: 0 6px 18px rgba(240, 180, 36, 0.3);
 }
 
 /* ---- Misure fisse dell'impaginato ---- */
@@ -106,6 +116,11 @@
   --cat-arancio: #c2410c;  --cat-arancio-bg: #fff7ed;
   --cat-teal: #0f766e;     --cat-teal-bg: #f0fdfa;
   --cat-fucsia: #a21caf;   --cat-fucsia-bg: #fdf4ff;
+
+  /* Lato "prima" del confronto: carta vissuta e foglietti */
+  --carta-prima: #ece7da;
+  --foglietto-giallo: #fff6c4;
+  --foglietto-rosa: #ffe4e0;
 }
 
 /* Dentro @layer base, altrimenti queste regole batterebbero le utility:
@@ -132,7 +147,7 @@
   h4 {
     color: var(--color-ink-900);
     font-family: var(--font-display);
-    letter-spacing: -0.022em;
+    letter-spacing: -0.028em;
     text-wrap: balance;
   }
 

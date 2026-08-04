@@ -36,14 +36,14 @@ function Grafico() {
     <svg viewBox={`0 0 ${larghezza} ${altezza}`} className="h-full w-full" aria-hidden="true">
       <defs>
         <linearGradient id="riempimento" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.18" />
-          <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+          <stop offset="0%" stopColor="#0f6b4f" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="#0f6b4f" stopOpacity="0" />
         </linearGradient>
       </defs>
       <path d={area} fill="url(#riempimento)" />
-      <path d={linea} fill="none" stroke="#2563eb" strokeWidth="2.2" strokeLinecap="round" />
+      <path d={linea} fill="none" stroke="#0f6b4f" strokeWidth="2.2" strokeLinecap="round" />
       {coord.slice(-1).map(([x, y]) => (
-        <circle key="ultimo" cx={x} cy={y} r="4" fill="#2563eb" stroke="white" strokeWidth="2.5" />
+        <circle key="ultimo" cx={x} cy={y} r="4" fill="#0f6b4f" stroke="white" strokeWidth="2.5" />
       ))}
     </svg>
   );
@@ -58,8 +58,8 @@ export default function AnteprimaDashboard() {
     <div className="overflow-hidden rounded-[var(--radius-scheda)] border border-line bg-white shadow-[var(--shadow-lift)]">
       {/* barra superiore */}
       <div className="flex items-center gap-3 border-b border-line px-4 py-3">
-        <span className="flex size-7 items-center justify-center rounded-[var(--radius-controllo)] bg-brand-600">
-          <span className="size-3 rounded-[4px] border-[1.5px] border-white" />
+        <span className="flex size-7 items-center justify-center rounded-[var(--radius-controllo)] bg-sole-500">
+          <span className="size-3 rounded-[4px] border-[1.5px] border-ink-900" />
         </span>
         <span className="text-corrente font-semibold text-ink-900">Dashboard</span>
         <span className="ml-auto flex items-center gap-2">
@@ -77,13 +77,13 @@ export default function AnteprimaDashboard() {
 
       <div className="flex">
         {/* colonna icone */}
-        <div className="hidden w-11 shrink-0 flex-col items-center gap-2.5 border-r border-line py-4 sm:flex">
+        <div className="hidden w-11 shrink-0 flex-col items-center gap-2.5 bg-ink-900 py-4 sm:flex">
           {["LayoutGrid", "Users", "Clock", "FolderOpen", "MessageSquare", "Settings2"].map(
             (nome, i) => (
               <span
                 key={nome}
                 className={`flex size-7 items-center justify-center rounded-[var(--radius-controllo)] ${
-                  i === 0 ? "bg-brand-50 text-brand-600" : "text-ink-500"
+                  i === 0 ? "bg-white/10 text-sole-400" : "text-white/40"
                 }`}
               >
                 <Icona misura="md" nome={nome} />

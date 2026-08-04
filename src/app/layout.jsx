@@ -1,5 +1,5 @@
 import "@fontsource-variable/inter";
-import "@fontsource-variable/plus-jakarta-sans";
+import "@fontsource-variable/archivo";
 import "./globals.css";
 import { sito } from "@/lib/sito";
 import { getCategorieConGestionali, getGestionali } from "@/lib/catalogo";
@@ -25,7 +25,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#2563eb",
+  themeColor: "#14201b",
 };
 
 export default function RootLayout({ children }) {

@@ -35,7 +35,7 @@ export default function PaginaGestionali() {
             e cosa si può aggiungere per te.
           </p>
           {stat.inArrivo > 0 ? (
-            <p className="mt-3 text-piccolo text-ink-400">
+            <p className="mt-3 text-piccolo text-ink-500">
               Altri {stat.inArrivo} settori sono in preparazione. Se il tuo non è ancora in elenco,
               scrivimi: si parte dal gestionale più simile.
             </p>

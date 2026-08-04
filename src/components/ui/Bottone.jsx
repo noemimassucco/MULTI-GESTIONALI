@@ -2,10 +2,15 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 const varianti = {
-  primario: "bg-brand-600 text-white shadow-[var(--shadow-brand)] hover:bg-brand-700 active:bg-brand-800",
-  secondario: "bg-white text-ink-800 ring-1 ring-inset ring-line hover:bg-surface-alt hover:ring-ink-400",
+  /* Il giallo cantiere è la firma delle azioni principali. */
+  primario:
+    "bg-sole-500 text-ink-900 shadow-[var(--shadow-brand)] hover:bg-sole-400 active:bg-sole-600",
+  secondario:
+    "bg-white text-ink-800 ring-1 ring-inset ring-line hover:bg-surface-alt hover:ring-ink-400",
+  scuro: "bg-ink-900 text-white hover:bg-ink-800",
   tenue: "bg-brand-50 text-brand-700 hover:bg-brand-100",
   fantasma: "text-ink-600 hover:text-brand-700 hover:bg-brand-50",
+  /* Per i fondi scuri (sezioni verde notte). */
   chiaro: "bg-white/10 text-white ring-1 ring-inset ring-white/20 hover:bg-white/15",
 };
 

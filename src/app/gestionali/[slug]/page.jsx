@@ -128,26 +128,55 @@ export default async function PaginaGestionale({ params }) {
         </Contenitore>
       </section>
 
-      {/* ------------------------------------------------------ PROBLEMI */}
+      {/* -------------------------------------------------- PRIMA / DOPO */}
+      {/* Il concetto del sito applicato al settore: a sinistra com'è oggi
+          (i problemi), a destra com'è con il gestionale (i vantaggi).    */}
       <Sezione sfondo="bianco">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr]">
-          <div>
-            <h2 className="text-t2 font-bold leading-tight sm:text-t1">
-              Cosa succede oggi senza un gestionale
-            </h2>
-            <ul className="mt-7 space-y-3">
+        <TitoloSezione
+          centrato={false}
+          occhiello="Prima e dopo"
+          titolo="La stessa settimana, con e senza"
+        />
+        <div className="mt-10 grid overflow-hidden rounded-[var(--radius-scheda)] border border-line lg:grid-cols-2">
+          {/* PRIMA */}
+          <div className="bg-[var(--carta-prima)] p-6 sm:p-8">
+            <p className="inline-flex rounded-full bg-ink-900/80 px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.1em] text-white">
+              Oggi, senza
+            </p>
+            <ul className="mt-6 space-y-3.5">
               {gestionale.problemi.map((p) => (
                 <li key={p} className="flex gap-3">
-                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-500">
-                    <Icona misura="sm" nome="X" />
+                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-white text-red-600">
+                    <Icona misura="sm" nome="X" className="size-3.5" />
                   </span>
-                  <span className="text-corrente leading-relaxed text-ink-600">{p}</span>
+                  <span className="text-corrente leading-relaxed text-[#4a4438]">{p}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="rounded-[var(--radius-scheda)] bg-surface-alt p-6">
+          {/* DOPO */}
+          <div className="border-t-[3px] border-sole-500 bg-white p-6 sm:p-8 lg:border-l-[3px] lg:border-t-0">
+            <p className="inline-flex rounded-full bg-brand-600 px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.1em] text-white">
+              Con il gestionale
+            </p>
+            <ul className="mt-6 space-y-3.5">
+              {gestionale.vantaggi.map((v) => (
+                <li key={v.titolo} className="flex gap-3">
+                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700">
+                    <Icona misura="sm" nome="Check" className="size-3.5" />
+                  </span>
+                  <span className="text-corrente leading-relaxed text-ink-700">
+                    <strong className="font-semibold text-ink-900">{v.titolo}.</strong> {v.testo}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-10 rounded-[var(--radius-scheda)] bg-surface-alt p-6 sm:p-8">
+          <div className="max-w-3xl">
             {paragrafi.map((p, i) => (
               <p
                 key={i}
@@ -215,28 +244,6 @@ export default async function PaginaGestionale({ params }) {
           </div>
         ) : null}
       </Sezione>
-
-      {/* -------------------------------------------------------- VANTAGGI */}
-      {gestionale.vantaggi?.length ? (
-        <Sezione sfondo="bianco">
-          <TitoloSezione
-            centrato={false}
-            occhiello="Cosa cambia"
-            titolo="Perché conviene averlo"
-          />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {gestionale.vantaggi.map((v) => (
-              <div key={v.titolo} className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
-                <span className="flex size-10 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-50 text-brand-600">
-                  <Icona misura="md" nome="Zap" />
-                </span>
-                <h3 className="mt-4 text-testo font-semibold">{v.titolo}</h3>
-                <p className="mt-2 text-corrente leading-relaxed text-ink-500">{v.testo}</p>
-              </div>
-            ))}
-          </div>
-        </Sezione>
-      ) : null}
 
       {/* ------------------------------------------------ PERSONALIZZAZIONI */}
       <Sezione sfondo="scuro">

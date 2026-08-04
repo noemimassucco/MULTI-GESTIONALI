@@ -3,7 +3,7 @@ import { Contenitore, Sezione, TitoloSezione } from "@/components/ui/Sezione";
 import Bottone from "@/components/ui/Bottone";
 import Icona from "@/components/ui/Icona";
 import Pastiglia from "@/components/ui/Pastiglia";
-import AnteprimaDashboard from "@/components/sito/AnteprimaDashboard";
+import PrimaDopo from "@/components/sito/PrimaDopo";
 import CategoriaCard from "@/components/sito/CategoriaCard";
 import GestionaleCard from "@/components/sito/GestionaleCard";
 import CtaBanner from "@/components/sito/CtaBanner";
@@ -76,82 +76,83 @@ export default function Home() {
   return (
     <>
       {/* ---------------------------------------------------------- HERO */}
-      <section className="relative overflow-hidden border-b border-line bg-gradient-to-b from-surface-blue to-white">
+      {/* Un solo concetto, ripetuto in tutto il sito: PRIMA e DOPO.      */}
+      <section className="relative overflow-hidden border-b border-line bg-surface-blue">
         <Contenitore className="py-10 lg:py-14">
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
-            <div>
-              <Pastiglia variante="brand" className="px-3">
-                <Icona misura="sm" nome="Blocks" />
-                Gestionali personalizzabili per ogni attività
-              </Pastiglia>
+          <div className="mx-auto max-w-3xl text-center">
+            <Pastiglia variante="brand" className="px-3">
+              <Icona misura="sm" nome="Blocks" />
+              Gestionali su misura per ogni attività
+            </Pastiglia>
 
-              <h1 className="mt-5 text-mega font-extrabold leading-[1.08] sm:text-eroe lg:text-eroe">
-                Il gestionale che <span className="text-brand-600">si adatta a te,</span>
-                <br className="hidden sm:block" /> non il contrario.
-              </h1>
+            <h1 className="mt-5 text-mega font-extrabold leading-[1.05] sm:text-eroe">
+              Il gestionale che <span className="text-brand-600">si adatta a te,</span>
+              <br className="hidden sm:block" /> non il contrario.
+            </h1>
 
-              <p className="mt-5 max-w-lg text-testo leading-relaxed text-ink-500 sm:text-guida">
-                Scegli il settore, guarda cosa puoi gestire e scopri come personalizzare il
-                gestionale sulle reali esigenze della tua attività.
-              </p>
+            <p className="mx-auto mt-5 max-w-xl text-testo leading-relaxed text-ink-500 sm:text-guida">
+              Trascina la linea gialla: a sinistra il lavoro com&apos;è oggi,
+              a destra lo stesso martedì con un gestionale costruito sul tuo modo di lavorare.
+            </p>
+          </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <Bottone href="/gestionali" misura="lg" className="w-full sm:w-auto">
-                  Scopri i gestionali
-                  <Icona misura="sm" nome="ArrowRight" />
-                </Bottone>
-                <Bottone href="/demo" variante="secondario" misura="lg" className="w-full sm:w-auto">
-                  <Icona misura="sm" nome="PlayCircle" />
-                  Prova una demo
-                </Bottone>
-                <Bottone href="/come-funziona" variante="fantasma" misura="lg" className="w-full sm:w-auto">
-                  Guarda come funziona
-                </Bottone>
-              </div>
+          <div className="mt-9">
+            <PrimaDopo />
+            <p className="mt-3 text-center text-mini text-ink-500">
+              Interfaccia di esempio con dati inventati — la tua verrà costruita sulle tue procedure
+            </p>
+          </div>
 
-              {/* Prova sociale onesta: nessun numero di clienti inventato */}
-              <div className="mt-9 flex items-start gap-3.5 border-t border-line pt-6">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-50 text-brand-600">
-                  <Icona misura="md" nome="HardHat" />
-                </span>
-                <p className="max-w-md text-piccolo leading-relaxed text-ink-500">
-                  Progetto nato dentro l&apos;ufficio tecnico di un&apos;azienda di impianti, dove
-                  ho visto per anni cosa succede quando il lavoro vive su Excel e cartelle
-                  condivise.{" "}
-                  <Link href="/chi-sono" className="font-semibold text-brand-700 hover:underline">
-                    La mia storia
-                  </Link>
-                </p>
-              </div>
-            </div>
+          <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <Bottone href="/gestionali" misura="lg">
+              Scopri i gestionali
+              <Icona misura="sm" nome="ArrowRight" />
+            </Bottone>
+            <Bottone href="/demo" variante="secondario" misura="lg">
+              <Icona misura="sm" nome="PlayCircle" />
+              Prova una demo
+            </Bottone>
+          </div>
 
-            <div className="lg:-mr-6 xl:-mr-12">
-              <AnteprimaDashboard />
-              <p className="mt-3 text-center text-mini text-ink-400">
-                Esempio di interfaccia con dati inventati
-              </p>
-            </div>
+          {/* Prova sociale onesta: nessun numero di clienti inventato */}
+          <div className="mx-auto mt-9 flex max-w-xl items-start gap-3.5 border-t border-line pt-6">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] bg-sole-100 text-ink-800">
+              <Icona misura="md" nome="HardHat" />
+            </span>
+            <p className="text-piccolo leading-relaxed text-ink-500">
+              Progetto nato dentro l&apos;ufficio tecnico di un&apos;azienda di impianti, dove ho
+              visto per anni cosa succede quando il lavoro vive su Excel e cartelle condivise.{" "}
+              <Link href="/chi-sono" className="font-semibold text-brand-700 hover:underline">
+                La mia storia
+              </Link>
+            </p>
           </div>
         </Contenitore>
       </section>
 
       {/* ------------------------------------------------------ PROBLEMI */}
+      {/* Il "prima" continua qui: i problemi sono foglietti sulla scrivania. */}
       <Sezione sfondo="bianco">
         <TitoloSezione
           occhiello="Riconosci qualcosa?"
           titolo="Il tuo lavoro è organizzato o semplicemente sparso?"
           testo="Sono le situazioni che si ripetono in quasi tutte le piccole aziende. Se ne riconosci almeno tre, un gestionale su misura ti cambia la giornata."
         />
-        <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {problemi.map((p) => (
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {problemi.map((p, i) => (
             <div
               key={p.testo}
-              className="flex gap-3 rounded-[var(--radius-scheda)] border border-line bg-white p-4 transition-colors hover:border-brand-200"
+              style={{ rotate: `${[-1.2, 0.9, -0.7, 1.3][i % 4]}deg` }}
+              className={`flex gap-3 rounded-[3px] border p-4 shadow-[0_4px_12px_rgba(70,60,40,0.08)] transition-transform hover:rotate-0 ${
+                i % 3 === 1
+                  ? "border-[#e8d98f] bg-[var(--foglietto-giallo)]"
+                  : "border-[#ddd5c4] bg-white"
+              }`}
             >
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] bg-surface-alt text-ink-500">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] bg-ink-900/5 text-ink-600">
                 <Icona misura="sm" nome={p.icona} />
               </span>
-              <p className="text-piccolo leading-snug text-ink-600">{p.testo}</p>
+              <p className="text-piccolo leading-snug text-ink-700">{p.testo}</p>
             </div>
           ))}
         </div>
@@ -258,7 +259,7 @@ export default function Home() {
                 tratta e li collega da solo alla scheda giusta.
               </p>
               <div className="mt-8">
-                <Bottone href="/personalizzazioni" variante="secondario" misura="lg">
+                <Bottone href="/personalizzazioni" variante="chiaro" misura="lg">
                   Come funziona la personalizzazione
                   <Icona misura="sm" nome="ArrowRight" />
                 </Bottone>
@@ -289,7 +290,7 @@ export default function Home() {
                 },
               ].map((c) => (
                 <div key={c.titolo} className="rounded-[var(--radius-scheda)] border border-white/10 bg-white/5 p-5">
-                  <span className="flex size-10 items-center justify-center rounded-[var(--radius-scheda)] bg-brand-600/20 text-brand-300">
+                  <span className="flex size-10 items-center justify-center rounded-[var(--radius-scheda)] bg-white/10 text-sole-300">
                     <Icona misura="md" nome={c.icona} />
                   </span>
                   <h3 className="mt-4 text-testo font-semibold text-white">{c.titolo}</h3>

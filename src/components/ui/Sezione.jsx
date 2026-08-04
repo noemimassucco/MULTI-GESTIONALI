@@ -46,11 +46,15 @@ export function TitoloSezione({
   return (
     <div className={cn(centrato ? "mx-auto max-w-2xl text-center" : "max-w-2xl", className)}>
       {occhiello ? (
-        <p className={cn("occhiello mb-3", chiaro ? "text-brand-300" : "text-brand-700")}>
+        <p className={cn("occhiello mb-3", chiaro ? "text-sole-300" : "text-brand-700")}>
           {occhiello}
         </p>
       ) : null}
       <h2 className={cn("text-t1 font-bold lg:text-titolo", chiaro && "text-white")}>{titolo}</h2>
+      <span
+        aria-hidden="true"
+        className={cn("mt-4 block h-1 w-12 rounded-full bg-sole-400", centrato && "mx-auto")}
+      />
       {testo ? (
         <p className={cn("mt-4 text-testo", chiaro ? "text-ink-300" : "text-ink-500")}>{testo}</p>
       ) : null}

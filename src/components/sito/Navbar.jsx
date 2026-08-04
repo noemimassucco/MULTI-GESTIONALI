@@ -9,14 +9,14 @@ import Icona from "@/components/ui/Icona";
 import { Contenitore } from "@/components/ui/Sezione";
 import Marchio from "@/components/sito/Marchio";
 
+/** Barra di navigazione scura: verde notte con la firma gialla sulle azioni. */
 export default function Navbar({ categorie }) {
   const [apertoMobile, setApertoMobile] = useState(false);
   const [menuCategorie, setMenuCategorie] = useState(false);
   const percorso = usePathname();
   const [percorsoPrecedente, setPercorsoPrecedente] = useState(percorso);
 
-  // Cambio pagina: chiudo i menu aperti. Aggiustamento durante il render,
-  // che è il modo consigliato da React per reagire a un valore cambiato.
+  // Cambio pagina: chiudo i menu aperti (aggiustamento durante il render).
   if (percorso !== percorsoPrecedente) {
     setPercorsoPrecedente(percorso);
     setApertoMobile(false);
@@ -34,10 +34,10 @@ export default function Navbar({ categorie }) {
     href === "/" ? percorso === "/" : percorso.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-900/95 backdrop-blur-md">
       <Contenitore>
         <div className="flex h-[var(--barra)] items-center justify-between gap-3">
-          <Marchio />
+          <Marchio chiaro />
 
           <nav className="hidden shrink-0 items-center gap-0 xl:flex" aria-label="Navigazione principale">
             {navigazione.map((voce) => {
@@ -53,16 +53,14 @@ export default function Navbar({ categorie }) {
                     href={voce.href}
                     data-comando
                     className={`flex h-9 items-center gap-1 whitespace-nowrap rounded-[var(--radius-controllo)] px-2.5 text-piccolo font-medium transition-colors ${
-                      attivo(voce.href)
-                        ? "text-brand-700"
-                        : "text-ink-600 hover:text-ink-900"
+                      attivo(voce.href) ? "text-white" : "text-white/65 hover:text-white"
                     }`}
                   >
                     {voce.label}
-                    {isCategorie ? <Icona misura="sm" nome="ChevronDown" /> : null}
+                    {isCategorie ? <Icona misura="sm" nome="ChevronDown" className="size-3.5" /> : null}
                   </Link>
                   {attivo(voce.href) ? (
-                    <span className="absolute inset-x-2.5 -bottom-[1px] h-[2px] rounded-full bg-brand-600" />
+                    <span className="absolute inset-x-2.5 -bottom-[1px] h-[2px] rounded-full bg-sole-400" />
                   ) : null}
 
                   {isCategorie && menuCategorie ? (
@@ -72,7 +70,7 @@ export default function Navbar({ categorie }) {
                           <Link
                             key={c.slug}
                             href={`/categorie/${c.slug}`}
-                            className="flex items-start gap-3 rounded-[var(--radius-scheda)] p-2.5 transition-colors hover:bg-surface-alt"
+                            className="flex items-start gap-3 rounded-[var(--radius-controllo)] p-2.5 transition-colors hover:bg-surface-alt"
                           >
                             <span
                               className="flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-controllo)]"
@@ -102,7 +100,7 @@ export default function Navbar({ categorie }) {
           </nav>
 
           <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
-            <Bottone href="/demo" variante="secondario" misura="sm" className="hidden sm:inline-flex">
+            <Bottone href="/demo" variante="chiaro" misura="sm" className="hidden sm:inline-flex">
               <Icona misura="sm" nome="PlayCircle" />
               Prova una demo
             </Bottone>
@@ -115,7 +113,7 @@ export default function Navbar({ categorie }) {
               type="button"
               onClick={() => setApertoMobile((v) => !v)}
               data-comando
-              className="flex size-11 items-center justify-center rounded-[var(--radius-controllo)] text-ink-700 hover:bg-surface-alt xl:hidden"
+              className="flex size-11 items-center justify-center rounded-[var(--radius-controllo)] text-white hover:bg-white/10 xl:hidden"
               aria-label={apertoMobile ? "Chiudi il menu" : "Apri il menu"}
               aria-expanded={apertoMobile}
             >
@@ -126,7 +124,7 @@ export default function Navbar({ categorie }) {
       </Contenitore>
 
       {apertoMobile ? (
-        <div className="border-t border-line bg-white xl:hidden">
+        <div className="border-t border-white/10 bg-ink-900 xl:hidden">
           <Contenitore className="py-4">
             <nav className="flex flex-col gap-0.5" aria-label="Navigazione mobile">
               {navigazione.map((voce) => (
@@ -135,7 +133,7 @@ export default function Navbar({ categorie }) {
                   href={voce.href}
                   data-comando
                   className={`flex h-11 items-center rounded-[var(--radius-controllo)] px-3 text-testo font-medium ${
-                    attivo(voce.href) ? "bg-brand-50 text-brand-700" : "text-ink-700"
+                    attivo(voce.href) ? "bg-white/10 text-white" : "text-white/75"
                   }`}
                 >
                   {voce.label}
@@ -144,14 +142,14 @@ export default function Navbar({ categorie }) {
               <Link
                 href="/demo"
                 data-comando
-                className="mt-2 flex h-11 items-center rounded-[var(--radius-controllo)] px-3 text-testo font-medium text-ink-700"
+                className="mt-2 flex h-11 items-center rounded-[var(--radius-controllo)] px-3 text-testo font-medium text-white/75"
               >
                 Prova una demo
               </Link>
             </nav>
-            <p className="mt-4 border-t border-line pt-4 text-piccolo text-ink-500">
+            <p className="mt-4 border-t border-white/10 pt-4 text-piccolo text-white/50">
               Scrivi a{" "}
-              <a href={`mailto:${sito.email}`} className="font-medium text-brand-700">
+              <a href={`mailto:${sito.email}`} className="font-medium text-sole-300">
                 {sito.email}
               </a>
             </p>

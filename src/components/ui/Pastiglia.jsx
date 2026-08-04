@@ -6,7 +6,7 @@ const varianti = {
   contorno: "bg-white text-ink-600 ring-1 ring-inset ring-line",
   successo: "bg-emerald-50 text-emerald-800 ring-1 ring-inset ring-emerald-200",
   attesa: "bg-amber-50 text-amber-800 ring-1 ring-inset ring-amber-200",
-  chiara: "bg-white/10 text-brand-200 ring-1 ring-inset ring-white/20",
+  chiara: "bg-white/10 text-sole-300 ring-1 ring-inset ring-white/20",
 };
 
 /**
