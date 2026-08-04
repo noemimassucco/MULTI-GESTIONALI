@@ -1,0 +1,13 @@
+# Fine riga uniforme su qualunque computer.
+# Senza questo, clonando su Windows git segna decine di file come
+# "modificati" anche quando il contenuto e' identico.
+* text=auto eol=lf
+
+# File binari: git non deve toccarli
+*.png binary
+*.jpg binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.woff  binary
+*.woff2 binary
