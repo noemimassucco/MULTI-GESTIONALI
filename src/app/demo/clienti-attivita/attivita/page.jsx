@@ -24,8 +24,8 @@ const STATO_SUCCESSIVO = {
 };
 
 const PRIORITA = {
-  alta: { classi: "bg-red-500", testo: "Priorità alta" },
-  media: { classi: "bg-amber-500", testo: "Priorità media" },
+  alta: { classi: "bg-critico", testo: "Priorità alta" },
+  media: { classi: "bg-accento-400", testo: "Priorità media" },
   bassa: { classi: "bg-line", testo: "Priorità bassa" },
 };
 
@@ -108,7 +108,7 @@ function ModuloNuovaAttivita({ clienti, onSalva, onAnnulla }) {
         </button>
         <button
           type="submit"
-          className="h-10 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
+          className="h-10 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
         >
           Salva attività
         </button>
@@ -163,7 +163,7 @@ export default function PaginaAttivita() {
           type="button"
           onClick={() => setModaleAperta(true)}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
         >
           <Icona misura="sm" nome="CheckCircle2" className="size-3.5" />
           Nuova attività
@@ -245,7 +245,7 @@ export default function PaginaAttivita() {
             );
           })}
           {!ordinate.length ? (
-            <li className="px-5 py-10 text-center text-corrente text-ink-500">
+            <li className="px-6 py-12 text-center text-corrente text-ink-500">
               {testo || filtro
                 ? "Nessuna attività corrisponde alla ricerca. Prova a cambiare filtro o parola."
                 : "Nessuna attività in elenco. Il bottone qui sopra è il posto giusto per cominciare."}

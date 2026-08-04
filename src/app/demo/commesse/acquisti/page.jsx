@@ -129,7 +129,7 @@ export default function PaginaAcquisti() {
           </span>
         ) : (
           <div className="flex flex-col items-start gap-1.5">
-            <span className="text-mini font-semibold text-amber-700">
+            <span className="text-mini font-semibold text-accento-600">
               in attesa da {-giorniDaOggi(a.data)} gg
             </span>
             <button
@@ -157,7 +157,7 @@ export default function PaginaAcquisti() {
         sottotitolo="Ogni DDT è agganciato a un cantiere: il costo entra nei conti il giorno in cui arriva."
       />
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <KpiDemo
           etichetta="Materiali"
           valore={euro(somma(materiali))}
@@ -182,8 +182,8 @@ export default function PaginaAcquisti() {
       </div>
 
       {/* ------------------------------------------------- i fornitori */}
-      <section className="mt-4 rounded-[var(--radius-scheda)] border border-line bg-white">
-        <header className="border-b border-line-soft px-5 py-3.5">
+      <section className="mt-5 rounded-[var(--radius-scheda)] border border-line bg-white">
+        <header className="border-b border-line-soft px-6 py-4">
           <h2 className="text-testo font-bold text-ink-900">Quanto pesa ogni fornitore</h2>
           <p className="mt-1 text-piccolo text-ink-500">
             È il numero da avere in mano quando si tratta il listino dell&apos;anno prossimo.

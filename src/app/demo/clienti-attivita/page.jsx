@@ -45,7 +45,7 @@ export default function Dashboard() {
         <Link
           href={`${BASE}/attivita`}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
         >
           <Icona misura="sm" nome="CheckCircle2" className="size-3.5" />
           Tutte le attività
@@ -53,7 +53,7 @@ export default function Dashboard() {
       </IntestazioneDemo>
 
       {/* ------------------------------------------------------- KPI */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <KpiDemo
           etichetta="Attività aperte"
           valore={aperte.length}
@@ -83,10 +83,10 @@ export default function Dashboard() {
         />
       </div>
 
-      <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+      <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
         {/* --------------------------------------- prossime attività */}
         <section className="rounded-[var(--radius-scheda)] border border-line bg-white">
-          <header className="flex items-center justify-between border-b border-line-soft px-5 py-3.5">
+          <header className="flex items-center justify-between border-b border-line-soft px-6 py-4">
             <h2 className="text-testo font-bold text-ink-900">Prossime attività</h2>
             <Link
               href={`${BASE}/attivita`}
@@ -128,7 +128,7 @@ export default function Dashboard() {
         <div className="space-y-4">
           {/* ------------------------------------------- scadenze */}
           <section className="rounded-[var(--radius-scheda)] border border-line bg-white">
-            <header className="flex items-center justify-between border-b border-line-soft px-5 py-3.5">
+            <header className="flex items-center justify-between border-b border-line-soft px-6 py-4">
               <h2 className="text-testo font-bold text-ink-900">Scadenze della settimana</h2>
               <Link
                 href={`${BASE}/scadenze`}
@@ -143,9 +143,9 @@ export default function Dashboard() {
                   <span
                     className={`size-2 shrink-0 rounded-full ${
                       giorniDaOggi(s.data) < 0
-                        ? "bg-red-500"
+                        ? "bg-critico"
                         : giorniDaOggi(s.data) <= 1
-                          ? "bg-amber-500"
+                          ? "bg-accento-400"
                           : "bg-brand-500"
                     }`}
                     aria-hidden="true"
@@ -169,13 +169,13 @@ export default function Dashboard() {
 
           {/* ------------------------------------------- incassi */}
           <section className="rounded-[var(--radius-scheda)] border border-line bg-white">
-            <header className="border-b border-line-soft px-5 py-3.5">
+            <header className="border-b border-line-soft px-6 py-4">
               <h2 className="text-testo font-bold text-ink-900">Da tenere d&apos;occhio</h2>
             </header>
             <ul className="divide-y divide-line-soft">
               {pagamentiInRitardo.map((g) => (
                 <li key={g.id} className="flex items-center gap-3 px-5 py-3">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] bg-red-50 text-red-700">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-[var(--radius-controllo)] bg-[#fbeceb] text-critico">
                     <Icona misura="sm" nome="AlertTriangle" className="size-4" />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -186,7 +186,7 @@ export default function Dashboard() {
                       {nomeCliente(g.clienteId)} · attesa dal {dataBreve(g.data)}
                     </p>
                   </div>
-                  <span className="text-corrente font-bold text-red-700">{euro(g.importo)}</span>
+                  <span className="text-corrente font-bold text-critico">{euro(g.importo)}</span>
                 </li>
               ))}
               {!pagamentiInRitardo.length ? (

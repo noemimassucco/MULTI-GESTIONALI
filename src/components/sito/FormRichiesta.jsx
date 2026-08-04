@@ -31,13 +31,13 @@ function Campo({ etichetta, nome, tipo = "text", obbligatorio, errore, aiuto, ..
         aria-invalid={errore ? "true" : undefined}
         aria-describedby={errore ? `${nome}-errore` : undefined}
         className={`h-12 w-full rounded-[var(--radius-controllo)] border bg-white px-3.5 text-corrente text-ink-800 placeholder:text-ink-400 focus:outline-none ${
-          errore ? "border-red-400 focus:border-red-500" : "border-line focus:border-brand-400"
+          errore ? "border-critico focus:border-critico" : "border-line focus:border-brand-400"
         }`}
         {...props}
       />
       {aiuto && !errore ? <p className="mt-1.5 text-piccolo text-ink-400">{aiuto}</p> : null}
       {errore ? (
-        <p id={`${nome}-errore`} className="mt-1.5 text-piccolo font-medium text-red-600">
+        <p id={`${nome}-errore`} className="mt-1.5 text-piccolo font-medium text-critico">
           {errore}
         </p>
       ) : null}
@@ -84,8 +84,8 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
 
   if (stato?.ok) {
     return (
-      <div className="rounded-[var(--radius-scheda)] border border-emerald-200 bg-emerald-50 p-6 text-center">
-        <span className="mx-auto flex size-14 items-center justify-center rounded-[var(--radius-scheda)] bg-white text-emerald-600">
+      <div className="rounded-[var(--radius-scheda)] border border-brand-100 bg-brand-50 p-6 text-center">
+        <span className="mx-auto flex size-14 items-center justify-center rounded-[var(--radius-scheda)] bg-white text-brand-600">
           <Icona misura="lg" nome="CheckCircle2" />
         </span>
         <h2 className="mt-5 text-t2 font-bold">Richiesta inviata</h2>
@@ -255,11 +255,11 @@ export default function FormRichiesta({ gestionali = [], gestionalePreselezionat
           </span>
         </label>
         {errori.consensoPrivacy ? (
-          <p className="mt-2 text-piccolo font-medium text-red-600">{errori.consensoPrivacy}</p>
+          <p className="mt-2 text-piccolo font-medium text-critico">{errori.consensoPrivacy}</p>
         ) : null}
 
         {stato?.messaggio && !stato.ok ? (
-          <p className="mt-4 flex items-start gap-2 rounded-[var(--radius-controllo)] bg-red-50 p-3 text-piccolo text-red-700">
+          <p className="mt-4 flex items-start gap-2 rounded-[var(--radius-controllo)] bg-[#fbeceb] p-3 text-piccolo text-critico">
             <Icona misura="sm" nome="AlertTriangle" className="mt-0.5 shrink-0" />
             {stato.messaggio}
           </p>

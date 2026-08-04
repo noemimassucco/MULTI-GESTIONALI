@@ -120,9 +120,9 @@ export function salute(conti) {
 }
 
 const SALUTE = {
-  perdita: { testo: "In perdita", classi: "bg-red-50 text-red-800 ring-red-200", icona: "TrendingDown" },
-  critico: { testo: "Margine eroso", classi: "bg-red-50 text-red-800 ring-red-200", icona: "AlertTriangle" },
-  attenzione: { testo: "Sotto le attese", classi: "bg-sole-100 text-[#7a5c05] ring-sole-200", icona: "AlertTriangle" },
+  perdita: { testo: "In perdita", classi: "bg-[#fbeceb] text-critico ring-[#f2d9d6]", icona: "TrendingDown" },
+  critico: { testo: "Margine eroso", classi: "bg-[#fbeceb] text-critico ring-[#f2d9d6]", icona: "AlertTriangle" },
+  attenzione: { testo: "Sotto le attese", classi: "bg-accento-50 text-accento-700 ring-accento-100", icona: "AlertTriangle" },
   buono: { testo: "In linea", classi: "bg-brand-50 text-brand-800 ring-brand-100", icona: "Check" },
 };
 
@@ -141,8 +141,8 @@ export function Salute({ conti }) {
 
 const STATI = {
   in_preventivo: { testo: "In preventivo", classi: "bg-surface-alt text-ink-700 ring-line" },
-  in_corso: { testo: "Cantiere aperto", classi: "bg-sole-100 text-[#7a5c05] ring-sole-200" },
-  consegnata: { testo: "Consegnata", classi: "bg-violet-50 text-violet-800 ring-violet-200" },
+  in_corso: { testo: "Cantiere aperto", classi: "bg-accento-50 text-accento-700 ring-accento-100" },
+  consegnata: { testo: "Consegnata", classi: "bg-brand-50 text-brand-700 ring-brand-100" },
   chiusa: { testo: "Chiusa", classi: "bg-brand-50 text-brand-800 ring-brand-100" },
 };
 
@@ -160,7 +160,7 @@ export function StatoCommessa({ stato }) {
 
 const STATI_VARIANTE = {
   proposta: { testo: "Proposta", classi: "bg-surface-alt text-ink-700 ring-line" },
-  eseguita: { testo: "Fatta, non approvata", classi: "bg-red-50 text-red-800 ring-red-200" },
+  eseguita: { testo: "Fatta, non approvata", classi: "bg-[#fbeceb] text-critico ring-[#f2d9d6]" },
   approvata: { testo: "Approvata", classi: "bg-brand-50 text-brand-800 ring-brand-100" },
   rifiutata: { testo: "Rifiutata", classi: "bg-surface-alt text-ink-600 ring-line" },
 };
@@ -178,7 +178,7 @@ export function StatoVariante({ stato }) {
 
 /** Barra di avanzamento con la percentuale accanto. */
 export function BarraAvanzamento({ valore, tono = "brand" }) {
-  const colori = { brand: "bg-brand-600", sole: "bg-sole-500", rosso: "bg-red-600" };
+  const colori = { brand: "bg-brand-600", sole: "bg-accento-500", rosso: "bg-critico" };
   return (
     <div className="flex items-center gap-2.5">
       <div className="h-2 min-w-0 flex-1 overflow-hidden rounded-full bg-surface-alt">
@@ -206,9 +206,9 @@ export function BarraAvanzamento({ valore, tono = "brand" }) {
 export function RiepilogoCommessa({ conti }) {
   const stato = salute(conti);
   const tono =
-    stato === "buono" ? "text-brand-700" : stato === "attenzione" ? "text-amber-700" : "text-red-700";
+    stato === "buono" ? "text-brand-700" : stato === "attenzione" ? "text-accento-600" : "text-critico";
   const sfondo =
-    stato === "buono" ? "bg-brand-50" : stato === "attenzione" ? "bg-sole-50" : "bg-red-50";
+    stato === "buono" ? "bg-brand-50" : stato === "attenzione" ? "bg-accento-50" : "bg-[#fbeceb]";
 
   const voci = [
     { etichetta: "Manodopera", valore: conti.manodopera, nota: `${conti.oreTotali} ore registrate` },
@@ -284,7 +284,7 @@ export function RiepilogoCommessa({ conti }) {
       </dl>
 
       {conti.variantiScoperte.length ? (
-        <p className="flex gap-2 border-t border-line-soft bg-red-50 px-5 py-3 text-piccolo leading-relaxed text-red-800">
+        <p className="flex gap-2 border-t border-line-soft bg-[#fbeceb] px-5 py-3 text-piccolo leading-relaxed text-critico">
           <Icona misura="sm" nome="AlertTriangle" className="mt-0.5 shrink-0" />
           <span>
             Fuori da questo conto ci sono {euro(conti.valoreScoperto)} di lavori già eseguiti e mai

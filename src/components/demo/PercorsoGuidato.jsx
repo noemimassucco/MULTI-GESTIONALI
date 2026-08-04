@@ -71,7 +71,7 @@ export default function PercorsoGuidato({ chiave, titolo, passi }) {
         </div>
 
         <div className="flex items-start gap-3 p-4">
-          <span className="cifre flex size-9 shrink-0 items-center justify-center rounded-full bg-accento-500 text-corrente font-extrabold text-white">
+          <span className="cifre flex size-9 shrink-0 items-center justify-center rounded-full bg-accento-600 text-corrente font-extrabold text-white">
             {indice + 1}
           </span>
 

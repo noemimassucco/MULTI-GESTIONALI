@@ -296,7 +296,7 @@ export default function GiornataInterventi() {
       {/* ------------------------------------------------- accesso rapido */}
       <section className="mt-5">
         <p className="occhiello mb-4 text-ink-500">Accesso rapido</p>
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {[
             { href: `${BASE}/richieste`, label: "Nuova richiesta", icona: "MessageCircle" },
             { href: `${BASE}/interventi`, label: "Programma intervento", icona: "Wrench" },

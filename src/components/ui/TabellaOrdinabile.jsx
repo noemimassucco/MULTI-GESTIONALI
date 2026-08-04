@@ -192,7 +192,7 @@ export default function TabellaOrdinabile({
       </div>
 
       {!datiOrdinabili.length && vuota ? (
-        <p className="px-4 py-10 text-center text-corrente text-ink-500">{vuota}</p>
+        <p className="px-6 py-12 text-center text-corrente text-ink-500">{vuota}</p>
       ) : null}
     </div>
   );

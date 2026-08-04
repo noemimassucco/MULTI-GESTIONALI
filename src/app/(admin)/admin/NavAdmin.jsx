@@ -31,7 +31,7 @@ export default function NavAdmin({ variante = "laterale" }) {
     return (
       <nav
         aria-label="Sezioni dell'amministrazione"
-        className="scroll-orizzontale sticky top-0 z-40 flex gap-1 overflow-x-auto border-b border-line bg-ink-900 px-3 py-2 lg:hidden"
+        className="scroll-orizzontale sticky top-0 z-40 flex gap-1 overflow-x-auto border-b border-line bg-brand-700 px-3 py-2 lg:hidden"
       >
         {voci.map((v) => (
           <Link
@@ -41,7 +41,7 @@ export default function NavAdmin({ variante = "laterale" }) {
             aria-current={attiva(v) ? "page" : undefined}
             className={cn(
               "flex h-9 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-piccolo font-medium",
-              attiva(v) ? "bg-sole-500 text-ink-900" : "text-white/70",
+              attiva(v) ? "bg-accento-500 text-ink-900" : "text-white/70",
             )}
           >
             <Icona misura="sm" nome={v.icona} />
@@ -70,11 +70,11 @@ export default function NavAdmin({ variante = "laterale" }) {
           <Icona
             misura="sm"
             nome={v.icona}
-            className={attiva(v) ? "text-sole-400" : "text-white/40"}
+            className={attiva(v) ? "text-accento-400" : "text-white/40"}
           />
           {v.label}
           {attiva(v) ? (
-            <span className="ml-auto size-1.5 rounded-full bg-sole-400" aria-hidden="true" />
+            <span className="ml-auto size-1.5 rounded-full bg-accento-400" aria-hidden="true" />
           ) : null}
         </Link>
       ))}

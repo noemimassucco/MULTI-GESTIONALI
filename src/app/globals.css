@@ -14,72 +14,73 @@
 
 @theme {
   /* ---- Verde petrolio: il colore dell'azienda ----
-     600 è quello dei comandi e dei link. 900 è il fondo delle barre
-     laterali e dei blocchi scuri. */
-  --color-brand-50: #eef3f1;
-  --color-brand-100: #d9e6e1;
-  --color-brand-200: #b4cec6;
-  --color-brand-300: #85ada2;
-  --color-brand-400: #56877a;
-  --color-brand-500: #35665a;
-  --color-brand-600: #234f45;
-  --color-brand-700: #1a3e36;
-  --color-brand-800: #14312b;
-  --color-brand-900: #0e2420;
+     Il 700 è #0f3d2e, il verde dello schema: barre laterali, bande scure,
+     comandi principali. Gli altri gradini nascono da lì. */
+  --color-brand-50: #e8f0ec; /* verde chiaro dello schema */
+  --color-brand-100: #d3e3db;
+  --color-brand-200: #adc9bd;
+  --color-brand-300: #7ea79a;
+  --color-brand-400: #4f8474;
+  --color-brand-500: #2c6252;
+  --color-brand-600: #1a4c3a;
+  --color-brand-700: #0f3d2e; /* verde petrolio dello schema */
+  --color-brand-800: #0b3025;
+  --color-brand-900: #08251d;
+  --color-brand-950: #061c16;
 
-  /* ---- Terracotta: solo accenti. Un tocco per schermata, non di più ---- */
-  --color-accento-50: #fbf3ef;
-  --color-accento-100: #f5e3da;
-  --color-accento-200: #ecc8b7;
-  --color-accento-300: #dfa387;
-  --color-accento-400: #cd7d5c;
-  --color-accento-500: #b95c39;
-  --color-accento-600: #a24c2d;
-  --color-accento-700: #833d25;
+  /* ---- Terracotta: il 500 è #c86a44, quello dello schema ---- */
+  --color-accento-50: #fbf2ee;
+  --color-accento-100: #f6e2d8;
+  --color-accento-200: #eec7b4;
+  --color-accento-300: #e0a184;
+  --color-accento-400: #d68360;
+  --color-accento-500: #c86a44; /* terracotta dello schema */
+  --color-accento-600: #ab5535;
+  --color-accento-700: #8a4429;
 
   /* ---- Alias in uscita ----
      Il giallo "sole" della versione precedente non fa più parte della
      palette. I nomi restano finché tutte le schermate non sono passate
      alla terracotta, così niente si rompe per strada: puntano già ai
      nuovi valori. Da togliere quando `sole-` non compare più. */
-  --color-sole-50: #fbf3ef;
-  --color-sole-100: #f5e3da;
-  --color-sole-200: #ecc8b7;
-  --color-sole-300: #dfa387;
-  --color-sole-400: #cd7d5c;
-  --color-sole-500: #b95c39;
-  --color-sole-600: #a24c2d;
-  --color-sole-700: #833d25;
+  --color-sole-50: #fbf2ee;
+  --color-sole-100: #f6e2d8;
+  --color-sole-200: #eec7b4;
+  --color-sole-300: #e0a184;
+  --color-sole-400: #d68360;
+  --color-sole-500: #c86a44;
+  --color-sole-600: #ab5535;
+  --color-sole-700: #8a4429;
 
-  /* ---- Grigi caldi ----
-     Tutti tirano verso il marrone, mai verso il blu: sull'avorio i grigi
-     freddi sembrano sporchi. */
-  --color-ink-900: #1c1a16;
-  --color-ink-800: #2b2823;
-  --color-ink-700: #423e37;
-  --color-ink-600: #57524a;
-  --color-ink-500: #625c52;
-  --color-ink-400: #756e62; /* note e icone: sta sotto, ma si legge */
-  --color-ink-300: #b9b2a4; /* solo su fondi scuri */
+  /* ---- Grigi ----
+     Il 900 è #1f2937, il grigio scuro dello schema; i gradini sotto
+     scendono dalla stessa famiglia. */
+  --color-ink-900: #1f2937; /* grigio scuro dello schema */
+  --color-ink-800: #2f3a48;
+  --color-ink-700: #414d5c;
+  --color-ink-600: #566172;
+  --color-ink-500: #5b6577;
+  --color-ink-400: #66707f; /* note e icone: sotto al testo, ma leggibile */
+  --color-ink-300: #b6c2bd; /* solo su fondi scuri */
 
   /* ---- Superfici e linee ----
      I bordi sono appena percepibili: separano senza disegnare. */
-  --color-line: #e6e0d4;
-  --color-line-soft: #f0ebe0;
+  --color-line: #e5e7eb; /* grigio chiaro dello schema */
+  --color-line-soft: #eef0f2;
   --color-surface: #ffffff;
-  --color-surface-alt: #f7f4ee; /* l'avorio: il fondo di tutto */
-  --color-surface-blue: #f2ede3; /* carta un tono più profondo */
+  --color-surface-alt: #faf7f2; /* l'avorio dello schema: il fondo di tutto */
+  --color-surface-blue: #f4f0e8; /* carta un tono più profondo */
 
   /* ---- Stati ---- */
-  --color-positivo: #2c6b4a;
+  --color-positivo: #1a7a4f;
   --color-attenzione: #a15a1e;
-  --color-critico: #a33327;
+  --color-critico: #c0392b;
 
   /* ---- Caratteri ----
      Playfair per i titoli: è quello che dà l'idea del progetto pensato.
      Inter per tutto il testo. Manrope solo per i numeri, che hanno
      bisogno di cifre della stessa larghezza. */
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Playfair Display Variable", Georgia, "Times New Roman", serif;
   --font-cifre: "Manrope Variable", "Inter Variable", ui-sans-serif, sans-serif;
 
@@ -113,7 +114,7 @@
 
   /* ---- Raggi: due soli valori ---- */
   --radius-controllo: 0.5rem; /*  8  bottoni, campi, tag piccoli */
-  --radius-scheda: 0.875rem; /* 14  card, pannelli, immagini    */
+  --radius-scheda: 0.75rem; /* 12  card, pannelli, immagini    */
 
   /* ---- Ombre: quasi invisibili ----
      Servono a staccare di un capello, non a fare volume. */
@@ -225,6 +226,16 @@
 }
 .scroll-orizzontale::-webkit-scrollbar {
   display: none;
+}
+
+/* Dentro il gestionale i titoli sono in Manrope, non in Playfair: là si
+   lavora, e un carattere da rivista sopra una tabella distrae. Il serif
+   resta la voce del sito pubblico. */
+.app h1,
+.app h2 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.022em;
 }
 
 /* Etichetta maiuscoletta: un solo posto, un solo stile */

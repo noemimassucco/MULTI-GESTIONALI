@@ -13,7 +13,7 @@ function pct(parte, totale) {
 /** Contenitore dei riquadri del report, tutti con la stessa pelle. */
 function Riquadro({ titolo, nota, children }) {
   return (
-    <section className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
+    <section className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
       <header className="mb-4 flex items-baseline justify-between gap-3">
         <h2 className="text-testo font-bold text-ink-900">{titolo}</h2>
         {nota ? <span className="text-mini text-ink-500">{nota}</span> : null}
@@ -51,7 +51,7 @@ export default function PaginaReport() {
   /* --------------------------------------------- attività per stato */
   const statiAttivita = [
     { stato: "completata", testo: "Completate", colore: "bg-brand-500" },
-    { stato: "in_corso", testo: "In corso", colore: "bg-sole-500" },
+    { stato: "in_corso", testo: "In corso", colore: "bg-accento-500" },
     { stato: "in_attesa", testo: "In attesa", colore: "bg-line" },
     { stato: "da_fare", testo: "Da fare", colore: "bg-line" },
   ].map((v) => ({
@@ -123,7 +123,7 @@ export default function PaginaReport() {
               etichetta="Da incassare"
               valore={euro(daIncassare)}
               percento={pct(daIncassare, maxIncassi)}
-              colore="bg-sole-500"
+              colore="bg-accento-500"
             />
           </div>
           <p className="mt-4 text-mini text-ink-500">

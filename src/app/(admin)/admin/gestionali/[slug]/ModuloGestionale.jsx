@@ -47,7 +47,7 @@ function Contatore({ quanti, massimo }) {
     <span
       className={cn(
         "font-mono text-mini",
-        quanti > massimo ? "text-red-600" : "text-ink-400",
+        quanti > massimo ? "text-critico" : "text-ink-400",
       )}
     >
       {quanti}/{massimo}
@@ -109,7 +109,7 @@ export default function ModuloGestionale({ gestionale, nomeCategoria, nomeBase }
             <p
               className={cn(
                 "text-piccolo font-medium",
-                esitoRipristino.ok ? "text-brand-700" : "text-red-600",
+                esitoRipristino.ok ? "text-brand-700" : "text-critico",
               )}
             >
               {esitoRipristino.messaggio}
@@ -267,7 +267,7 @@ export default function ModuloGestionale({ gestionale, nomeCategoria, nomeBase }
             <p
               className={cn(
                 "mr-auto text-piccolo font-medium",
-                esito.ok ? "text-brand-700" : "text-red-600",
+                esito.ok ? "text-brand-700" : "text-critico",
               )}
             >
               {esito.messaggio}

@@ -12,13 +12,15 @@ export const metadata = {
 
 const BASE = "/demo/commesse";
 
+/* I nomi sono quelli dello schema grafico dove la sezione esiste davvero.
+   Nessuna voce che non porti da qualche parte: era la prima regola. */
 const voci = [
-  { href: BASE, label: "Cantieri", icona: "House", esatta: true },
+  { href: BASE, label: "Dashboard", icona: "LayoutGrid", esatta: true },
   { href: `${BASE}/commesse`, label: "Commesse", icona: "Blocks" },
   { href: `${BASE}/varianti`, label: "Varianti", icona: "RefreshCw" },
   { href: `${BASE}/ore`, label: "Ore", icona: "Clock" },
   { href: `${BASE}/acquisti`, label: "Acquisti", icona: "Truck" },
-  { href: `${BASE}/avanzamento`, label: "Avanzamento", icona: "FileStack" },
+  { href: `${BASE}/avanzamento`, label: "Fatturazione", icona: "FileStack" },
   { href: `${BASE}/documenti`, label: "Documenti", icona: "FolderOpen" },
   { href: `${BASE}/clienti`, label: "Clienti", icona: "Users" },
 ];

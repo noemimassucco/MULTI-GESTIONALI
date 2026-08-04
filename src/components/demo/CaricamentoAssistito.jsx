@@ -34,7 +34,7 @@ function Percentuale({ valore }) {
       className={`inline-flex h-6 shrink-0 items-center gap-1 rounded-full px-2 text-mini font-semibold leading-none ring-1 ring-inset ${
         sicuro
           ? "bg-brand-50 text-brand-800 ring-brand-100"
-          : "bg-sole-100 text-[#7a5c05] ring-sole-200"
+          : "bg-accento-50 text-accento-700 ring-accento-100"
       }`}
     >
       {sicuro ? "sicuro" : "da confermare"} {pct}%
@@ -173,7 +173,7 @@ export default function CaricamentoAssistito({
                   type="button"
                   onClick={avvia}
                   data-comando
-                  className="mt-6 inline-flex h-12 items-center gap-2 rounded-[var(--radius-controllo)] bg-sole-500 px-5 text-corrente font-semibold text-ink-900 hover:bg-sole-400"
+                  className="mt-6 inline-flex h-12 items-center gap-2 rounded-[var(--radius-controllo)] bg-accento-500 px-5 text-corrente font-semibold text-ink-900 hover:bg-accento-400"
                 >
                   <Icona misura="sm" nome="FolderOpen" />
                   Simula: cartella con {totale} documenti
@@ -241,7 +241,7 @@ export default function CaricamentoAssistito({
                         className={`mt-0.5 shrink-0 ${
                           d.sicurezza >= SOGLIA_CERTEZZA
                             ? "text-brand-600"
-                            : "text-amber-700"
+                            : "text-accento-600"
                         }`}
                       />
                       <div className="min-w-0 flex-1">
@@ -282,11 +282,11 @@ export default function CaricamentoAssistito({
                     niente.
                   </p>
                 </div>
-                <div className="rounded-[var(--radius-scheda)] border border-sole-200 bg-sole-50 p-4">
-                  <p className="text-t2 font-bold text-[#7a5c05]">
+                <div className="rounded-[var(--radius-scheda)] border border-accento-200 bg-accento-50 p-4">
+                  <p className="text-t2 font-bold text-accento-700">
                     {incerti.length}
                   </p>
-                  <p className="mt-0.5 text-corrente font-medium text-[#7a5c05]">
+                  <p className="mt-0.5 text-corrente font-medium text-accento-700">
                     da confermare
                   </p>
                   <p className="mt-1 text-piccolo text-ink-600">
@@ -305,7 +305,7 @@ export default function CaricamentoAssistito({
                   return (
                     <li
                       key={d.nome}
-                      className="rounded-[var(--radius-scheda)] border border-line bg-white p-4"
+                      className="rounded-[var(--radius-scheda)] border border-line bg-white p-5"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -413,7 +413,7 @@ export default function CaricamentoAssistito({
                   type="button"
                   onClick={chiudi}
                   data-comando
-                  className="flex h-11 items-center rounded-[var(--radius-controllo)] bg-ink-900 px-5 text-corrente font-semibold text-white hover:bg-ink-800"
+                  className="flex h-11 items-center rounded-[var(--radius-controllo)] bg-brand-700 px-5 text-corrente font-semibold text-white hover:bg-brand-600"
                 >
                   Torna al gestionale
                 </button>

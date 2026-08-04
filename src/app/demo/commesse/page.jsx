@@ -51,7 +51,7 @@ export default function CantieriAperti() {
         <Link
           href={`${BASE}/avanzamento`}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
         >
           <Icona misura="sm" nome="FileStack" className="size-3.5" />
           Cosa c&apos;è da fatturare
@@ -59,7 +59,7 @@ export default function CantieriAperti() {
       </IntestazioneDemo>
 
       {/* ------------------------------------------------------------ KPI */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <KpiDemo
           etichetta="Contratti aperti"
           valore={euro(contrattiAperti)}
@@ -85,7 +85,7 @@ export default function CantieriAperti() {
       </div>
 
       {scoperto > 0 ? (
-        <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-[var(--radius-scheda)] border border-red-200 bg-red-50 px-4 py-3 text-piccolo leading-relaxed text-red-800">
+        <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-[var(--radius-scheda)] border border-[#f2d9d6] bg-[#fbeceb] px-4 py-3 text-piccolo leading-relaxed text-critico">
           <Icona misura="sm" nome="AlertTriangle" className="shrink-0" />
           <span className="min-w-0 flex-1">
             Fuori da questi numeri ci sono {euro(scoperto)} di lavori già eseguiti e mai approvati
@@ -101,8 +101,8 @@ export default function CantieriAperti() {
       ) : null}
 
       {/* -------------------------------------------------- i cantieri */}
-      <section className="mt-4 rounded-[var(--radius-scheda)] border border-line bg-white">
-        <header className="flex items-center justify-between border-b border-line-soft px-5 py-3.5">
+      <section className="mt-5 rounded-[var(--radius-scheda)] border border-line bg-white">
+        <header className="flex items-center justify-between border-b border-line-soft px-6 py-4">
           <h2 className="text-testo font-bold text-ink-900">In ordine di quanto preoccupano</h2>
           <Link
             href={`${BASE}/commesse`}
@@ -117,7 +117,7 @@ export default function CantieriAperti() {
             <li key={k.id}>
               <Link
                 href={`${BASE}/commesse/${k.id}`}
-                className="block px-5 py-4 transition-colors hover:bg-surface-alt"
+                className="block px-6 py-5 transition-colors hover:bg-surface-alt"
               >
                 <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                   <div className="min-w-0">
@@ -136,9 +136,9 @@ export default function CantieriAperti() {
                     <p
                       className={`text-t3 font-bold leading-none ${
                         c.marginePrevistoPct < 8
-                          ? "text-red-700"
+                          ? "text-critico"
                           : c.marginePrevistoPct < 15
-                            ? "text-amber-700"
+                            ? "text-accento-600"
                             : "text-brand-700"
                       }`}
                     >
@@ -175,7 +175,7 @@ export default function CantieriAperti() {
           ))}
 
           {!conConti.length ? (
-            <li className="px-5 py-10 text-center text-corrente text-ink-500">
+            <li className="px-6 py-12 text-center text-corrente text-ink-500">
               Nessun cantiere aperto in questo momento.
             </li>
           ) : null}

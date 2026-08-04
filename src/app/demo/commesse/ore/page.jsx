@@ -158,14 +158,14 @@ export default function PaginaOre() {
           type="button"
           onClick={() => setModuloAperto(true)}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-sole-500 px-4 text-piccolo font-semibold text-ink-900 hover:bg-sole-400"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-accento-500 px-4 text-piccolo font-semibold text-ink-900 hover:bg-accento-400"
         >
           <Icona misura="sm" nome="Plus" className="size-3.5" />
           Registra ore
         </button>
       </IntestazioneDemo>
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <KpiDemo etichetta="Ore ultimi 30 giorni" valore={`${oreMese} h`} nota="su tutti i cantieri" />
         <KpiDemo etichetta="Costo ultimi 30 giorni" valore={euro(costoMese)} nota="manodopera aziendale" />
         <KpiDemo
@@ -182,7 +182,7 @@ export default function PaginaOre() {
       </div>
 
       {scoperti.length ? (
-        <div className="mt-3 rounded-[var(--radius-scheda)] border border-sole-200 bg-sole-50 p-4">
+        <div className="mt-3 rounded-[var(--radius-scheda)] border border-accento-200 bg-accento-50 p-4">
           <p className="text-corrente font-bold text-ink-900">
             Su {scoperti.length === 1 ? "un cantiere" : `${scoperti.length} cantieri`} non si
             registrano ore da più di dieci giorni
@@ -207,8 +207,8 @@ export default function PaginaOre() {
       ) : null}
 
       {/* -------------------------------------------------- le squadre */}
-      <section className="mt-4 rounded-[var(--radius-scheda)] border border-line bg-white">
-        <header className="border-b border-line-soft px-5 py-3.5">
+      <section className="mt-5 rounded-[var(--radius-scheda)] border border-line bg-white">
+        <header className="border-b border-line-soft px-6 py-4">
           <h2 className="text-testo font-bold text-ink-900">Le squadre</h2>
           <p className="mt-1 text-piccolo text-ink-500">
             Il costo orario è quello aziendale: paga, contributi e mezzi. Non la busta paga.
@@ -217,7 +217,7 @@ export default function PaginaOre() {
         <ul className="grid grid-cols-1 divide-y divide-line-soft sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {dati.squadre.map((s) => (
             <li key={s.id} className="flex items-center gap-3 px-5 py-4">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-ink-900 text-piccolo font-bold text-sole-400">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-ink-900 text-piccolo font-bold text-accento-400">
                 {s.iniziali}
               </span>
               <div className="min-w-0">

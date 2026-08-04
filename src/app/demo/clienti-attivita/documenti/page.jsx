@@ -80,7 +80,7 @@ function ModuloNuovoDocumento({ clienti, onSalva, onAnnulla }) {
           </button>
           <button
             type="submit"
-            className="h-10 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
+            className="h-10 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
           >
             Aggiungi all&apos;archivio
           </button>
@@ -128,7 +128,7 @@ export default function PaginaDocumenti() {
           type="button"
           onClick={() => setModaleAperta(true)}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
         >
           <Icona misura="sm" nome="Upload" className="size-3.5" />
           Carica documenti

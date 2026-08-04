@@ -84,7 +84,7 @@ export default async function PaginaRichieste() {
               </div>
 
               {r.strumentiAttuali?.length ? (
-                <div className="mt-4">
+                <div className="mt-5">
                   <p className="text-mini font-semibold uppercase tracking-wide text-ink-500">
                     Strumenti attuali
                   </p>

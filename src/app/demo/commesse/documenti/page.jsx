@@ -82,14 +82,14 @@ export default function PaginaDocumentiCommesse() {
           type="button"
           onClick={() => setCaricamentoAperto(true)}
           data-comando
-          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-sole-500 px-4 text-piccolo font-semibold text-ink-900 hover:bg-sole-400"
+          className="flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-accento-500 px-4 text-piccolo font-semibold text-ink-900 hover:bg-accento-400"
         >
           <Icona misura="sm" nome="Upload" className="size-3.5" />
           Carica archivio
         </button>
       </IntestazioneDemo>
 
-      <div className="mb-5 rounded-[var(--radius-scheda)] border border-sole-200 bg-sole-50 p-5">
+      <div className="mb-5 rounded-[var(--radius-scheda)] border border-accento-200 bg-accento-50 p-5">
         <h2 className="text-corrente font-bold text-ink-900">
           Vent&apos;anni di cantieri stanno in una cartella condivisa
         </h2>
@@ -104,7 +104,7 @@ export default function PaginaDocumentiCommesse() {
           type="button"
           onClick={() => setCaricamentoAperto(true)}
           data-comando
-          className="mt-4 flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-ink-900 px-4 text-piccolo font-semibold text-white hover:bg-ink-800"
+          className="mt-4 flex h-10 items-center gap-2 rounded-[var(--radius-controllo)] bg-brand-700 px-4 text-piccolo font-semibold text-white hover:bg-brand-600"
         >
           <Icona misura="sm" nome="FolderOpen" className="size-3.5" />
           Provalo adesso

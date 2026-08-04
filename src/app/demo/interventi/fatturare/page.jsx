@@ -62,7 +62,7 @@ export default function PaginaDaFatturare() {
         />
       </div>
 
-      <div className="mt-4">
+      <div className="mt-5">
         <TabellaDemo
           intestazioni={[...INTESTAZIONI, ""]}
           vuota={daFatturare.length ? null : "Tutto fatturato. Nella realtà capita di rado."}

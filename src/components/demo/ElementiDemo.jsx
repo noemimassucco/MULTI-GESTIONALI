@@ -38,7 +38,7 @@ export function KpiDemo({ etichetta, valore, nota, tono = "neutro", icona }) {
     critico: "text-critico",
   };
   return (
-    <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-5">
+    <div className="rounded-[var(--radius-scheda)] border border-line bg-white p-6">
       <div className="flex items-center gap-2.5">
         {icona ? <Icona misura="sm" nome={icona} className="shrink-0 text-ink-400" /> : null}
         <p className="min-w-0 truncate text-mini font-medium text-ink-500">{etichetta}</p>
@@ -134,7 +134,7 @@ export function TabellaDemo({ intestazioni, children, vuota }) {
         </table>
       </div>
       {vuota ? (
-        <p className="px-4 py-10 text-center text-corrente text-ink-500">{vuota}</p>
+        <p className="px-6 py-12 text-center text-corrente text-ink-500">{vuota}</p>
       ) : null}
     </div>
   );
@@ -249,7 +249,7 @@ export function CampoDemo({ etichetta, errore, children }) {
       <span className="mb-1.5 block text-piccolo font-semibold text-ink-900">{etichetta}</span>
       {children}
       {errore ? (
-        <span className="mt-1.5 flex items-start gap-1.5 text-piccolo font-medium text-red-700">
+        <span className="mt-1.5 flex items-start gap-1.5 text-piccolo font-medium text-critico">
           <Icona misura="sm" nome="AlertTriangle" className="mt-0.5 size-3.5 shrink-0" />
           {errore}
         </span>

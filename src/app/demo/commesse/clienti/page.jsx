@@ -122,7 +122,7 @@ export default function PaginaClienti() {
               )}
 
               {aperti.length ? (
-                <p className="mt-2 text-mini font-medium text-amber-700">
+                <p className="mt-2 text-mini font-medium text-accento-600">
                   {aperti.length === 1
                     ? "1 cantiere aperto in questo momento"
                     : `${aperti.length} cantieri aperti in questo momento`}
@@ -133,7 +133,7 @@ export default function PaginaClienti() {
         })}
 
         {!clienti.length ? (
-          <li className="rounded-[var(--radius-scheda)] border border-line bg-white px-5 py-10 text-center text-corrente text-ink-500">
+          <li className="rounded-[var(--radius-scheda)] border border-line bg-white px-6 py-12 text-center text-corrente text-ink-500">
             Nessun cliente corrisponde alla ricerca.
           </li>
         ) : null}

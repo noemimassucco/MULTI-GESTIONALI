@@ -120,7 +120,7 @@ export default function PaginaInterventi() {
             );
           })}
           {!ordinati.length ? (
-            <li className="px-5 py-10 text-center text-corrente text-ink-500">
+            <li className="px-6 py-12 text-center text-corrente text-ink-500">
               {testo || filtro
                 ? "Nessun intervento corrisponde alla ricerca. Prova a cambiare filtro o parola."
                 : "Nessun intervento in elenco: si creano programmando una richiesta."}
