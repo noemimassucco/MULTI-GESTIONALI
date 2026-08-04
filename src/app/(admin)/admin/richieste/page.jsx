@@ -2,6 +2,11 @@ import { richiesteRicevute } from "@/lib/contenuti-store";
 import Icona from "@/components/ui/Icona";
 import Pastiglia from "@/components/ui/Pastiglia";
 
+/* Le richieste cambiano di continuo: questa pagina va letta ogni volta,
+   non congelata al momento della compilazione del sito. Senza questa riga
+   l'amministrazione mostrerebbe per sempre l'elenco vuoto del build. */
+export const dynamic = "force-dynamic";
+
 /** Data e ora della richiesta, nel formato di tutti i giorni. */
 function dataOra(iso) {
   const d = iso ? new Date(iso) : null;
@@ -40,18 +45,36 @@ function Testo({ etichetta, valore }) {
 
 /** Le richieste arrivate dal modulo "Richiedi il tuo gestionale". */
 export default async function PaginaRichieste() {
-  const richieste = await richiesteRicevute();
+  const { richieste, fonte } = await richiesteRicevute();
+  const online = fonte === "supabase";
 
   return (
     <>
-      <header className="mb-6">
-        <h1 className="text-t1 font-bold text-ink-900">Richieste</h1>
-        <p className="mt-1 text-corrente text-ink-500">
-          {richieste.length
-            ? `${richieste.length} richieste ricevute, dalla più recente.`
-            : "Quello che arriva dal modulo del sito si legge qui."}
-        </p>
+      <header className="mb-6 flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 className="text-t1 font-bold text-ink-900">Richieste</h1>
+          <p className="mt-1 text-corrente text-ink-500">
+            {richieste.length
+              ? `${richieste.length} richieste ricevute, dalla più recente.`
+              : "Quello che arriva dal modulo del sito si legge qui."}
+          </p>
+        </div>
+        <Pastiglia variante={online ? "successo" : "attesa"}>
+          <Icona misura="sm" nome={online ? "Database" : "FileStack"} />
+          {online ? "Archivio online" : "File sul computer"}
+        </Pastiglia>
       </header>
+
+      {!online ? (
+        <p className="mb-5 flex gap-2.5 rounded-[var(--radius-scheda)] border border-line bg-surface-alt px-4 py-3.5 text-piccolo leading-relaxed text-ink-600">
+          <Icona misura="sm" nome="AlertTriangle" className="mt-0.5 shrink-0 text-ink-400" />
+          <span>
+            Qui stai leggendo il file locale. Il sito online scrive su Supabase: finché le due
+            chiavi non sono impostate su Vercel, chi compila il modulo riceve un errore e la
+            richiesta non arriva a nessuno.
+          </span>
+        </p>
+      ) : null}
 
       {richieste.length ? (
         <div className="space-y-4">

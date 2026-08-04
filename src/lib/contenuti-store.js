@@ -121,7 +121,76 @@ export async function contaModifiche() {
 /*  Richieste ricevute dal modulo del sito                             */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Le richieste arrivate dal modulo, dalla più recente.
+ *
+ * Se Supabase è configurato legge da lì — è il caso del sito online.
+ * Altrimenti legge il file locale, che è dove finiscono le richieste
+ * quando il sito gira sul computer.
+ *
+ * In tutti e due i casi i campi tornano scritti allo stesso modo, così la
+ * pagina dell'amministrazione non deve sapere da dove arrivano.
+ *
+ * @returns {Promise<{richieste: object[], fonte: "supabase"|"file"}>}
+ */
 export async function richiesteRicevute() {
+  if (supabaseConfigurato()) {
+    return { richieste: await daSupabase(), fonte: "supabase" };
+  }
+  return { richieste: await daFile(), fonte: "file" };
+}
+
+function supabaseConfigurato() {
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY,
+  );
+}
+
+/* Su Supabase le colonne hanno il nome con l'underscore: qui tornano
+   nella forma che usa il resto del progetto. */
+function normalizza(r) {
+  return {
+    id: r.id,
+    ricevutaIl: r.created_at,
+    nome: r.nome,
+    azienda: r.azienda,
+    settore: r.settore,
+    email: r.email,
+    telefono: r.telefono,
+    gestionaleInteresse: r.gestionale_interesse,
+    numeroUtenti: r.numero_utenti,
+    strumentiAttuali: r.strumenti_attuali || [],
+    difficolta: r.difficolta,
+    funzioniNecessarie: r.funzioni_necessarie,
+    datiDaImportare: r.dati_da_importare,
+    personalizzazioni: r.personalizzazioni,
+    messaggio: r.messaggio,
+    stato: r.stato,
+  };
+}
+
+async function daSupabase() {
+  try {
+    const { createClient } = await import("@supabase/supabase-js");
+    const client = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY,
+      { auth: { persistSession: false } },
+    );
+    const { data, error } = await client
+      .from("richieste")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(200);
+    if (error) throw new Error(error.message);
+    return (data || []).map(normalizza);
+  } catch (errore) {
+    console.error("Lettura richieste da Supabase non riuscita:", errore);
+    return [];
+  }
+}
+
+async function daFile() {
   try {
     const testo = await fs.readFile(
       path.join(process.cwd(), ".richieste-locali.jsonl"),

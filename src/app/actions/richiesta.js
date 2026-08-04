@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { salvaRichiesta } from "@/lib/richieste";
+import { sito } from "@/lib/sito";
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Scrivi il tuo nome").max(120),
@@ -73,8 +74,7 @@ export async function inviaRichiesta(_statoPrecedente, formData) {
     console.error("Salvataggio richiesta non riuscito:", errore);
     return {
       ok: false,
-      messaggio:
-        "Non siamo riusciti a registrare la richiesta. Riprova fra poco oppure scrivi direttamente via email.",
+      messaggio: `Non siamo riusciti a registrare la richiesta. Riprova fra poco, oppure scrivi direttamente a ${sito.email}: leggo lo stesso.`,
     };
   }
 }

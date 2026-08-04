@@ -9,6 +9,11 @@ import {
 import Icona from "@/components/ui/Icona";
 import Pastiglia from "@/components/ui/Pastiglia";
 
+/* Le richieste cambiano di continuo: questa pagina va letta ogni volta,
+   non congelata al momento della compilazione del sito. Senza questa riga
+   l'amministrazione mostrerebbe per sempre l'elenco vuoto del build. */
+export const dynamic = "force-dynamic";
+
 /** Data leggibile, senza secondi: serve solo per capire quando è arrivata. */
 function dataOra(iso) {
   const d = iso ? new Date(iso) : null;
@@ -38,7 +43,7 @@ function Riquadro({ icona, etichetta, numero, nota }) {
 
 /** Prima pagina dell'amministrazione: quanti contenuti ci sono e cosa è arrivato. */
 export default async function PaginaRiepilogo() {
-  const [gestionali, categorie, basi, richieste, modifiche] = await Promise.all([
+  const [gestionali, categorie, basi, archivio, modifiche] = await Promise.all([
     tuttiIGestionali(),
     tutteLeCategorie(),
     tutteLeBasi(),
@@ -49,6 +54,7 @@ export default async function PaginaRiepilogo() {
   const pubblicati = gestionali.filter((g) => g.stato === "pubblicato").length;
   const bozze = gestionali.length - pubblicati;
   const basiPronte = basi.filter((b) => b.demoPronta).length;
+  const richieste = archivio.richieste;
   const ultime = richieste.slice(0, 5);
 
   return (
